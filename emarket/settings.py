@@ -148,10 +148,22 @@ LOGOUT_URL = 'logout'
 LOGIN_REDIRECT_URL = '/' # /accounts/profile/
 
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
 
 DISQUS_API_KEY = get_env_variable("DISQUS_API_KEY")
 DISQUS_WEBSITE_SHORTNAME = 'buyandplay'
 
 GMAIL_PASS = get_env_variable("GMAIL_PASS")
 GMAIL_MAIL = get_env_variable("GMAIL_MAIL")
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = GMAIL_MAIL
+EMAIL_HOST_PASSWORD = GMAIL_PASS
+ 
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+SERVER_EMAIL = EMAIL_HOST_USER
+

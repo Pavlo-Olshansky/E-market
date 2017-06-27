@@ -13,9 +13,43 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+
 from django.contrib import admin
+from django.conf import settings
+from django.conf.urls import url, include
+from django.conf.urls.static import static
+# from mysite.core import views as core_views
+from django.contrib.auth import views as auth_views
+
+admin.autodiscover()
 
 urlpatterns = [
+
+	# Admin URL
     url(r'^admin/', admin.site.urls),
-]
+
+    # Home page
+    url(r'^', include('home.urls', namespace='home'), name='home'),
+
+    # Sign up
+    url(r'^signup/', include('userprofile.urls', namespace='userprofile'), name='userprofile'),
+
+    # url(r'^signup/$', core_views.signup, name='signup'),
+
+    # Login/Logout URLs
+    url(r'^login/$', auth_views.login, {'template_name': 'registration/login.html'}, name='login'),
+
+    url(r'^logout/$', auth_views.logout, {'template_name': 'registration/logout.html','next_page': '/'}, name='logout'),
+
+    # Social login
+
+    # User profile related URLs
+
+    # Seller related URLs
+
+    # Contact us related URLS
+
+
+
+
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

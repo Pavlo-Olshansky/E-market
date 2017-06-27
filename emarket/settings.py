@@ -37,7 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'home',
+    'userprofile',
+    'disqus',
+    'django.contrib.sites',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -54,7 +60,7 @@ ROOT_URLCONF = 'emarket.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(os.path.dirname(__file__), 'templates'), ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -139,4 +145,16 @@ STATICFILES_DIRS = (
 
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
-# LOGIN_REDIRECT_URL = '/path/path/'
+LOGIN_REDIRECT_URL = '/' # /accounts/profile/
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'pavlo.olshansky@gmail.com'
+EMAIL_HOST_PASSWORD = '123zxc456asd789qwe'
+
+
+DISQUS_API_KEY = 'kAABHYwLwqXcTYlxHF4tOmmTOZ2UFwjyfPXmsHJCHVhap8opi6SRUFoIXbaK6vcj'
+DISQUS_WEBSITE_SHORTNAME = 'localhost'

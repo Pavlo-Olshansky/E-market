@@ -1,18 +1,26 @@
+from django.conf import settings
+
 class Send_email:
-	def send_email(self, email_to, subject, message):
-		import smtplib
-		from email.mime.text import MIMEText
 
-		msg = MIMEText(message)
-		msg['Subject'] = subject
+    def __init__(self, email_to, subject, message):
+    	self.email_to = email_to
+    	self.subject = subject
+    	self.message = message
 
-		mail = smtplib.SMTP('smtp.gmail.com', 587)  # or 465 (google said :Сервер исходящей почты), but not working thou :)
+    def send_email(self):
+        import smtplib
+        from email.mime.text import MIMEText
 
-		mail.ehlo()
+        msg = MIMEText(self.message)
+        msg['Subject'] = self.subject
 
-		mail.starttls()  # Transport Layer Security
+        mail = smtplib.SMTP('smtp.gmail.com', 587)  # or 465 (google said :Сервер исходящей почты), but not working thou :)
 
-		mail.login('buyandplay.team@gmail.com', '123zxcGmail+')  # !!!!!!
+        mail.ehlo()
 
-		mail.sendmail('buyandplay.team@gmail.com', email_to, msg.as_string())  # roman.olshansky123@gmail.com
-		mail.close()
+        mail.starttls()  # Transport Layer Security
+
+        mail.login(settings.GMAIL_MAIL, settings.GMAIL_PASS)
+
+        mail.sendmail(settings.GMAIL_MAIL, self.email_to, msg.as_string())  # roman.olshansky123@gmail.com
+        mail.close()

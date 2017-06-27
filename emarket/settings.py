@@ -3,7 +3,7 @@ from django.core.exceptions import ImproperlyConfigured
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+ 
 def get_env_variable(var_name):
     """ Get the environment variable or return exception """
     try:
@@ -149,12 +149,9 @@ LOGIN_REDIRECT_URL = '/' # /accounts/profile/
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'pavlo.olshansky@gmail.com'
-EMAIL_HOST_PASSWORD = '123zxc456asd789qwe'
 
+DISQUS_API_KEY = get_env_variable("DISQUS_API_KEY")
+DISQUS_WEBSITE_SHORTNAME = 'buyandplay'
 
-DISQUS_API_KEY = 'kAABHYwLwqXcTYlxHF4tOmmTOZ2UFwjyfPXmsHJCHVhap8opi6SRUFoIXbaK6vcj'
-DISQUS_WEBSITE_SHORTNAME = 'localhost'
+GMAIL_PASS = get_env_variable("GMAIL_PASS")
+GMAIL_MAIL = get_env_variable("GMAIL_MAIL")

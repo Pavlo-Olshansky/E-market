@@ -27,7 +27,8 @@ def signup(request):
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
                 'token': account_activation_token.make_token(user),
             })
-            Send_email.send_email(user.email, subject, message)
+            send_program = Send_email(user.email, subject, message)
+            send_program.send_email()
             # user.email_user(subject, message)
 
             return render(request, 'registration/account_activation_sent.html')

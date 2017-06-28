@@ -31,16 +31,13 @@ urlpatterns = [
     # Home page
     url(r'^', include('home.urls', namespace='home'), name='home'),
 
-    # Sign up
-    url(r'^signup/', include('userprofile.urls', namespace='userprofile'), name='userprofile'),
+    
+    # Profile
+    url(r'^accounts/', include('accounts.urls', namespace='accounts'), name='accounts'),
+
 
     # url(r'^signup/$', core_views.signup, name='signup'),
-
-    # Login/Logout URLs
-    url(r'^login/$', auth_views.login, {'template_name': 'registration/login.html'}, name='login'),
-
-    url(r'^logout/$', auth_views.logout, {'template_name': 'registration/logout.html','next_page': '/'}, name='logout'),
-
+    
     # Social login
 
     # User profile related URLs
@@ -52,4 +49,4 @@ urlpatterns = [
 
 
 
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

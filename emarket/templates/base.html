@@ -1,5 +1,6 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 {% load static %}
+
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
@@ -90,7 +91,11 @@
   </header>
   {% endblock header %}
 
+  {% block background_image %}
   <div id="fh5co-page-title" style="background-image: url(images/test.jpg)">
+  {% endblock background_image %}
+
+  {% block header_on_background %}
     <div class="overlay"></div>
     <div class="container">
       <div class="text">
@@ -99,11 +104,13 @@
       
     </div>
   </div>
+  {% endblock header_on_background %}
 
-
+  {% block main_content %}
   <main role="main" id="fh5co-main">
     <div class="container">
       <div class="row">
+      
         <div class="col-md-3" id="fh5co-sidebar">
 
           {% block left_sidebar %}
@@ -125,9 +132,8 @@
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus non repellendus quam, ullam nesciunt nulla nisi doloribus quisquam impedit modi.</p>
           </div>
           {% endblock left_description %}
-
-          
         </div>
+        
         <div class="col-md-8 col-md-push-1" id="fh5co-content">
 
           {% block content %}
@@ -141,7 +147,7 @@
             </div>
           </div>
           <div class="fh5co-spacer fh5co-spacer-sm"></div>
-          <p><img src="images/big_image.jpg" alt="Image" class="img-responsive"></p>
+          <p><img src="{% static 'images/big_image.jpg' %}" alt="Image" class="img-responsive"></p>
           <div class="fh5co-spacer fh5co-spacer-sm"></div>
           <div class="row">
             
@@ -157,6 +163,7 @@
       </div>
     </div>
   </main>
+  {% endblock main_content %}
 
   {% block footer %}
   <footer role="contentinfo" id="fh5co-footer">
@@ -171,7 +178,7 @@
             <p><strong>Subscribe to our newsletter.</strong></p>
             <form action="#" class="form-subscribe">
               <div class="field">
-                <input type="email" class="form-control" placeholder="hello@gmail.com">
+                <input type="email" class="form-control" placeholder="youremail@gmail.com">
                 <button class="btn btn-primary">Subscribe</button>
               </div>
             </form>

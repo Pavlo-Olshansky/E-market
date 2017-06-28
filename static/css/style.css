@@ -89,12 +89,12 @@ a:hover {
   margin-bottom: 0;
   background: #fff;
 }
-.navbar-default.navbar {
+.navbar-default.navbar { /*тінь*/
   min-height: 70px;
   border: none !important;
-  -webkit-box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.08);
-  -moz-box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.08);
-  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.08);
+  -webkit-box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.94);
+  -moz-box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.64);
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.58);
 }
 @media screen and (max-width: 768px) {
   .navbar-default.navbar {

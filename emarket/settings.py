@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'home',
-    'userprofile',
+    'accounts',
     'disqus',
     'django.contrib.sites',
 ]
@@ -143,9 +143,12 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
     )
 
-LOGIN_URL = 'login'
-LOGOUT_URL = 'logout'
-LOGIN_REDIRECT_URL = '/' # /accounts/profile/
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'accounts/media')
+
+LOGIN_URL = 'accounts/login'
+LOGOUT_URL = 'accounts/logout'
+LOGIN_REDIRECT_URL = '/accounts/profile'
 
 
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

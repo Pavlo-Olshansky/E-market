@@ -6,14 +6,14 @@
 {% block content %}
 <h1>Profile</h1>
 <p>Username: {{ user }}</p>
-<p>First name: {{ user.userprofile.first_name }}</p>
-<p>Last name: {{ user.userprofile.last_name }}</p>
+<p>First name: {{ user.first_name }}</p>
+<p>Last name: {{ user.last_name }}</p>
 <p>Email : {{ user.email }}</p>
 
 <div class="col-md-6 col-sm-6">
-  <a href="{{ user.userprofile.image.url }}" class="img image-popup">
+  <a href="{{ user.profile.image.url }}" class="img image-popup">
   	<div class="overlay">Your profile image</div>
-  	<img src="{{ user.userprofile.image.url }}" alt="Image" class="img-responsive">
+  	<img src="{{ user.profile.image.url }}" alt="Image" class="img-responsive">
   </a>
 </div>
 

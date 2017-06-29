@@ -1,4 +1,4 @@
-from .forms import SignUpForm, EditProfileForm
+from .forms import SignUpForm, EditProfileForm, EditUserForm
 from django.contrib.auth import login
 from django.contrib.auth.models import User
 from .tokens import account_activation_token
@@ -67,17 +67,21 @@ def view_profile(request, pk=None):
     args = {'user': user}
     return render(request, 'accounts/profile.html', args)
 
+
 def edit_profile(request):
     if request.method == 'POST':
-        form = EditProfileForm(request.POST, instance=request.user)
+        user_form = EditUserForm(request.POST, instance=request.user)
+        profile_form = EditProfileForm(request.POST, instance=request.user.profile)
 
-        if form.is_valid():
-            form.save()
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
             return redirect(reverse('accounts:view_profile'))
     else:
-        form = EditProfileForm(instance=request.user)
-        args = {'form': form}
-        return render(request, 'accounts/edit_profile.html', args)
+        user_form = EditUserForm(instance=request.user)
+        profile_form = EditProfileForm(instance=request.user.profile)
+        context = {'user_form': user_form, 'profile_form': profile_form}
+        return render(request, 'accounts/edit_profile.html', context)
 
 def change_password(request):
     if request.method == 'POST':

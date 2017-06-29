@@ -1,17 +1,15 @@
-from .forms import SignUpForm, EditProfileForm, EditUserForm
 from django.contrib.auth import login
 from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
 from .tokens import account_activation_token
 from django.shortcuts import render, redirect
-from django.utils.http import urlsafe_base64_encode
 from django.template.loader import render_to_string
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
 from django.utils.encoding import force_bytes, force_text
 from django.contrib.sites.shortcuts import get_current_site
+from .forms import SignUpForm, EditProfileForm, EditUserForm
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-# from django.contrib.auth.forms import UserChangeForm
-from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
-from django.contrib.auth import update_session_auth_hash
-from django.core.urlresolvers import reverse
 
 
 def signup(request):
@@ -71,7 +69,7 @@ def view_profile(request, pk=None):
 def edit_profile(request):
     if request.method == 'POST':
         user_form = EditUserForm(request.POST, instance=request.user)
-        profile_form = EditProfileForm(request.POST, instance=request.user.profile)
+        profile_form = EditProfileForm(request.POST, request.FILES, instance=request.user.userprofile)
 
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
@@ -79,7 +77,7 @@ def edit_profile(request):
             return redirect(reverse('accounts:view_profile'))
     else:
         user_form = EditUserForm(instance=request.user)
-        profile_form = EditProfileForm(instance=request.user.profile)
+        profile_form = EditProfileForm(instance=request.user.userprofile)
         context = {'user_form': user_form, 'profile_form': profile_form}
         return render(request, 'accounts/edit_profile.html', context)
 

@@ -5,10 +5,10 @@
 {% block content %}
 	<h1>Profile</h1>
 
-	<form method="POST">
+    <form enctype="multipart/form-data" method="post">
 		{% csrf_token %}
-		{{ user_form.as_p }}
 		{{ profile_form.as_p }}
+		{{ user_form.as_p }}
 		<button type="submit">Submit</button>
 	</form>
 {% endblock content %}

@@ -11,9 +11,9 @@
 <p>Email : {{ user.email }}</p>
 
 <div class="col-md-6 col-sm-6">
-  <a href="{{ user.profile.image.url }}" class="img image-popup">
+  <a href="{{ user.userprofile.image.url }}" class="img image-popup">
   	<div class="overlay">Your profile image</div>
-  	<img src="{{ user.profile.image.url }}" alt="Image" class="img-responsive">
+  	<img src="{{ user.userprofile.image.url }}" alt="{{ user }}" class="img-responsive">
   </a>
 </div>
 

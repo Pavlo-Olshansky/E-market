@@ -30,19 +30,14 @@ urlpatterns = [
 
     # Home page
     url(r'^', include('home.urls', namespace='home'), name='home'),
-
     
-    # Profile
+    # User profile related URLs
     url(r'^accounts/', include('accounts.urls', namespace='accounts'), name='accounts'),
-
-
-    # url(r'^signup/$', core_views.signup, name='signup'),
     
     # Social login
 
-    # User profile related URLs
-
-    # Seller related URLs
+    # Seller accounts related URLs
+    url(r'^products/', include('products.urls', namespace='products'), name='products'),
 
     # Contact us related URLS
 

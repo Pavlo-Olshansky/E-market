@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Profile{% endblock title %}
 
@@ -8,5 +9,12 @@
 <p>First name: {{ user.userprofile.first_name }}</p>
 <p>Last name: {{ user.userprofile.last_name }}</p>
 <p>Email : {{ user.email }}</p>
-<img src="{{ user.userprofile.image.url }}" width="240" alt="{{ user }}">
+
+<div class="col-md-6 col-sm-6">
+  <a href="{{ user.userprofile.image.url }}" class="img image-popup">
+  	<div class="overlay">Your profile image</div>
+  	<img src="{{ user.userprofile.image.url }}" alt="Image" class="img-responsive">
+  </a>
+</div>
+
 {% endblock content %}

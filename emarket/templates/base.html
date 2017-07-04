@@ -47,7 +47,10 @@
   <link rel="stylesheet" href="{% static 'css/easy-responsive-tabs.css' %}">
   <!-- Theme Style -->
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
-
+  
+  
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'css/cropper.min.css' %}" rel="stylesheet">
   
   <!-- FOR IE9 below -->
   <!--[if lte IE 9]>
@@ -57,7 +60,6 @@
 
 </head>
 <body class="fh5co-inner">
-
   {% block header %}
   <header id="fh5co-header" role="banner">
     
@@ -279,7 +281,11 @@
     <script src="{% static 'js/easyResponsiveTabs.js' %}"></script>
     <!-- FastClick for Mobile/Tablets -->
     <script src="{% static 'js/fastclick.js' %}"></script>
-    
+
+
+    <script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/cropper.min.js' %}"></script>
     
     <!-- Google Map -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCefOgb1ZWqYtj7raVSmN4PL2WkTrc-KyA&sensor=false"></script>
@@ -290,6 +296,12 @@
     <script src="{% static 'js/main.js' %}"></script>
     
     {% endblock js_block %}
+
+    {% block extra_js %}
+    {% endblock extra_js %}
+
+
+
 
 </body>
 </html>

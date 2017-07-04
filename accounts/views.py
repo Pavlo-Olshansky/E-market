@@ -10,6 +10,8 @@ from django.utils.encoding import force_bytes, force_text
 from django.contrib.sites.shortcuts import get_current_site
 from .forms import SignUpForm, EditProfileForm, EditUserForm
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from .models import UserProfile
+
 
 
 def signup(request):
@@ -62,23 +64,34 @@ def view_profile(request, pk=None):
         user = User.objects.get(pk=pk)
     else:
         user = request.user
-    args = {'user': user}
-    return render(request, 'accounts/profile.html', args)
 
-
-def edit_profile(request):
+    
     if request.method == 'POST':
-        user_form = EditUserForm(request.POST, instance=request.user)
         profile_form = EditProfileForm(request.POST, request.FILES, instance=request.user.userprofile)
 
-        if user_form.is_valid() and profile_form.is_valid():
-            user_form.save()
+        if profile_form.is_valid():
             profile_form.save()
             return redirect(reverse('accounts:view_profile'))
     else:
-        user_form = EditUserForm(instance=request.user)
         profile_form = EditProfileForm(instance=request.user.userprofile)
-        context = {'user_form': user_form, 'profile_form': profile_form}
+
+    context = {'user': user, 'profile_form': profile_form}
+    return render(request, 'accounts/profile.html', context)
+
+
+
+
+def edit_profile(request):
+
+    if request.method == 'POST':
+        user_form = EditUserForm(request.POST, instance=request.user)
+
+        if user_form.is_valid():
+            user_form.save()
+            return redirect(reverse('accounts:view_profile'))
+    else:
+        user_form = EditUserForm(instance=request.user)
+        context = {'user_form': user_form,}
         return render(request, 'accounts/edit_profile.html', context)
 
 def change_password(request):
@@ -94,5 +107,11 @@ def change_password(request):
     else:
         form = PasswordChangeForm(user=request.user)
 
-        args = {'form': form}
-        return render(request, 'accounts/change_password.html', args)
+        context = {'form': form}
+        return render(request, 'accounts/change_password.html', context)
+
+
+# from .models import Photo
+# from .forms import PhotoForm
+
+

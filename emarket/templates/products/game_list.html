@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block extra_js %}
+  <script src="{% static 'js/products/games.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+  <h1 class="page-header">Games</h1>
+
+  <!-- BUTTON TO TRIGGER THE ACTION -->
+  <p>
+    <button type="button"
+            class="btn btn-primary js-create-game"
+            data-url="{% url 'products:game_create' %}">
+      <span class="glyphicon glyphicon-plus"></span>
+      New game
+    </button>
+  </p>
+
+  <table class="table" id="game-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Type</th>
+        <th>Publication date</th>
+        <th>Pages</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% include 'products/includes/partial_game_list.html' %}
+    </tbody>
+  </table>
+
+  <!-- THE MODAL WE WILL BE USING -->
+  <div class="modal fade" id="modal-game">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      </div>
+    </div>
+{% endblock %}

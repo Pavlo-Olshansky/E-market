@@ -1,0 +1,27 @@
+{% for game in games %}
+	<tr>
+	  <td>{{ game.id }}</td>
+	  <td>{{ game.title }}</td>
+	  <td>{{ game.author }}</td>
+	  <td>{{ game.get_game_type_display }}</td>
+	  <td>{{ game.publication_date }}</td>
+	  <td>{{ game.pages }}</td>
+	  <td>{{ game.price }}</td>
+	  <td>
+      <button type="button"
+              class="btn btn-warning btn-sm js-update-game"
+              data-url="{% url 'products:game_update' game.id %}">
+        <span class="glyphicon glyphicon-pencil"></span> Edit
+      </button>
+      <button type="button"
+              class="btn btn-danger btn-sm js-delete-game"
+              data-url="{% url 'products:game_delete' game.id %}">
+        <span class="glyphicon glyphicon-trash"></span> Delete
+      </button>
+    </td>
+	</tr>
+{% empty %}
+	<tr>
+	  <td colspan="7" class="text-center bg-warning">No games</td>
+	</tr>
+{% endfor %}

@@ -40,7 +40,10 @@ INSTALLED_APPS = [
     'home',
     'accounts',
     'disqus',
+    'products',
     'django.contrib.sites',
+    'widget_tweaks',
+
 ]
 
 SITE_ID = 1

@@ -6,6 +6,8 @@ from django.http import JsonResponse
 from django.template.loader import render_to_string
 from .forms import GameForm
 
+from django.views.generic import DetailView
+
 
 class ProductsPage(TemplateView):
 
@@ -72,3 +74,7 @@ def game_delete(request, pk):
             request=request,
         )
     return JsonResponse(data)
+
+class Game_details(DetailView):
+    model = Game
+    template_name = 'products/game_details.html'

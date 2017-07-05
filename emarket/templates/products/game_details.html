@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Details{% endblock %}
+
+{% block content %}
+    <p>asdsadas</p>
+    <p>{{ game.id }}</p>
+	<p>{{ game.title }}</p>
+	<p>{{ game.author }}</p>
+	<p>{{ game.get_game_type_display }}</p>
+	<p>{{ game.publication_date }}</p>
+	<p>{{ game.pages }}</p>
+	<p>{{ game.price }}</p>
+	
+{% endblock %}

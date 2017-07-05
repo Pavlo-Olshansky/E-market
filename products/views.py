@@ -4,9 +4,10 @@ from .models import Game
 
 from django.http import JsonResponse
 from django.template.loader import render_to_string
-from .forms import GameForm
+from .forms import GameForm, CommentForm
 
-from django.views.generic import DetailView
+from django.core.urlresolvers import reverse
+from django.http import HttpResponseRedirect
 
 
 def save_game_form(request, form, template_name):
@@ -73,6 +74,27 @@ def game_delete(request, pk):
     return JsonResponse(data)
 
 
-class Game_details(DetailView):
+def game_details(request, pk):
     model = Game
     template_name = 'products/game_details.html'
+
+    game = Game.objects.get(pk=pk)
+
+    if request.method == 'POST':
+        comment_form = CommentForm(request.POST, prefix="comment")
+        if comment_form.is_valid():
+            comment = comment_form.save(commit=False)
+            comment.game = game
+            comment.save()
+            redirect_url = reverse('products:game_details', args=(game.id,))
+            return HttpResponseRedirect(redirect_url)
+
+    else:
+        comment_form = CommentForm(prefix="comment")
+    
+    context = {
+        'game': game,
+        'comment_form': comment_form,
+    }
+    
+    return render(request, 'products/game_details.html', context)

@@ -19,5 +19,21 @@ class Game(models.Model):
     game_type = models.PositiveSmallIntegerField(choices=GAME_TYPES)
 
     class Meta:
-        ordering = ['publication_date']
+        ordering = ['-publication_date']
+
+class Comment(models.Model):
+    game = models.ForeignKey(Game, related_name='comments')
+    user = models.CharField(max_length=250)
+    email = models.EmailField()
+    body = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)
+    approved = models.BooleanField(default=False)
+
+    def approved(self):
+        self.approved = True
+        self.save()
+
+    def __str__(self):
+        return self.user
+
   

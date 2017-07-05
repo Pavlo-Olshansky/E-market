@@ -7,13 +7,13 @@ from PIL import Image
 from django import forms
 from django.core.files import File
 # from .models import Photo
+from django.forms.widgets import FileInput
 
 
 class SignUpForm(UserCreationForm):
     # first_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
     # last_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
     email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.')
-
     class Meta:
         model = User
         fields = ('username', 'email', 'password1', 'password2')
@@ -43,6 +43,7 @@ class EditProfileForm(forms.ModelForm):
     y = forms.FloatField(widget=forms.HiddenInput())
     width = forms.FloatField(widget=forms.HiddenInput())
     height = forms.FloatField(widget=forms.HiddenInput())
+    file = forms.FileField(widget=FileInput)
 
     class Meta:
         model = UserProfile
@@ -55,6 +56,7 @@ class EditProfileForm(forms.ModelForm):
         y = self.cleaned_data.get('y')
         w = self.cleaned_data.get('width')
         h = self.cleaned_data.get('height')
+
 
         image = Image.open(photo.file)
         cropped_image = image.crop((x, y, w+x, h+y))

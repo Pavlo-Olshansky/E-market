@@ -6,10 +6,29 @@
     <p>asdsadas</p>
     <p>{{ game.id }}</p>
 	<p>{{ game.title }}</p>
-	<p>{{ game.author }}</p>
+	<p><a href="/accounts/profile/{{ game.author_id }}">{{ game.author }}</a></p>
 	<p>{{ game.get_game_type_display }}</p>
 	<p>{{ game.publication_date }}</p>
 	<p>{{ game.pages }}</p>
 	<p>{{ game.price }}</p>
 	
+
+	{# Comment Section #}
+    <h3>Leave a comment</h3>
+    <!-- <p> There is {{ game.comments.count }} comments</p> -->
+    
+    {# Comment View #}
+    <table id="comment-table" class="table2 table-comment">
+        <tbody>
+    		{% for comment in game.comments.all %}  {# related name - comments #}
+				{% include 'comments/comments_item_view.html' %}
+			{% empty %}
+				<p>There is no comments</p>
+    		{% endfor %}
+    	</tbody>
+    </table>
+
+    {# Comment Form #}
+	{% include 'comments/comments_item_form.html' %}
+
 {% endblock %}

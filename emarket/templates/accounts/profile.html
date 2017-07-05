@@ -70,13 +70,27 @@
 <p>Last name: {{ user.last_name }}</p>
 <p>Email : {{ user.email }}</p>
 
+{% if user.username == request.user.username %}
   <form method="post" enctype="multipart/form-data" id="formUpload">
     {% csrf_token %}
-    {{ profile_form.as_p }}
+    Image:
 
-	<p><button type="submit">Submit</button></p>
+    {{ profile_form.file }}
+    <small style="color: grey">{{ profile_form.file.help_text }}</small>
+    <p style="color: red">{{ profile_form.file.error }}</p>
 
+
+    {{ profile_form.x }}
+    {{ profile_form.y }}
+    {{ profile_form.width }}
+    {{ profile_form.height }}
+
+
+
+  <button type="button" class="btn btn-primary js-crop-and-upload">Upload new photo</button>
   </form>
+{% endif %}
+
 
 
   <!-- MODAL TO CROP THE IMAGE -->
@@ -101,14 +115,13 @@
               <span class="glyphicon glyphicon-zoom-out"></span>
             </button>
           </div>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Nevermind</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Back</button>
           <button type="button" class="btn btn-primary js-crop-and-upload">Crop and upload</button>
         </div>
       </div>
     </div>
   </div>
 
-My image
 <div class="col-md-6 col-sm-6">
   <a href="{{ user.userprofile.file.url }}" class="img image-popup">
   	<img src="{{ user.userprofile.file.url }}" alt="{{ user }}" class="img-responsive" width=90>

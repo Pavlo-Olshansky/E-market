@@ -7,10 +7,16 @@
     <h4 class="modal-title">Update game</h4>
   </div>
   <div class="modal-body">
-    {% include 'products/includes/partial_game_form.html' %}
+    {% if user.is_authenticated %}
+      {% include 'products/includes/partial_game_form.html' %}
+    {% else %}
+      <p>You must to login first</p>
+    {% endif %}
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-    <button type="submit" class="btn btn-primary">Update game</button>
+    {% if user.is_authenticated %}
+      <button type="submit" class="btn btn-primary">Update game</button>
+    {% endif %}
   </div>
 </form>

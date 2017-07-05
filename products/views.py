@@ -16,7 +16,12 @@ def save_game_form(request, form, template_name):
     data = dict()
     if request.method == 'POST':
         if form.is_valid():
-            form.save()
+
+            game = form.save(commit=False)
+            game.author = request.user
+            game.save()
+
+            # form.save()
             data['form_is_valid'] = True
             games = Game.objects.all()
             data['html_game_list'] = render_to_string('products/includes/partial_game_list.html', {

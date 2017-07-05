@@ -1,5 +1,6 @@
 <form method="post" action="{% url 'products:game_delete' game.id %}" class="js-game-delete-form">
   {% csrf_token %}
+      
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
       <span aria-hidden="true">&times;</span>
@@ -7,10 +8,17 @@
     <h4 class="modal-title">Confirm game deletion</h4>
   </div>
   <div class="modal-body">
+    {% if user.is_authenticated %}
     <p class="lead">Are you sure you want to delete the game <strong>{{ game.title }}</strong>?</p>
+    {% else %}
+      <p>You must to login first</p>
+    {% endif %}
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-    <button type="submit" class="btn btn-danger">Delete game</button>
+    {% if user.is_authenticated %}
+      <button type="submit" class="btn btn-danger">Delete game</button>
+    {% endif %}
   </div>
+      
 </form>

@@ -1,5 +1,7 @@
 <form method="post" action="{% url 'products:game_create' %}" class="js-game-create-form">
-  {% csrf_token %}
+  {% csrf_token %}      
+  <input id="id_author" type="hidden" value="{{ user.username }}"/>
+
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
       <span aria-hidden="true">&times;</span>
@@ -7,10 +9,16 @@
     <h4 class="modal-title">Create a new game</h4>
   </div>
   <div class="modal-body">
+  {% if user.is_authenticated %}
     {% include 'products/includes/partial_game_form.html' %}
+  {% else %}
+    <p>You must to login first</p>
+  {% endif %}
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-    <button type="submit" class="btn btn-primary">Create game</button>
+    {% if user.is_authenticated %}
+      <button type="submit" class="btn btn-primary">Create game</button>
+    {% endif %}
   </div>
 </form>

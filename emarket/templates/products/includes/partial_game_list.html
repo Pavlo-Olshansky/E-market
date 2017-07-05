@@ -9,7 +9,7 @@
 	  <td>{{ game.price }}</td>
 	  <td>
 
-	  {% if request.user == game.author %}
+	  {% if user == game.author %}
       <button type="button"
               class="btn btn-warning btn-sm js-update-game"
               data-url="{% url 'products:game_update' game.id %}">

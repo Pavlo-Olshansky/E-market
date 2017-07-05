@@ -9,11 +9,6 @@ from .forms import GameForm
 from django.views.generic import DetailView
 
 
-class ProductsPage(TemplateView):
-
-	template_name = 'products/products_page.html'
-
-
 def save_game_form(request, form, template_name):
     data = dict()
     if request.method == 'POST':
@@ -27,7 +22,7 @@ def save_game_form(request, form, template_name):
             data['form_is_valid'] = True
             games = Game.objects.all()
             data['html_game_list'] = render_to_string('products/includes/partial_game_list.html', {
-                'games': games
+                'games': games, 'user': request.user
             })
         else:
             data['form_is_valid'] = False
@@ -57,6 +52,7 @@ def game_update(request, pk):
         form = GameForm(instance=game)
     return save_game_form(request, form, 'products/includes/partial_game_update.html')
 
+
 def game_delete(request, pk):
     game = get_object_or_404(Game, pk=pk)
     data = dict()
@@ -65,7 +61,7 @@ def game_delete(request, pk):
         data['form_is_valid'] = True  # This is just to play along with the existing code
         games = Game.objects.all()
         data['html_game_list'] = render_to_string('products/includes/partial_game_list.html', {
-            'games': games
+            'games': games, 'user': request.user
         })
     else:
         context = {'game': game}
@@ -73,7 +69,9 @@ def game_delete(request, pk):
             context,
             request=request,
         )
+
     return JsonResponse(data)
+
 
 class Game_details(DetailView):
     model = Game

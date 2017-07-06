@@ -64,6 +64,8 @@
 {% endblock extra_js %}
 
 {% block content %}
+
+
 <h1>Profile</h1>
 <p>Username: {{ user }}</p>
 <p>First name: {{ user.first_name }}</p>
@@ -87,8 +89,6 @@
   <button type="button" class="btn btn-primary js-crop-and-upload">Upload new photo</button>
   </form>
 {% endif %}
-
-
 
   <!-- MODAL TO CROP THE IMAGE -->
   <div class="modal fade" id="modalCrop">
@@ -125,5 +125,16 @@
   </a>
 </div>
 
+{% if pk %}
+  <h3>{{ user }} games to sell:</h3>
+{% else %}
+  <h3> My games to sell:</h3>
+{% endif %}
+
+{% for user_game in user_games %}
+  <p> Game: <a href="/products/{{ user_game.id }}/details/">{{ user_game.title }}</a></p>
+{% empty %}
+  <p>No games</p>
+{% endfor %}
 
 {% endblock content %}

@@ -1,1 +1,1 @@
-web: gunicorn emarket.wsgi --log-file -
+web: python manage.py collectstatic --noinput; gunicorn emarket.wsgi

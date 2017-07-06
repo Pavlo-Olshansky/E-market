@@ -158,11 +158,21 @@ LOGIN_REDIRECT_URL = '/accounts/profile'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 
-DISQUS_API_KEY = get_env_variable("DISQUS_API_KEY")
-DISQUS_WEBSITE_SHORTNAME = 'buyandplay'
 
-GMAIL_PASS = get_env_variable("GMAIL_PASS")
-GMAIL_MAIL = get_env_variable("GMAIL_MAIL")
+if ENV_ROLE=='development':
+
+    DISQUS_API_KEY = get_env_variable("DISQUS_API_KEY")
+
+    GMAIL_PASS = get_env_variable("GMAIL_PASS")
+    GMAIL_MAIL = get_env_variable("GMAIL_MAIL")
+else:
+
+    DISQUS_API_KEY = config("DISQUS_API_KEY")
+
+    GMAIL_PASS = config("GMAIL_PASS")
+    GMAIL_MAIL = config("GMAIL_MAIL")
+
+DISQUS_WEBSITE_SHORTNAME = 'buyandplay'
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'

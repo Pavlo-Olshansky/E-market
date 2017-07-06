@@ -30,17 +30,17 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 # Application definition
 
 INSTALLED_APPS = [
+    'accounts',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'home',
-    'accounts',
-    'disqus',
-    'products',
     'django.contrib.sites',
+    'disqus',
+    'home',
+    'products',
     'widget_tweaks',
 
 ]

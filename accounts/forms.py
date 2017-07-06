@@ -18,15 +18,15 @@ class SignUpForm(UserCreationForm):
         model = User
         fields = ('username', 'email', 'password1', 'password2')
 
-    # def save(self, commit=True):
-    # 	user = super(SignUpForm, self).save(commit=False)
-    # 	user.email = cleaned_data['email']
-    # 	user.first_name = cleaned_data['first_name']
-    # 	user.last_name = cleaned_data['last_name']
+    def save(self, commit=True):
+    	user = super(SignUpForm, self).save(commit=False)
+    	user.email = self.cleaned_data['email']
+    	# user.first_name = self.cleaned_data['first_name']
+    	# user.last_name = self.cleaned_data['last_name']
 
-    # 	user.save()
+    	user.save()
 
-    # 	return user
+    	return user
 
 class EditUserForm(UserChangeForm):
 

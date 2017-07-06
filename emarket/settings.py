@@ -166,7 +166,7 @@ if ENV_ROLE=='development':
     GMAIL_PASS = get_env_variable("GMAIL_PASS")
     GMAIL_MAIL = get_env_variable("GMAIL_MAIL")
 else:
-
+    from decouple import config
     DISQUS_API_KEY = config("DISQUS_API_KEY")
 
     GMAIL_PASS = config("GMAIL_PASS")

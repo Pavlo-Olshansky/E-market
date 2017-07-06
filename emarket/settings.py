@@ -1,5 +1,6 @@
 import os
 from django.core.exceptions import ImproperlyConfigured
+from decouple import config
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -13,20 +14,18 @@ def get_env_variable(var_name):
         raise ImproperlyConfigured(error_msg)
 
 # Get ENV VARIABLES key
-ENV_ROLE = get_env_variable("ENV_ROLE")
+ENV_ROLE = config("ENV_ROLE")
 
 #SECURITY WARNING: don't run with debug turned on in production!
-if ENV_ROLE=='development':
-    DEBUG = True
-    SECRET_KEY = get_env_variable('SECRET_KEY_emarket')
-else:
-    from decouple import config
-    SECRET_KEY = config('SECRET_KEY_emarket')
-    DEBUG = config('DEBUG', default=False, cast=bool)
+
+SECRET_KEY = config('SECRET_KEY_emarket')
+DEBUG = config('DEBUG', default=False, cast=bool)
 
 
 # ALLOWED_HOSTS = ['***heroku-app-link***', 'localhost', '127.0.0.1']
-ALLOWED_HOSTS = ['*']
+from decouple import config, Csv
+
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
 # Application definition
 
@@ -82,7 +81,7 @@ WSGI_APPLICATION = 'emarket.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 if ENV_ROLE == 'development':
-    DB_PASS_emarket = get_env_variable("DB_PASS_emarket")
+    DB_PASS_emarket = config("DB_PASS_emarket")
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -94,11 +93,10 @@ if ENV_ROLE == 'development':
         }
     }
 else:
-    from decouple import config
     import dj_database_url
     DATABASES = {
     'default': dj_database_url.config(
-        
+        default=config('DATABASE_URL')
         )
     }
 
@@ -159,18 +157,17 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 
 
-if ENV_ROLE=='development':
+# if ENV_ROLE=='development':
 
-    DISQUS_API_KEY = get_env_variable("DISQUS_API_KEY")
+#     DISQUS_API_KEY = config("DISQUS_API_KEY")
 
-    GMAIL_PASS = get_env_variable("GMAIL_PASS")
-    GMAIL_MAIL = get_env_variable("GMAIL_MAIL")
-else:
-    from decouple import config
-    DISQUS_API_KEY = config("DISQUS_API_KEY")
+#     GMAIL_PASS = config("GMAIL_PASS")
+#     GMAIL_MAIL = config("GMAIL_MAIL")
+# else:
+DISQUS_API_KEY = config("DISQUS_API_KEY")
 
-    GMAIL_PASS = config("GMAIL_PASS")
-    GMAIL_MAIL = config("GMAIL_MAIL")
+GMAIL_PASS = config("GMAIL_PASS")
+GMAIL_MAIL = config("GMAIL_MAIL")
 
 DISQUS_WEBSITE_SHORTNAME = 'buyandplay'
 

@@ -76,7 +76,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'emarket.wsgi.application'
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 
 # Database

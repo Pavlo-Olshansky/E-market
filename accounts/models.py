@@ -20,7 +20,7 @@ class UserProfile(models.Model):
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
-        UserProfile.objects.create(user=instance)
+        user_profile, created = UserProfile.objects.get_or_create(user=instance)
 
     # if kwargs['created']:
     #     user_profile.set_password(user_profile.password)

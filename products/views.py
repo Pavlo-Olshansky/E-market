@@ -122,4 +122,8 @@ def accept_sell(request, game_id, author_id):
         game.save()
 
     context = {'is_accept': is_accept, 'game': game, 'author_id': author_id}
+<<<<<<< HEAD
     return render(request, 'products/accept_sell.html', context)
+=======
+    return render(request, 'products/accept_sell.html', context)
+>>>>>>> users_sells

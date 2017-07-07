@@ -22,7 +22,7 @@ class Game(models.Model):
         self.is_accepted = True
 
     class Meta:
-        ordering = ['-publication_date']
+        ordering = ['publication_date']
 
 class Comment(models.Model):
     game = models.ForeignKey(Game, related_name='comments')
@@ -38,5 +38,3 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.user
-
-  

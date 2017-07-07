@@ -15,8 +15,11 @@ class Game(models.Model):
     publication_date = models.DateField(auto_now_add=True)
     author = models.ForeignKey(User)
     price = models.DecimalField(max_digits=7, decimal_places=1)
-    pages = models.IntegerField(blank=True, null=True)
     game_type = models.PositiveSmallIntegerField(choices=GAME_TYPES)
+    is_accepted = models.BooleanField(default=False)
+
+    def accept(self):
+        self.is_accepted = True
 
     class Meta:
         ordering = ['-publication_date']

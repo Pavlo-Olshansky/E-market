@@ -5,7 +5,6 @@
 	  <td><a href="/accounts/profile/{{ game.author_id }}">{{ game.author }}</a></td>
 	  <td>{{ game.get_game_type_display }}</td>
 	  <td>{{ game.publication_date }}</td>
-	  <td>{{ game.pages }}</td>
 	  <td>{{ game.price }}</td>
 	  <td>
 
@@ -28,6 +27,7 @@
 	      </button>
 	    </a>
       {% endif %}
+
     </td>
 	</tr>
 {% empty %}

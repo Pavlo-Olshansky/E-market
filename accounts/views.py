@@ -62,10 +62,12 @@ def activate(request, uidb64, token):
 def view_profile(request, pk=None):
     if pk:
         user = User.objects.get(pk=pk)
-        user_games = Game.objects.filter(author_id=pk)
+        user_sell_games = Game.objects.filter(author_id=pk)
     else:
         user = request.user
-        user_games = Game.objects.filter(author_id=request.user.id)
+        user_sell_games = Game.objects.filter(author_id=request.user.id)
+    
+    user_buy_games = user_sell_games.filter(is_accepted=True)
 
     if request.method == 'POST':
         profile_form = EditProfileForm(request.POST, request.FILES, instance=request.user.userprofile)
@@ -76,7 +78,7 @@ def view_profile(request, pk=None):
     else:
         profile_form = EditProfileForm(instance=request.user.userprofile)
 
-    context = {'user': user, 'profile_form': profile_form, 'user_games': user_games, 'pk': pk}
+    context = {'user': user, 'profile_form': profile_form, 'user_sell_games': user_sell_games, 'user_buy_games': user_buy_games, 'pk': pk}
     return render(request, 'accounts/profile.html', context)
 
 

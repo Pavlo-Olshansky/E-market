@@ -4,6 +4,12 @@
 
 {% block content %}
 
-Accepted!
+{% if is_accept %}
+	Accepted!
+{% else %}
+	Sorry, this sell already accepted.
+{% endif %}
 
+{{game.id}}
+{{game.is_accepted}}
 {% endblock content %}

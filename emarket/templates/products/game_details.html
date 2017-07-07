@@ -3,18 +3,23 @@
 {% block title %}Details{% endblock %}
 
 {% block content %}
+	{% if is_own %}
+		Your game
+	{% endif %}
+
   <p>asdsadas</p>
   <p>{{ game.id }}</p>
 	<p>{{ game.title }}</p>
 	<p><a href="/accounts/profile/{{ game.author_id }}">{{ game.author }}</a></p>
 	<p>{{ game.get_game_type_display }}</p>
 	<p>{{ game.publication_date }}</p>
-	<p>{{ game.pages }}</p>
 	<p>{{ game.price }}</p>
 	
+	{% if not is_own %}
 	<a href="{% url 'products:accept_sell' game_id=game.id author_id=game.author_id %}">
 		<button type="button" class="btn btn-success">Accept</button>
 	</a>
+	{% endif %}
 
 	{# Comment Section #}
     <h3>Leave a comment</h3>

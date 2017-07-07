@@ -1,17 +1,18 @@
+from django.db.models import Q
+from .models import UserProfile
+from products.models import Game
 from django.contrib.auth import login
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from .tokens import account_activation_token
-from django.shortcuts import render, redirect, get_object_or_404
 from django.template.loader import render_to_string
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.utils.encoding import force_bytes, force_text
 from django.contrib.sites.shortcuts import get_current_site
 from .forms import SignUpForm, EditProfileForm, EditUserForm
+from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from .models import UserProfile
-from products.models import Game
 
 
 def signup(request):
@@ -67,7 +68,7 @@ def view_profile(request, pk=None):
         user = request.user
         user_sell_games = Game.objects.filter(author_id=request.user.id)
     
-    user_buy_games = user_sell_games.filter(is_accepted=True)
+    user_buy_games = Game.objects.filter(~Q(author_id=request.user.id)).filter(is_accepted=True)
 
     if request.method == 'POST':
         profile_form = EditProfileForm(request.POST, request.FILES, instance=request.user.userprofile)
@@ -82,8 +83,6 @@ def view_profile(request, pk=None):
     return render(request, 'accounts/profile.html', context)
 
 
-
-
 def edit_profile(request):
 
     if request.method == 'POST':
@@ -96,6 +95,7 @@ def edit_profile(request):
         user_form = EditUserForm(instance=request.user)
         context = {'user_form': user_form,}
         return render(request, 'accounts/edit_profile.html', context)
+
 
 def change_password(request):
     if request.method == 'POST':

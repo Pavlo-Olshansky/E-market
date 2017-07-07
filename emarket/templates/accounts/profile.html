@@ -68,8 +68,14 @@
 
 <h1>Profile</h1>
 <p>Username: {{ user }}</p>
-<p>First name: {{ user.first_name }}</p>
-<p>Last name: {{ user.last_name }}</p>
+{% if user.first_name %}
+  <p>First name: {{ user.first_name }}</p>
+{% endif %}
+
+{% if user.last_name %}
+  <p>Last name: {{ user.last_name }}</p>
+{% endif %}
+
 <p>Email : {{ user.email }}</p>
 
 {% if user.username == request.user.username %}

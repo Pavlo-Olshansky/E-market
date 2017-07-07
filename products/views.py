@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic.base import TemplateView
 from .models import Game
+from django.contrib.auth.models import User, Permission
+from django.contrib.contenttypes.models import ContentType
 
 from django.http import JsonResponse
 from django.template.loader import render_to_string
@@ -98,3 +100,13 @@ def game_details(request, pk):
     }
     
     return render(request, 'products/game_details.html', context)
+
+def accept_sell(request, game_id, author_id):
+    user_author = get_object_or_404(User, pk=author_id)
+    current_user = get_object_or_404(User, pk=request.user.id)
+    
+    # TODO
+    # if user != current =404
+
+    context = {'is_accept': is_accept, 'game_id': game_id, 'author_id': author_id}
+    return render(request, 'products/accept_sell.html', context)

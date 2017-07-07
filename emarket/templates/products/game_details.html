@@ -3,8 +3,8 @@
 {% block title %}Details{% endblock %}
 
 {% block content %}
-    <p>asdsadas</p>
-    <p>{{ game.id }}</p>
+  <p>asdsadas</p>
+  <p>{{ game.id }}</p>
 	<p>{{ game.title }}</p>
 	<p><a href="/accounts/profile/{{ game.author_id }}">{{ game.author }}</a></p>
 	<p>{{ game.get_game_type_display }}</p>
@@ -12,6 +12,9 @@
 	<p>{{ game.pages }}</p>
 	<p>{{ game.price }}</p>
 	
+	<a href="{% url 'products:accept_sell' game_id=game.id author_id=game.author_id %}">
+		<button type="button" class="btn btn-success">Accept</button>
+	</a>
 
 	{# Comment Section #}
     <h3>Leave a comment</h3>
@@ -28,7 +31,7 @@
     	</tbody>
     </table>
 
-    {# Comment Form #}
-	{% include 'comments/comments_item_form.html' %}
+	  {# Comment Form #}
+		{% include 'comments/comments_item_form.html' %}
 
 {% endblock %}

@@ -1,5 +1,7 @@
 from django.conf.urls import url
 from . import views
+from django.contrib import admin
+admin.autodiscover()
 
 urlpatterns = [
 
@@ -8,6 +10,7 @@ urlpatterns = [
     url(r'^(?P<pk>\d+)/update/$', views.game_update, name='game_update'),
     url(r'^(?P<pk>\d+)/delete/$', views.game_delete, name='game_delete'),
     url(r'^(?P<pk>\d+)/details/$', views.game_details, name='game_details'),
+    url(r'^(?P<game_id>\d+)/(?P<author_id>\d+)/accept', views.accept_sell, name='accept_sell'),
 
 
 ]

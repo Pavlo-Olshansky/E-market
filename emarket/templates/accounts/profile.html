@@ -68,8 +68,14 @@
 
 <h1>Profile</h1>
 <p>Username: {{ user }}</p>
-<p>First name: {{ user.first_name }}</p>
-<p>Last name: {{ user.last_name }}</p>
+{% if user.first_name %}
+  <p>First name: {{ user.first_name }}</p>
+{% endif %}
+
+{% if user.last_name %}
+  <p>Last name: {{ user.last_name }}</p>
+{% endif %}
+
 <p>Email : {{ user.email }}</p>
 
 {% if user.username == request.user.username %}
@@ -121,7 +127,7 @@
 
 <div class="col-md-6 col-sm-6">
   <a href="{{ user.userprofile.file.url }}" class="img image-popup">
-  	<img src="{{ user.userprofile.file.url }}" alt="{{ user }}" class="img-responsive" width=90>
+    <img src="{{ user.userprofile.file.url }}" alt="{{ user }}" class="img-responsive" width=90>
   </a>
 </div>
 
@@ -131,8 +137,20 @@
   <h3> My games to sell:</h3>
 {% endif %}
 
-{% for user_game in user_games %}
-  <p> Game: <a href="/products/{{ user_game.id }}/details/">{{ user_game.title }}</a></p>
+{% for user_sell_game in user_sell_games %}
+  <p> Game: <a href="/products/{{ user_sell_game.id }}/details/">{{ user_sell_game.title }}</a></p>
+{% empty %}
+  <p>No games</p>
+{% endfor %}
+
+{% if pk %}
+  <h3>{{ user }} games to buy:</h3>
+{% else %}
+  <h3> My games to buy:</h3>
+{% endif %}
+
+{% for user_buy_game in user_buy_games %}
+  <p> Game: <a href="/products/{{ user_buy_game.id }}/details/">{{ user_buy_game.title }}</a></p>
 {% empty %}
   <p>No games</p>
 {% endfor %}

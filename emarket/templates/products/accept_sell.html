@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Accept{% endblock title %}
+
+{% block content %}
+
+{% if is_accept %}
+	Accepted!
+{% else %}
+	Sorry, this sell already accepted.
+{% endif %}
+
+{{game.id}}
+{{game.is_accepted}}
+{% endblock content %}

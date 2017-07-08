@@ -1,0 +1,16 @@
+{% autoescape off %}
+Hi {{ current_user.username }}!
+
+User {{ user_author.username }} give you login and password 
+from {{ game.get_game_type_display }} game account!
+
+Login: {{ login_pass.login }}
+Password: {{ login_pass.password }}
+
+Test a game in 24 hours and come back to link below. Otherwise {{ user_author.username }} will change password.
+Then you can buy this account and {{ user_author.username }} will give you all account information.
+
+Link to buy this account:
+http://{{ domain }}{% url 'products:game_details' game.id %}
+
+{% endautoescape %}

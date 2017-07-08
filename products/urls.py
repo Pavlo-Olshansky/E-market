@@ -13,4 +13,11 @@ urlpatterns = [
     url(r'^(?P<game_id>\d+)/(?P<author_id>\d+)/accept', views.accept_sell, name='accept_sell'),
 
 
+    url(r'^send_login_password/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/(?P<game_id>\d+)/(?P<author_id>\d+)/(?P<buyer_id>\d+)', 
+    	views.send_login_password, name='send_login_password'),
+
+    url(r'^send_login_password/(?P<game_id>\d+)/success/$', views.login_pass_request_success, name='login_pass_request_success'),
+
+    
+
 ]

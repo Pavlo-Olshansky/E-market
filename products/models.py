@@ -38,3 +38,10 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.user
+
+class LoginPassword(models.Model):
+    game = models.ForeignKey(Game, related_name='login_password_to_game', null=True)
+    owner = models.ForeignKey(User, related_name='login_password_of_user', null=True)
+
+    login = models.CharField(max_length=250)
+    password = models.CharField(max_length=250)

@@ -6,7 +6,7 @@ from django.contrib.contenttypes.models import ContentType
 
 from django.http import JsonResponse
 from django.template.loader import render_to_string
-from .forms import GameForm, CommentForm
+from .forms import GameForm, CommentForm, LoginPasswordForm
 
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
@@ -106,24 +106,104 @@ def game_details(request, pk):
     
     return render(request, 'products/game_details.html', context)
 
+from django.contrib.sites.shortcuts import get_current_site             
+
+
+from accounts.tokens import account_activation_token
+from django.utils.encoding import force_bytes, force_text
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+
 def accept_sell(request, game_id, author_id):
     user_author = get_object_or_404(User, pk=author_id)
     current_user = get_object_or_404(User, pk=request.user.id)
     
-    # TODO
-    # if user != current = 404
-    is_accept = False
-    if request.user:
-        is_accept = True
 
-    if is_accept:
-        game = Game.objects.get(pk=game_id)
-        game.accept()
-        game.save()
+    game = Game.objects.get(pk=game_id)
 
-    context = {'is_accept': is_accept, 'game': game, 'author_id': author_id}
-<<<<<<< HEAD
+    # Send message to seller(request a login and pass)
+    current_site = get_current_site(request)
+    subject = 'Your account wont to buy!'
+    message = render_to_string('products/email_messages/login_pass_request.html', {
+        'user_author': user_author,
+        'current_user': current_user,
+        'game': game,
+        'domain': current_site.domain,
+        'uid': urlsafe_base64_encode(force_bytes(current_user.pk)),
+        'token': account_activation_token.make_token(current_user),
+    })
+    user_author.email_user(subject, message)
+
+    context = {'game': game, 'user_author': user_author, 'game': game, 'message': message}
+
     return render(request, 'products/accept_sell.html', context)
-=======
-    return render(request, 'products/accept_sell.html', context)
->>>>>>> users_sells
+
+
+def send_login_password(request, uidb64, token, game_id, author_id, buyer_id):
+    try:
+        uid = force_text(urlsafe_base64_decode(uidb64))
+        current_user = User.objects.get(pk=uid)
+    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+
+    game = Game.objects.get(pk=game_id)
+    user_author = User.objects.get(pk=author_id)
+    current_site = get_current_site(request)
+
+    # If token correct
+    if current_user is not None and account_activation_token.check_token(current_user, token):
+        
+        # if login and pass inputed
+        if request.method == 'POST':
+            login_pass_request_form = LoginPasswordForm(request.POST)
+            if login_pass_request_form.is_valid():
+                login_pass = login_pass_request_form.save(commit=False)
+
+                login_pass.game = game
+                login_pass.user_author = user_author
+                login_pass.save()
+
+                # Update a game list without this game
+                game.accept()
+                game.save()
+
+                subject = 'Login and pass to test account'
+                message = render_to_string('products/email_messages/login_pass_to_test.html', {
+                    'user_author': user_author,
+                    'current_user': current_user,
+                    'game': game,
+                    'domain': current_site.domain,
+                    'login_pass': login_pass,
+                })
+                current_user.email_user(subject, message)
+
+                redirect_url = reverse('products:login_pass_request_success', args=(game_id,))
+                return HttpResponseRedirect(redirect_url)
+
+        else:
+            login_pass_request_form = LoginPasswordForm()
+
+        user_author = User.objects.get(pk=author_id)
+        current_user = User.objects.get(pk=buyer_id)
+
+        context = {
+            'user_author': user_author,
+            'current_user': current_user,
+            'game': game,
+            'domain': current_site.domain,
+            'uid': urlsafe_base64_encode(force_bytes(current_user.pk)),
+            'token': account_activation_token.make_token(current_user),
+            'login_pass_request_form': login_pass_request_form,
+
+        }
+        
+        return render(request, 'products/email_messages/login_pass_form.html', context)
+
+    else:
+        
+        return render(request, 'registration/account_activation_invalid.html')
+
+
+def login_pass_request_success(request, game_id):
+    game = Game.objects.get(pk=game_id)
+    context = {'game': game}
+    return render(request, 'products/email_messages/login_pass_request_success.html', context)

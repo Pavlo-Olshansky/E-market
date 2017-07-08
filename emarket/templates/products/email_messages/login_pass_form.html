@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}login_pass{% endblock title %}
+
+
+{% block content %}
+
+  <form method="post">
+    {% csrf_token %}
+    {{ login_pass_request_form.as_p }}
+
+	<p><button type="submit">Submit</button></p>
+
+  </form>
+
+
+{% endblock content %}

@@ -4,10 +4,11 @@
 
 {% block content %}
 
-{% if is_accept %}
-	Accepted!
-{% else %}
-	Sorry, this sell already accepted.
-{% endif %}
+<h2>Accepted!</h2>
+<p>You accept game <a href="/products/{{ game.id }}/details/">{{ game.title }}</a> of user 
+<a href="/accounts/profile/{{ user_author.id }}">{{ user_author }}</a>!</p>
+<p>Wait for login and password in 24 hours from {{ user_author }} to test his account.</p>
 
+<p>Повідомлення, шо посилатиметься продавцю:</p> 
+<p>{{ message }}</p>
 {% endblock content %}

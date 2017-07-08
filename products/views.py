@@ -17,7 +17,6 @@ from accounts.tokens import account_activation_token
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 
-@login_required(login_url='/accounts/login/')
 def save_game_form(request, form, template_name):
     data = dict()
     if request.method == 'POST':
@@ -161,7 +160,7 @@ def send_login_password(request, uidb64, token, game_id, author_id, buyer_id):
                 login_pass = login_pass_request_form.save(commit=False)
 
                 login_pass.game = game
-                login_pass.owner = user_author
+                login_pass.owner = user_author 
                 login_pass.save()
 
                 # Update a game list without this game

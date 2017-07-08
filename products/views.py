@@ -161,7 +161,7 @@ def send_login_password(request, uidb64, token, game_id, author_id, buyer_id):
                 login_pass = login_pass_request_form.save(commit=False)
 
                 login_pass.game = game
-                login_pass.user_author = user_author
+                login_pass.owner = user_author
                 login_pass.save()
 
                 # Update a game list without this game

@@ -10,8 +10,14 @@ from .forms import GameForm, CommentForm, LoginPasswordForm
 
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 
+from django.contrib.sites.shortcuts import get_current_site             
+from accounts.tokens import account_activation_token
+from django.utils.encoding import force_bytes, force_text
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 
+@login_required(login_url='/accounts/login/')
 def save_game_form(request, form, template_name):
     data = dict()
     if request.method == 'POST':
@@ -46,7 +52,7 @@ def game_create(request):
         form = GameForm()
     return save_game_form(request, form, 'products/includes/partial_game_create.html')
 
-
+@login_required(login_url='/accounts/login/')
 def game_update(request, pk):
     game = get_object_or_404(Game, pk=pk)
     if request.method == 'POST':
@@ -55,7 +61,7 @@ def game_update(request, pk):
         form = GameForm(instance=game)
     return save_game_form(request, form, 'products/includes/partial_game_update.html')
 
-
+@login_required(login_url='/accounts/login/')
 def game_delete(request, pk):
     game = get_object_or_404(Game, pk=pk)
     data = dict()
@@ -106,13 +112,8 @@ def game_details(request, pk):
     
     return render(request, 'products/game_details.html', context)
 
-from django.contrib.sites.shortcuts import get_current_site             
 
-
-from accounts.tokens import account_activation_token
-from django.utils.encoding import force_bytes, force_text
-from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-
+@login_required(login_url='/accounts/login/')
 def accept_sell(request, game_id, author_id):
     user_author = get_object_or_404(User, pk=author_id)
     current_user = get_object_or_404(User, pk=request.user.id)
@@ -138,6 +139,7 @@ def accept_sell(request, game_id, author_id):
     return render(request, 'products/accept_sell.html', context)
 
 
+@login_required(login_url='/accounts/login/')
 def send_login_password(request, uidb64, token, game_id, author_id, buyer_id):
     try:
         uid = force_text(urlsafe_base64_decode(uidb64))
@@ -203,6 +205,7 @@ def send_login_password(request, uidb64, token, game_id, author_id, buyer_id):
         return render(request, 'registration/account_activation_invalid.html')
 
 
+@login_required(login_url='/accounts/login/')
 def login_pass_request_success(request, game_id):
     game = Game.objects.get(pk=game_id)
     context = {'game': game}

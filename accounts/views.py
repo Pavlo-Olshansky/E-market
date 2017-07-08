@@ -13,6 +13,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from .forms import SignUpForm, EditProfileForm, EditUserForm
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.contrib.auth.decorators import login_required
 
 
 def signup(request):
@@ -60,6 +61,7 @@ def activate(request, uidb64, token):
         return render(request, 'registration/account_activation_invalid.html')
 
 
+@login_required(login_url='/accounts/login/')
 def view_profile(request, pk=None):
     if pk:
         user = User.objects.get(pk=pk)
@@ -83,6 +85,7 @@ def view_profile(request, pk=None):
     return render(request, 'accounts/profile.html', context)
 
 
+@login_required(login_url='/accounts/login/')
 def edit_profile(request):
 
     if request.method == 'POST':
@@ -96,7 +99,7 @@ def edit_profile(request):
         context = {'user_form': user_form,}
         return render(request, 'accounts/edit_profile.html', context)
 
-
+@login_required(login_url='/accounts/login/')
 def change_password(request):
     if request.method == 'POST':
         form = PasswordChangeForm(data=request.POST, user=request.user)
@@ -112,9 +115,3 @@ def change_password(request):
 
         context = {'form': form}
         return render(request, 'accounts/change_password.html', context)
-
-
-# from .models import Photo
-# from .forms import PhotoForm
-
-

@@ -80,7 +80,7 @@ def game_delete(request, pk):
 
     return JsonResponse(data)
 
-
+@login_required(login_url='/accounts/login/')
 def game_details(request, pk):
     model = Game
     template_name = 'products/game_details.html'

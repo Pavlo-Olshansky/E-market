@@ -4,20 +4,11 @@ from decouple import config
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
- 
-def get_env_variable(var_name):
-    """ Get the environment variable or return exception """
-    try:
-        return os.environ[var_name]
-    except KeyError:
-        error_msg = "Set the %s environment variable!!!" % var_name
-        raise ImproperlyConfigured(error_msg)
 
 # Get ENV VARIABLES key
 ENV_ROLE = config("ENV_ROLE")
 
 #SECURITY WARNING: don't run with debug turned on in production!
-
 SECRET_KEY = config('SECRET_KEY_emarket')
 DEBUG = config('DEBUG', default=False, cast=bool)
 
@@ -127,7 +118,6 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -141,7 +131,6 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
-
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = (
@@ -159,25 +148,22 @@ LOGIN_REDIRECT_URL = '/accounts/login'
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
+# Stripe Key Settings
+STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY')
+STRIPE_PUBLISHABLE_KEY = config('STRIPE_PUBLISHABLE_KEY')
 
-
-# if ENV_ROLE=='development':
-
-#     DISQUS_API_KEY = config("DISQUS_API_KEY")
-
-#     GMAIL_PASS = config("GMAIL_PASS")
-#     GMAIL_MAIL = config("GMAIL_MAIL")
-# else:
+# Disquas comments Settings
 DISQUS_API_KEY = config("DISQUS_API_KEY")
+DISQUS_WEBSITE_SHORTNAME = 'buyandplay'
 
+# Gmail Settings
 GMAIL_PASS = config("GMAIL_PASS")
 GMAIL_MAIL = config("GMAIL_MAIL")
 
-DISQUS_WEBSITE_SHORTNAME = 'buyandplay'
 
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
+EMAIL_USE_TLS = config("EMAIL_USE_TLS")
+EMAIL_HOST = config("EMAIL_HOST")
+EMAIL_PORT = config("EMAIL_PORT")
 EMAIL_HOST_USER = GMAIL_MAIL
 EMAIL_HOST_PASSWORD = GMAIL_PASS
  

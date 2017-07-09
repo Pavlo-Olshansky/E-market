@@ -3,7 +3,7 @@
 {% block title %}Home{% endblock title %}
 
   {% block background_image %}
-  <div id="fh5co-hero" style="background-image: url({% static 'images/hero_2.jpg' %})">
+  <div id="fh5co-hero" style="background-image: url({% static 'images/BG/BG_blizzard.png' %})">
   {% endblock background_image %}
 
     {% block header_on_background %}
@@ -13,7 +13,7 @@
       {% block main_title %}
       <div class="col-md-8 col-md-offset-2">
         <div class="text">
-          <h1> <strong >BUILD</strong> a free HTML5 template <em>by</em> <strong>FREEHTML5.co</strong></h1>
+          <h1>Accounts from favourite game <p><em>at</em> <strong>BUY AND PLAY</strong></p></h1>
         </div>
       </div>
       {% endblock main_title %}
@@ -195,24 +195,32 @@
     </section>
 
     {% block left_description %}{% endblock left_description %}
+      
+          
+    <section class="feature">
+      <div class="container">
+        <div class="row">
 
-    <script type="text/javascript">
-      var disqus_config = function () { 
-      this.language = "ru";
-      };
-    </script>
+        <script type="text/javascript">
+          var disqus_config = function () { 
+          this.language = "ru";
+          };
+        </script>
 
-    {% load disqus_tags %}
-    {% disqus_dev %}
+        {% load disqus_tags %}
+        {% disqus_dev %}
 
-    <script type="text/javascript">
-      var disqus_developer = 1;
-      var disqus_url = 'http://buyandplay.com/';
-    </script>
+        <script type="text/javascript">
+          var disqus_developer = 1;
+          var disqus_url = 'http://buyandplay.com/';
+        </script>
 
-    {% load disqus_tags %}
-    {% disqus_show_comments %}
+        {% load disqus_tags %}
+        {% disqus_show_comments %}
 
+        </div>
+      </div>
+    </section>
     
   </main>
   {% endblock main_content %}

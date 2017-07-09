@@ -9,7 +9,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>
-    {% block title %}BUILD &mdash; A free Responsive HTML5 Template by FREEHTML5.CO{% endblock title %}
+    {% block title %}Buy and Play{% endblock title %}
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Free HTML5 Template by FREEHTML5.CO" />
@@ -48,9 +48,9 @@
   <!-- Theme Style -->
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
   
-  
-  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-  <link href="{% static 'css/cropper.min.css' %}" rel="stylesheet">
+  {% block extra_css %}
+  {% endblock extra_css %}
+
   
   <!-- FOR IE9 below -->
   <!--[if lte IE 9]>
@@ -68,11 +68,11 @@
           <div class="navbar-header">
             <!-- Mobile Toggle Menu Button -->
             <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle" data-toggle="collapse" data-target="#fh5co-navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
-            <a class="navbar-brand" href="/">Buy adn Play</a>
+            <a class="navbar-brand" href="/">Buy and Play</a>
           </div>
           <div id="fh5co-navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-              <li class="active"><a href="/products/">Products</a></li>
+              <li class="active"><a href="/products/">Games</a></li>
               <li><a href="#">NONE</a></li>
 
               {% if user.is_authenticated %}
@@ -96,7 +96,7 @@
   {% endblock header %}
 
   {% block background_image %}
-  <div id="fh5co-page-title" style="background-image: url(images/test.jpg)">
+  <div id="fh5co-page-title" style="background-image: url({% static 'images/BG/bg_blizzard.JPG' %})">
   {% endblock background_image %}
 
   {% block header_on_background %}
@@ -282,10 +282,6 @@
     <!-- FastClick for Mobile/Tablets -->
     <script src="{% static 'js/fastclick.js' %}"></script>
 
-
-    <script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'js/cropper.min.js' %}"></script>
     
     <!-- Google Map -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCefOgb1ZWqYtj7raVSmN4PL2WkTrc-KyA&sensor=false"></script>

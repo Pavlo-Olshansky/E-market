@@ -84,6 +84,7 @@ def game_delete(request, pk):
 
     return JsonResponse(data)
 
+
 @login_required(login_url='/accounts/login/')
 def game_details(request, pk):
     model = Game
@@ -123,20 +124,29 @@ def accept_sell(request, game_id, author_id):
     game = Game.objects.get(pk=game_id)
     message = ''
     stripe_publish_key = settings.STRIPE_PUBLISHABLE_KEY
-
+    ammount = game.price*100
     if request.method == 'POST':
+
         stripe.api_key = settings.STRIPE_SECRET_KEY
         # Token is created using Stripe.js or Checkout!
         # Get the payment token submitted by the form:
-        token = request.form['stripeToken'] # Using Flask
-
+        token = request.POST['stripeToken'] 
+        source=stripe.Source.create(
+          type='bitcoin',
+          amount=ammount,
+          currency='usd',
+          owner={
+            "email": current_user.email
+          }
+        )
         # Charge the user's card:
         charge = stripe.Charge.create(
-          amount=game.price,
+          amount=ammount,
           currency="usd",
           description="Buy a game",
           source=token,
         )
+
         # Update a game list without this game
         game.accept()
         game.save()
@@ -144,7 +154,7 @@ def accept_sell(request, game_id, author_id):
         # Send message to seller(request a login and pass)
         current_site = get_current_site(request)
         subject = 'Your account wont to buy!'
-        message = render_to_string('products/email_messages/login_pass_request.html', {
+        message = render_to_string('products/login_password/login_pass_request_EMAIL.html', {
             'user_author': user_author,
             'current_user': current_user,
             'game': game,
@@ -154,8 +164,12 @@ def accept_sell(request, game_id, author_id):
         })
         user_author.email_user(subject, message)
 
-    context = {'game': game, 'user_author': user_author, 'game': game, 'stripe_publish_key': stripe_publish_key, 'message': message}
+        redirect_url = reverse('products:payment_success', args=(game_id, author_id,))
+        return HttpResponseRedirect(redirect_url)
 
+        
+
+    context = {'game': game, 'user_author': user_author, 'game': game, 'ammount': ammount, 'stripe_publish_key': stripe_publish_key, 'message': message}
     return render(request, 'products/accept_sell.html', context)
 
 
@@ -186,7 +200,7 @@ def send_login_password(request, uidb64, token, game_id, author_id, buyer_id):
                 login_pass.save()
 
                 subject = 'Login and pass to test account'
-                message = render_to_string('products/email_messages/login_pass_to_test.html', {
+                message = render_to_string('products/login_password/login_pass_EMAIL.html', {
                     'user_author': user_author,
                     'current_user': current_user,
                     'game': game,
@@ -215,7 +229,7 @@ def send_login_password(request, uidb64, token, game_id, author_id, buyer_id):
 
         }
         
-        return render(request, 'products/email_messages/login_pass_form.html', context)
+        return render(request, 'products/login_password/login_pass_form.html', context)
 
     else:
         
@@ -226,11 +240,14 @@ def send_login_password(request, uidb64, token, game_id, author_id, buyer_id):
 def login_pass_request_success(request, game_id):
     game = Game.objects.get(pk=game_id)
     context = {'game': game}
-    return render(request, 'products/email_messages/login_pass_request_success.html', context)
+    return render(request, 'products/login_password/login_pass_request_success.html', context)
 
+
+@login_required(login_url='/accounts/login/')
 def payment_success(request, game_id, author_id):
     game = Game.objects.get(pk=game_id)
     user_author = User.objects.get(pk=author_id)
+    current_user = get_object_or_404(User, pk=request.user.id)
 
     context = {
             'user_author': user_author,

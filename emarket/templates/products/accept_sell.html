@@ -8,16 +8,20 @@
 	<p>Then confirm that account is safe in your hands and we transfer your money to seller.</p>
 	<p>Otherwise, the money will be back to you</p>
 <p>
-<form method="POST" action={% url 'products:payment_success' game_id=game.id author_id=user_author.id %}>
-	{% csrf_token %}
+
+<form method="POST">
+  {% csrf_token %}
   <script
     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
     data-key={{ stripe_publish_key }}
-    data-amount={{ game.price }}
-    data-name="Buy a game"
-    data-description="Blah blah"
-    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-    data-locale="auto">
+    data-amount={{ ammount }}
+    data-name="Buy a {{ game.get_game_type_display }} account"
+    data-description="__description__"
+    data-image="/img/documentation/checkout/marketplace.png"
+    data-label="Pay with Card or Bitcoin"
+    data-locale="auto"
+    data-currency="usd"
+    data-bitcoin="true">
   </script>
 </form>
 

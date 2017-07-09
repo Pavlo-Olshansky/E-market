@@ -19,7 +19,7 @@ urlpatterns = [
     # Login/Logout URLs
     url(r'^login/$', auth_views.login, {'template_name': 'registration/login.html'}, name='login'),
 
-    url(r'^logout/$', auth_views.logout, {'template_name': 'registration/logout.html','next_page': '/'}, name='logout'),
+    url(r'^logout/$', auth_views.logout, {'template_name': 'registration/logout.html','next_page': '/accounts/login/'}, name='logout'),
 
     # Reset password
     url(r'^password_reset/$', auth_views.password_reset, name='password_reset'),

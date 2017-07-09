@@ -142,7 +142,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGIN_URL = '/accounts/login'
 LOGOUT_URL = '/accounts/logout'
-LOGIN_REDIRECT_URL = '/accounts/login'
+LOGIN_REDIRECT_URL = '/products'
 
 
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -161,9 +161,9 @@ GMAIL_PASS = config("GMAIL_PASS")
 GMAIL_MAIL = config("GMAIL_MAIL")
 
 
-EMAIL_USE_TLS = config("EMAIL_USE_TLS")
-EMAIL_HOST = config("EMAIL_HOST")
-EMAIL_PORT = config("EMAIL_PORT")
+EMAIL_USE_TLS=True
+EMAIL_HOST='smtp.gmail.com'
+EMAIL_PORT=587
 EMAIL_HOST_USER = GMAIL_MAIL
 EMAIL_HOST_PASSWORD = GMAIL_PASS
  

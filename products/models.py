@@ -14,7 +14,7 @@ class Game(models.Model):
     title = models.CharField(max_length=50)
     publication_date = models.DateField(auto_now_add=True)
     author = models.ForeignKey(User)
-    price = models.DecimalField(max_digits=7, decimal_places=1)
+    price = models.IntegerField()
     game_type = models.PositiveSmallIntegerField(choices=GAME_TYPES)
     is_accepted = models.BooleanField(default=False)
 

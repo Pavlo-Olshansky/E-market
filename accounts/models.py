@@ -2,8 +2,10 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.conf import settings
 
-# from django.dispatch import receiver
+import stripe
+
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -17,35 +19,47 @@ class UserProfile(models.Model):
     def __str__(self):
     	return self.user.username
 
+    def charge(self, request, email, fee):
+        # Set your secret key: remember to change this to your live secret key
+        # in production. See your keys here https://manage.stripe.com/account
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+
+        # Get the credit card details submitted by the form
+        token = request.POST['stripeToken']
+
+        # Create a Customer
+        stripe_customer = stripe.Customer.create(
+            card=token,
+            description=email
+        )
+
+        # Save the Stripe ID to the customer's profile
+        self.stripe_id = stripe_customer.id
+        self.save()
+
+        # Charge the Customer instead of the card
+        stripe.Charge.create(
+            amount=fee, # in cents
+            currency="usd",
+            customer=stripe_customer.id
+        )
+
+        return stripe_customer
+
+
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
         user_profile, created = UserProfile.objects.get_or_create(user=instance)
-
-    # if kwargs['created']:
-    #     user_profile.set_password(user_profile.password)
-        # user_profile = UserProfile.objects.create(user=kwargs['instance'])
-    # if created:
-    #     user_profile = UserProfile.objects.create(user=instance)
-
-# post_save.connect(create_user_profile, sender=User)
 
 
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.userprofile.save()
 
-# post_save.connect(save_user_profile, sender=User)
-
-
-# @receiver(post_save, sender=User)
-# def save_user_profile(sender, instance, **kwargs):
-#     instance.profile.save()
 
 @receiver(post_save, sender=User)
 def update_user_profile(sender, instance, created, **kwargs):
     if created:
         UserProfile.objects.get_or_create(user=instance)
     instance.userprofile.save()
-# post_save.connect(update_user_profile, sender=User)
-

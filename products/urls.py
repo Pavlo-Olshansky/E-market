@@ -18,6 +18,7 @@ urlpatterns = [
 
     url(r'^send_login_password/(?P<game_id>\d+)/success/$', views.login_pass_request_success, name='login_pass_request_success'),
 
-    
+    url(r'^payment/(?P<game_id>\d+)/(?P<author_id>\d+)/success/$', views.payment_success, name='payment_success'),
+
 
 ]

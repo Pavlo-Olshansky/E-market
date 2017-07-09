@@ -17,6 +17,10 @@ from accounts.tokens import account_activation_token
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 
+import stripe
+from django.conf import settings
+
+
 def save_game_form(request, form, template_name):
     data = dict()
     if request.method == 'POST':
@@ -116,28 +120,46 @@ def game_details(request, pk):
 def accept_sell(request, game_id, author_id):
     user_author = get_object_or_404(User, pk=author_id)
     current_user = get_object_or_404(User, pk=request.user.id)
-    
-
     game = Game.objects.get(pk=game_id)
+    message = ''
+    stripe_publish_key = settings.STRIPE_PUBLISHABLE_KEY
 
-    # Send message to seller(request a login and pass)
-    current_site = get_current_site(request)
-    subject = 'Your account wont to buy!'
-    message = render_to_string('products/email_messages/login_pass_request.html', {
-        'user_author': user_author,
-        'current_user': current_user,
-        'game': game,
-        'domain': current_site.domain,
-        'uid': urlsafe_base64_encode(force_bytes(current_user.pk)),
-        'token': account_activation_token.make_token(current_user),
-    })
-    user_author.email_user(subject, message)
+    if request.method == 'POST':
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+        # Token is created using Stripe.js or Checkout!
+        # Get the payment token submitted by the form:
+        token = request.form['stripeToken'] # Using Flask
 
-    context = {'game': game, 'user_author': user_author, 'game': game, 'message': message}
+        # Charge the user's card:
+        charge = stripe.Charge.create(
+          amount=game.price,
+          currency="usd",
+          description="Buy a game",
+          source=token,
+        )
+        # Update a game list without this game
+        game.accept()
+        game.save()
+
+        # Send message to seller(request a login and pass)
+        current_site = get_current_site(request)
+        subject = 'Your account wont to buy!'
+        message = render_to_string('products/email_messages/login_pass_request.html', {
+            'user_author': user_author,
+            'current_user': current_user,
+            'game': game,
+            'domain': current_site.domain,
+            'uid': urlsafe_base64_encode(force_bytes(current_user.pk)),
+            'token': account_activation_token.make_token(current_user),
+        })
+        user_author.email_user(subject, message)
+
+    context = {'game': game, 'user_author': user_author, 'game': game, 'stripe_publish_key': stripe_publish_key, 'message': message}
 
     return render(request, 'products/accept_sell.html', context)
 
 
+# Seller send login/pass by loginpassForm
 @login_required(login_url='/accounts/login/')
 def send_login_password(request, uidb64, token, game_id, author_id, buyer_id):
     try:
@@ -162,10 +184,6 @@ def send_login_password(request, uidb64, token, game_id, author_id, buyer_id):
                 login_pass.game = game
                 login_pass.owner = user_author 
                 login_pass.save()
-
-                # Update a game list without this game
-                game.accept()
-                game.save()
 
                 subject = 'Login and pass to test account'
                 message = render_to_string('products/email_messages/login_pass_to_test.html', {
@@ -209,3 +227,13 @@ def login_pass_request_success(request, game_id):
     game = Game.objects.get(pk=game_id)
     context = {'game': game}
     return render(request, 'products/email_messages/login_pass_request_success.html', context)
+
+def payment_success(request, game_id, author_id):
+    game = Game.objects.get(pk=game_id)
+    user_author = User.objects.get(pk=author_id)
+
+    context = {
+            'user_author': user_author,
+            'game': game,
+            }
+    return render(request, 'products/payment_successfull.html', context)

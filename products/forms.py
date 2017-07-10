@@ -9,7 +9,7 @@ class GameForm(forms.ModelForm):
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        fields = ('user', 'email', 'body')
+        fields = ('body',)
 
 class LoginPasswordForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)

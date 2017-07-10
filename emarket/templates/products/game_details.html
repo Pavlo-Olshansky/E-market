@@ -3,30 +3,33 @@
 {% block title %}Details{% endblock %}
 
 {% block content %}
-
+    <hr>
     {% if is_own %}
-        Your game
+        <h2>Your game: {{ game.title }}</h2>
+        <h6>on {{ game.publication_date }}</h6>
+    {% else %}
+        <h2>{{ game.title }}</h2>
+        <h6>on {{ game.publication_date }}</h6>
     {% endif %}
+    <hr>
 
-  <p>asdsadas</p>
-  <p>{{ game.id }}</p>
-    <p>{{ game.title }}</p>
-    <p><a href="/accounts/profile/{{ game.author_id }}">{{ game.author }}</a></p>
-    <p>{{ game.get_game_type_display }}</p>
-    <p>{{ game.publication_date }}</p>
-    <p>{{ game.price }}</p>
+    <p>Owner: <a href="/accounts/profile/{{ game.author_id }}">{{ game.author }}</a></p>
+    <p>Type of game: {{ game.get_game_type_display }}</p>
+    <p>Price: ${{ game.price }}</p>
     
-    {% if not is_own %}
+    {% if not is_own and not game.is_accepted %}
     <a href="{% url 'products:accept_sell' game_id=game.id author_id=game.author_id %}">
-        <button type="button" class="btn btn-success">Accept</button>
+        <button type="button" class="btn btn-calltoaction btn-primary">Accept</button>
     </a>
     {% endif %}
 
     {# Comment Section #}
-    <h3>Leave a comment</h3>
+    <hr>
+    <p><h3>Comments</h3></p>
     <!-- <p> There is {{ game.comments.count }} comments</p> -->
     
     {# Comment View #}
+
     <table id="comment-table" class="table2 table-comment">
         <tbody>
             {% for comment in game.comments.all %}  {# related name - comments #}
@@ -37,8 +40,20 @@
         </tbody>
     </table>
 
+    <button id='comment_show'>Add comment</button>
+    {# Comment Form #}
+    {% include 'comments/comments_item_form.html' %}
 
-      {# Comment Form #}
-        {% include 'comments/comments_item_form.html' %}
+{% endblock %}
+
+
+{% block extra_js %}
+
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+$('#comment_show').click(function(){
+   $('#comment_form').toggle("slow");
+});
+</script>
 
 {% endblock %}

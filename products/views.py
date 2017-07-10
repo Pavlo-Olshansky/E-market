@@ -85,17 +85,24 @@ def game_delete(request, pk):
     return JsonResponse(data)
 
 
-@login_required(login_url='/accounts/login/')
 def game_details(request, pk):
     model = Game
     template_name = 'products/game_details.html'
-
+    current_user = request.user
     game = Game.objects.get(pk=pk)
 
     if request.method == 'POST':
         comment_form = CommentForm(request.POST, prefix="comment")
+
         if comment_form.is_valid():
             comment = comment_form.save(commit=False)
+            
+            if request.user.is_authenticated:
+                comment.email = current_user.email
+                comment.user = current_user.username
+            else:
+                comment.user=request.POST['text'] 
+                comment.email=request.POST['email']
             comment.game = game
             comment.save()
             redirect_url = reverse('products:game_details', args=(game.id,))
@@ -112,6 +119,7 @@ def game_details(request, pk):
         'game': game,
         'comment_form': comment_form,
         'is_own': is_own,
+        'current_user': current_user,
     }
     
     return render(request, 'products/game_details.html', context)

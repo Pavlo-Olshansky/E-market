@@ -1,28 +1,55 @@
-<h2>Add a comment</h2>
-
-<form method="post">
+<p><form id="comment_form" method="post" style="display:none">
 	{% csrf_token %}
 
 	<table>
-	{% for field in comment_form %}
-	  <tr>
-	    <td>{{ field.label_tag }}</td>
-	    <td>{{ field }}</td>
-	  </tr>
-	    {% if field.help_text %}
-	  <tr>
-	      <td><td><small style="color: grey">{{ field.help_text }}</small></td></td>
-	  </tr>
-	    {% endif %}
+	{% if not current_user.is_authenticated %}
+		<tr><td><b>Name:</b><td>
+		<input 
+		type="text" 
+		name="text"
+		placeholder="Your name" 
+		required="required">
+		</td></tr>
+		<tr><td><b>Email:</b><td>
+  	<input 
+  	type="email" 
+  	name="email"
+  	title="Contact's email (format: xxx@xxx.xxx)" 
+  	placeholder="email@example.com" 
+  	pattern="[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)" 
+  	required="required">
+  	</td></tr>
+  {% endif %}
 
-	    {% for error in field.errors %}
-	    <tr>
-	      <td><td><p style="color: red">{{ error }}</p></td></td>
-	    </tr>
-	    {% endfor %}
-	{% endfor %}
+		<tr>
+			<td><b>Comment:</b></td>
+			<td>{{ comment_form.body }}</td>
+		</tr>
+		{% if comment_form.body.help_text %}
+		  <tr>
+		    <td><td>
+		    	<small style="color: grey">{{ comment_form.body.help_text }}</small>
+		    </td></td>
+		  </tr>
+	  {% endif %}
+
+    {% for error in comment_form.body.errors %}
+    <tr>
+      <td><td>
+      	<p style="color: red">{{ error }}</p>
+      </td></td>
+    </tr>
+    {% endfor %}
+
+    <tr>
+    	<td>
+    		<td>
+    			<button type="submit" class="btn btn-calltoaction btn-primary">Add comment</button>
+				</td>
+			</td>
+		</tr>
+
 	</table>
 
-	<button type="submit" class="btn btn-danger">Submit</button>
 
 </form>

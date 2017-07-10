@@ -7,8 +7,25 @@
 {% block content %}
 
 
-<h1>Profile</h1>
-<p>Username: {{ user }}</p>
+{% if pk %}
+  <h1>{{ user }} profile</h1>
+{% else %}
+  <h1>My profile</h1>
+{% endif %}
+
+
+<a href="{{ user.userprofile.file.url }}" class="img image-popup">
+  <img 
+  style="border:6px outset white; margin-right:1em" 
+  src="{{ user.userprofile.file.url }}" 
+  alt="{{ user }}" 
+  class="img-responsive" 
+  width=140 
+  align="left">
+</a>
+
+<hr>
+<p >Username: {{ user }}</p>
 {% if user.first_name %}
   <p>First name: {{ user.first_name }}</p>
 {% endif %}
@@ -16,39 +33,40 @@
 {% if user.last_name %}
   <p>Last name: {{ user.last_name }}</p>
 {% endif %}
+<hr>
 
-<p>Email : {{ user.email }}</p>
+<!-- <p>Email : {{ user.email }}</p> -->
 
 
-<div class="col-md-6 col-sm-6">
-  <a href="{{ user.userprofile.file.url }}" class="img image-popup">
-    <img src="{{ user.userprofile.file.url }}" alt="{{ user }}" class="img-responsive" width=90>
-  </a>
+<div style='float:left; width:30%'>
+  {% if pk %}
+    <h3>{{ user }} games to sell:</h3>
+  {% else %}
+    <h3> My games to sell:</h3>
+  {% endif %}
+
+  {% for user_sell_game in user_sell_games %}
+    <p> Game: <a href="/products/{{ user_sell_game.id }}/details/">{{ user_sell_game.title }}</a></p>
+  {% empty %}
+    <p>No games</p>
+  {% endfor %}
 </div>
 
-{% if pk %}
-  <h3>{{ user }} games to sell:</h3>
-{% else %}
-  <h3> My games to sell:</h3>
-{% endif %}
 
-{% for user_sell_game in user_sell_games %}
-  <p> Game: <a href="/products/{{ user_sell_game.id }}/details/">{{ user_sell_game.title }}</a></p>
-{% empty %}
-  <p>No games</p>
-{% endfor %}
+<div style='float:left; width:40%; margin-left:30%'>
+  {% if pk %}
+    <h3>{{ user }} games to buy:</h3>
+  {% else %}
+    <h3> My games to buy:</h3>
+  {% endif %}
 
-{% if pk %}
-  <h3>{{ user }} games to buy:</h3>
-{% else %}
-  <h3> My games to buy:</h3>
-{% endif %}
+  {% for user_buy_game in user_buy_games %}
+    <p> Game: <a href="/products/{{ user_buy_game.id }}/details/">{{ user_buy_game.title }}</a></p>
+  {% empty %}
+    <p>No games</p>
+  {% endfor %}
+</div>
 
-{% for user_buy_game in user_buy_games %}
-  <p> Game: <a href="/products/{{ user_buy_game.id }}/details/">{{ user_buy_game.title }}</a></p>
-{% empty %}
-  <p>No games</p>
-{% endfor %}
 
 {% endblock content %}
 

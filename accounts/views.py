@@ -79,9 +79,7 @@ def view_profile(request, pk=None):
 @login_required(login_url='/accounts/login/')
 def edit_profile(request):
 
-    if request.method == 'POST':
-        
-        # if request.POST.get("photoUpload"):
+    if request.method == 'POST':        
         profile_form = EditProfileForm(request.POST, request.FILES, instance=request.user.userprofile)
         user_form = EditUserForm(request.POST, instance=request.user)
 
@@ -98,6 +96,7 @@ def edit_profile(request):
     
     context = {'user_form': user_form, 'profile_form': profile_form,}
     return render(request, 'accounts/edit_profile.html', context)
+
 
 @login_required(login_url='/accounts/login/')
 def change_password(request):

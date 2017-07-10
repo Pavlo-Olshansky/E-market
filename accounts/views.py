@@ -72,16 +72,7 @@ def view_profile(request, pk=None):
     
     user_buy_games = Game.objects.filter(~Q(author_id=request.user.id)).filter(is_accepted=True)
 
-    if request.method == 'POST':
-        profile_form = EditProfileForm(request.POST, request.FILES, instance=request.user.userprofile)
-
-        if profile_form.is_valid():
-            profile_form.save()
-            return redirect(reverse('accounts:view_profile'))
-    else:
-        profile_form = EditProfileForm(instance=request.user.userprofile)
-
-    context = {'user': user, 'profile_form': profile_form, 'user_sell_games': user_sell_games, 'user_buy_games': user_buy_games, 'pk': pk}
+    context = {'user': user, 'user_sell_games': user_sell_games, 'user_buy_games': user_buy_games, 'pk': pk}
     return render(request, 'accounts/profile.html', context)
 
 
@@ -89,15 +80,24 @@ def view_profile(request, pk=None):
 def edit_profile(request):
 
     if request.method == 'POST':
+        
+        # if request.POST.get("photoUpload"):
+        profile_form = EditProfileForm(request.POST, request.FILES, instance=request.user.userprofile)
         user_form = EditUserForm(request.POST, instance=request.user)
+
+        if profile_form.is_valid():
+            profile_form.save()
+            return redirect(reverse('accounts:view_profile'))
 
         if user_form.is_valid():
             user_form.save()
             return redirect(reverse('accounts:view_profile'))
     else:
+        profile_form = EditProfileForm(instance=request.user.userprofile)
         user_form = EditUserForm(instance=request.user)
-        context = {'user_form': user_form,}
-        return render(request, 'accounts/edit_profile.html', context)
+    
+    context = {'user_form': user_form, 'profile_form': profile_form,}
+    return render(request, 'accounts/edit_profile.html', context)
 
 @login_required(login_url='/accounts/login/')
 def change_password(request):

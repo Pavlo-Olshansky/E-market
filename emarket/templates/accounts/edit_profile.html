@@ -3,10 +3,77 @@
 
 {% block title %}Profile &mdash; Edit profile{% endblock title %}
 
+{% block extra_css %}
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'css/cropper.min.css' %}" rel="stylesheet">
+{% endblock extra_css %}
+
+{% block extra_js %}
+  <script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js/cropper.min.js' %}"></script>
+
+  <script>
+    $(function () {
+
+      /* SCRIPT TO OPEN THE MODAL WITH THE PREVIEW */
+      $("#id_file").change(function () {
+        if (this.files && this.files[0]) {
+          var reader = new FileReader();
+          reader.onload = function (e) {
+            $("#image").attr("src", e.target.result);
+            $("#modalCrop").modal("show");
+          }
+          reader.readAsDataURL(this.files[0]);
+        }
+      });
+
+      /* SCRIPTS TO HANDLE THE CROPPER BOX */
+      var $image = $("#image");
+      var cropBoxData;
+      var canvasData;
+      $("#modalCrop").on("shown.bs.modal", function () {
+        $image.cropper({
+          viewMode: 1,
+          aspectRatio: 1/1,
+          minCropBoxWidth: 200,
+          minCropBoxHeight: 200,
+          ready: function () {
+            $image.cropper("setCanvasData", canvasData);
+            $image.cropper("setCropBoxData", cropBoxData);
+          }
+        });
+      }).on("hidden.bs.modal", function () {
+        cropBoxData = $image.cropper("getCropBoxData");
+        canvasData = $image.cropper("getCanvasData");
+        $image.cropper("destroy");
+      });
+
+      $(".js-zoom-in").click(function () {
+        $image.cropper("zoom", 0.1);
+      });
+
+      $(".js-zoom-out").click(function () {
+        $image.cropper("zoom", -0.1);
+      });
+
+      /* SCRIPT TO COLLECT THE DATA AND POST TO THE SERVER */
+      $(".js-crop-and-upload").click(function () {
+        var cropData = $image.cropper("getData");
+        $("#id_x").val(cropData["x"]);
+        $("#id_y").val(cropData["y"]);
+        $("#id_height").val(cropData["height"]);
+        $("#id_width").val(cropData["width"]);
+        $("#photoUpload").submit();
+      });
+
+    });
+  </script>
+{% endblock extra_js %}
 
 {% block content %}
 
-  <form method="post" enctype="multipart/form-data" id="formUpload">
+  <form method="post">
     {% csrf_token %}
     {{ user_form.as_p }}
 
@@ -14,6 +81,61 @@
 
   </form>
 
+   <form method="post" enctype="multipart/form-data" id="photoUpload">
+    {% csrf_token %}
+    Image:
+
+    {{ profile_form.file }}
+    <small style="color: blue">{{ profile_form.file.help_text }}</small>
+    <p style="color: red">{{ profile_form.file.error }}</p>
+
+    {{ profile_form.x }}
+    {{ profile_form.y }}
+    {{ profile_form.width }}
+    {{ profile_form.height }}
+
+  	<button type="button" class="btn btn-primary js-crop-and-upload">Upload new photo</button>
+  </form>
+
 <a href="/accounts/profile/password/">Change pass</a>
 
+
+  <!-- MODAL TO CROP THE IMAGE -->
+  <div class="modal fade" id="modalCrop">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title">Crop the photo</h4>
+        </div>
+        <div class="modal-body">
+          <img src="" id="image" style="max-width: 100%;">
+        </div>
+        <div class="modal-footer">
+          <div class="btn-group pull-left" role="group">
+            <button type="button" class="btn btn-default js-zoom-in">
+              <span class="glyphicon glyphicon-zoom-in"></span>
+            </button>
+            <button type="button" class="btn btn-default js-zoom-out">
+              <span class="glyphicon glyphicon-zoom-out"></span>
+            </button>
+          </div>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Back</button>
+          <button type="button" class="btn btn-primary js-crop-and-upload">Crop and upload</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="col-md-6 col-sm-6">
+  <a href="{{ user.userprofile.file.url }}" class="img image-popup">
+    <img src="{{ user.userprofile.file.url }}" alt="{{ user }}" class="img-responsive" width=90>
+  </a>
+</div>
+
 {% endblock content %}
+
+
+

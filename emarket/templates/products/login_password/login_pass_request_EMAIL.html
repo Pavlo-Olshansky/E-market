@@ -1,15 +1,14 @@
 {% autoescape off %}
 Hi {{ user_author.username }}!
 
-User {{ current_user.username }} wont to buy your game account {{ game.title }}
+User {{ current_user.username }} wont to buy your game account "{{ game.title }}"
 
-Please add a login and password on your account to user {{ current_user.username }} to your account.
+Please add a login and password on your account to user {{ current_user.username }} from your account.
 
 After his confirmation we will transferr his money to your account.
 
+
 To add your login and password click the link below:
-
-
 http://{{ domain }}{% url 'products:send_login_password' uidb64=uid token=token game_id=game.id author_id=user_author.id buyer_id=current_user.id %}
 
 {% endautoescape %}

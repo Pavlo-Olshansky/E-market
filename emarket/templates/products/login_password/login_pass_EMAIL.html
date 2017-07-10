@@ -7,9 +7,12 @@ from {{ game.get_game_type_display }} game account!
 Login: {{ login_pass.login }}
 Password: {{ login_pass.password }}
 
-In 24 hours money will be given to {{ user_author.username }}.
-If there any problems with account please cancel in 24 hours. Otherwise {{ user_author.username }} will get the money.
-Then you can buy this account and {{ user_author.username }} will give you all account information.
+
+In 24 hours money will be given to user {{ user_author.username }}.
+
+If there any problems with account please cancel the transaction in 24 hours. 
+Otherwise user {{ user_author.username }} will get the money.
+
 
 Link to game account:
 http://{{ domain }}{% url 'products:game_details' game.id %}

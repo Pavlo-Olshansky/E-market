@@ -25,45 +25,51 @@
 </a>
 
 <hr>
-<p >Username: {{ user }}</p>
+<p><i>Username:</i> {{ user }}</p>
 {% if user.first_name %}
-  <p>First name: {{ user.first_name }}</p>
+  <p><i>First name:</i> {{ user.first_name }}</p>
 {% endif %}
 
 {% if user.last_name %}
-  <p>Last name: {{ user.last_name }}</p>
+  <p><i>Last name:</i> {{ user.last_name }}</p>
+{% else %}<br>
 {% endif %}
-<hr>
 
+{% if not user.first_name %}
+  <br>
+{% endif %}
+
+<hr>
+<br>
 <!-- <p>Email : {{ user.email }}</p> -->
 
 
 <div style='float:left; width:30%'>
   {% if pk %}
-    <h3>{{ user }} games to sell:</h3>
+    <h3><i>{{ user }} games to sell:</i></h3>
   {% else %}
-    <h3> My games to sell:</h3>
+    <h3><i>My games to sell:</i></h3>
   {% endif %}
 
   {% for user_sell_game in user_sell_games %}
-    <p> Game: <a href="/products/{{ user_sell_game.id }}/details/">{{ user_sell_game.title }}</a></p>
+    <p><i>Game:</i> <a href="/products/{{ user_sell_game.id }}/details/">{{ user_sell_game.title }}</a></p>
   {% empty %}
-    <p>No games</p>
+    <p><i>No games</i></p>
   {% endfor %}
 </div>
 
 
 <div style='float:left; width:40%; margin-left:30%'>
   {% if pk %}
-    <h3>{{ user }} games to buy:</h3>
+    <h3><i>{{ user }} games to buy:</i></h3>
   {% else %}
-    <h3> My games to buy:</h3>
+    <h3><i>My games to buy:</i></h3>
   {% endif %}
 
   {% for user_buy_game in user_buy_games %}
-    <p> Game: <a href="/products/{{ user_buy_game.id }}/details/">{{ user_buy_game.title }}</a></p>
+    <p><i>Game:</i><a href="/products/{{ user_buy_game.id }}/details/">{{ user_buy_game.title }}</a></p>
   {% empty %}
-    <p>No games</p>
+    <p><i>No games</i></p>
   {% endfor %}
 </div>
 

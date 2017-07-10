@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 class Game(models.Model):
     HEARTHSTONE = 1
     WOW = 2
@@ -24,6 +25,7 @@ class Game(models.Model):
     class Meta:
         ordering = ['publication_date']
 
+
 class Comment(models.Model):
     game = models.ForeignKey(Game, related_name='comments')
     user = models.CharField(max_length=250)
@@ -39,9 +41,21 @@ class Comment(models.Model):
     def __str__(self):
         return self.user
 
+
 class LoginPassword(models.Model):
     game = models.ForeignKey(Game, related_name='login_password_to_game', null=True)
     owner = models.ForeignKey(User, related_name='login_password_of_user', null=True)
 
     login = models.CharField(max_length=250)
     password = models.CharField(max_length=250)
+
+
+class Photo(models.Model):
+    game = models.ForeignKey(Game, related_name='photos_to_game', null=True)
+    file = models.ImageField()
+    description = models.CharField(max_length=255, blank=True)
+    created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = 'photo'
+        verbose_name_plural = 'photos'

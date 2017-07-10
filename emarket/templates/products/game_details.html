@@ -2,13 +2,15 @@
 
 {% block title %}Details{% endblock %}
 
+{% block header_on_background %}Game details{% endblock header_on_background %}
+
 {% block content %}
     <hr>
     {% if is_own %}
-        <h2>Your game: {{ game.title }}</h2>
+        <h2 class="page-heading">(Your game) {{ game.title }}</h2>
         <h6>on {{ game.publication_date }}</h6>
     {% else %}
-        <h2>{{ game.title }}</h2>
+        <h2 class="page-heading">{{ game.title }}</h2>
         <h6>on {{ game.publication_date }}</h6>
     {% endif %}
     <hr>
@@ -23,12 +25,36 @@
     </a>
     {% endif %}
 
-    {# Comment Section #}
+    {# PHOTOS section #}
+    <!-- FORM TO UPLOAD THE IMAGES -->
+    {% if is_own %}
+      <hr>
+      <form method="post" enctype="multipart/form-data" id="formUpload">
+        {% csrf_token %}
+        <h4>You can add and upload screenshot</h4>
+        <p>{{ photo_form.file }}</p>
+        <p><button>Upload photo</button></p>
+      </form>
+      <hr>
+    {% endif %}
+
+    <!-- CONTAINER TO DISPLAY THE IMAGES -->
+    <div class="row" style="margin-top: 20px">
+      {% for photo in photos %}
+        <div class="col-sm-4 col-md-3" style="margin-left: 120px">
+          <a href="{{ photo.file.url }}" class="img image-popup">
+            <img src="{{ photo.file.url }}" width=300 style="border:6px outset white; margin-right:1em">
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+
+    {# COMMENT Section #}
     <hr>
     <p><h3>Comments</h3></p>
     <!-- <p> There is {{ game.comments.count }} comments</p> -->
     
-    {# Comment View #}
+    {# COMMENT View #}
 
     <table id="comment-table" class="table2 table-comment">
         <tbody>
@@ -40,7 +66,7 @@
         </tbody>
     </table>
 
-    <button id='comment_show'>Add comment</button>
+    <button id='comment_show' class='btn btn-primary'>Add comment</button>
     {# Comment Form #}
     {% include 'comments/comments_item_form.html' %}
 
@@ -49,7 +75,6 @@
 
 {% block extra_js %}
 
-<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script>
 $('#comment_show').click(function(){
    $('#comment_form').toggle("slow");

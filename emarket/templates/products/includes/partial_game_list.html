@@ -1,6 +1,5 @@
 {% for game in games %}
 	<tr>
-	  <td>{{ game.id }}</td>
 	  <td><a href="/products/{{ game.id }}/details/">{{ game.title }}</a></td>
 	  <td><a href="/accounts/profile/{{ game.author_id }}">{{ game.author }}</a></td>
 	  <td>{{ game.get_game_type_display }}</td>

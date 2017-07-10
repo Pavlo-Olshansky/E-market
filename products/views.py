@@ -1,12 +1,12 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic.base import TemplateView
-from .models import Game
+from .models import Game, Photo
 from django.contrib.auth.models import User, Permission
 from django.contrib.contenttypes.models import ContentType
 
 from django.http import JsonResponse
 from django.template.loader import render_to_string
-from .forms import GameForm, CommentForm, LoginPasswordForm
+from .forms import GameForm, CommentForm, LoginPasswordForm, PhotoForm
 
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
@@ -90,9 +90,15 @@ def game_details(request, pk):
     template_name = 'products/game_details.html'
     current_user = request.user
     game = Game.objects.get(pk=pk)
+    photos = Photo.objects.filter(game_id=game.id)
+    if request.user.id == game.author_id:
+        is_own = True
+    else:
+        is_own = False
 
     if request.method == 'POST':
         comment_form = CommentForm(request.POST, prefix="comment")
+        photo_form = PhotoForm(request.POST, request.FILES)
 
         if comment_form.is_valid():
             comment = comment_form.save(commit=False)
@@ -108,16 +114,22 @@ def game_details(request, pk):
             redirect_url = reverse('products:game_details', args=(game.id,))
             return HttpResponseRedirect(redirect_url)
 
+        if photo_form.is_valid():
+            photo = photo_form.save(commit=False)
+            photo.game = game
+            photo.save()
+            redirect_url = reverse('products:game_details', args=(game.id,))
+            return HttpResponseRedirect(redirect_url)
+
     else:
+        photo_form = PhotoForm(request.POST, request.FILES)
         comment_form = CommentForm(prefix="comment")
-    
-    is_own = False
-    if request.user.id == game.author_id:
-        is_own = True
 
     context = {
         'game': game,
         'comment_form': comment_form,
+        'photo_form': photo_form,
+        'photos': photos,
         'is_own': is_own,
         'current_user': current_user,
     }

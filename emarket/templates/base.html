@@ -99,16 +99,13 @@
   <div id="fh5co-page-title" style="background-image: url({% static 'images/BG/BG_blizzard.png' %})">
   {% endblock background_image %}
 
-  {% block header_on_background %}
     <div class="overlay"></div>
     <div class="container">
       <div class="text">
-        <h1>Inside Page</h1>  
+        <h1>{% block header_on_background %}{% endblock header_on_background %}</h1>  
       </div>
-      
     </div>
   </div>
-  {% endblock header_on_background %}
 
   {% block main_content %}
   <main role="main" id="fh5co-main">

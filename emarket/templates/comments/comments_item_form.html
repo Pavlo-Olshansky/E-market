@@ -4,6 +4,7 @@
 	<table>
 	{% if not current_user.is_authenticated %}
 		<tr><td><b>Name:</b><td>
+		<tr><td>
 		<input 
 		type="text" 
 		name="text"
@@ -11,6 +12,7 @@
 		required="required">
 		</td></tr>
 		<tr><td><b>Email:</b><td>
+		<tr><td>
   	<input 
   	type="email" 
   	name="email"
@@ -23,6 +25,8 @@
 
 		<tr>
 			<td><b>Comment:</b></td>
+		</tr>
+		<tr>
 			<td>{{ comment_form.body }}</td>
 		</tr>
 		{% if comment_form.body.help_text %}
@@ -43,9 +47,7 @@
 
     <tr>
     	<td>
-    		<td>
-    			<button type="submit" class="btn btn-calltoaction btn-primary">Add comment</button>
-				</td>
+    		<button type="submit" class="btn btn-calltoaction btn-primary">Add comment</button>
 			</td>
 		</tr>
 

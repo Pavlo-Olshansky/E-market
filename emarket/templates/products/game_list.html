@@ -2,7 +2,16 @@
 {% load static %}
 
 {% block title %}Buy and Play &ndash; buy a game account{% endblock title %}
-{% block header_on_background %}Game list{% endblock header_on_background %}
+
+{% block header_on_background %}
+    <div class="overlay"></div>
+      <div class="container">
+        <div class="text">
+          <h1>Game list</h1>  
+        </div>
+      </div>
+    </div>
+  {% endblock header_on_background %}
 
 {% block extra_js %}
   <script src="{% static 'js/products/games.js' %}"></script>

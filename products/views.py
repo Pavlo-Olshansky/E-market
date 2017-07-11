@@ -76,7 +76,7 @@ def game_delete(request, pk):
     if request.method == 'POST':
         game.delete()
         data['form_is_valid'] = True  # This is just to play along with the existing code
-        games = Game.objects.all()
+        games = Game.objects.filter(is_accepted=False)
         data['html_game_list'] = render_to_string('products/includes/partial_game_list.html', {
             'games': games, 'user': request.user
         })

@@ -17,8 +17,12 @@ from accounts.tokens import account_activation_token
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 
-import stripe
 from django.conf import settings
+from django.contrib import messages
+
+import stripe
+import json
+import urllib
 
 
 def save_game_form(request, form, template_name):
@@ -103,14 +107,35 @@ def game_details(request, pk):
         if comment_form.is_valid():
             comment = comment_form.save(commit=False)
             
-            if request.user.is_authenticated:
-                comment.email = current_user.email
-                comment.user = current_user.username
+            ''' Begin reCAPTCHA validation '''
+            recaptcha_response = request.POST.get('g-recaptcha-response')
+            url = 'https://www.google.com/recaptcha/api/siteverify'
+            values = {
+                'secret': settings.GOOGLE_RECAPTCHA_SECRET_KEY,
+                'response': recaptcha_response
+            }
+            data = urllib.parse.urlencode(values).encode()
+            req =  urllib.request.Request(url, data=data)
+            response = urllib.request.urlopen(req)
+            result = json.loads(response.read().decode())
+            ''' End reCAPTCHA validation '''
+
+            if result['success']:
+                if request.user.is_authenticated:
+                    comment.email = current_user.email
+                    comment.user = current_user.username
+                else:
+                    comment.user=request.POST['text'] 
+                    comment.email=request.POST['email']
+                comment.game = game
+                comment.save()
+                
+                messages.success(request, 'New comment added with success!')
             else:
-                comment.user=request.POST['text'] 
-                comment.email=request.POST['email']
-            comment.game = game
-            comment.save()
+                messages.error(request, 'Invalid reCAPTCHA. Please try again.')
+
+
+            
             redirect_url = reverse('products:game_details', args=(game.id,))
             return HttpResponseRedirect(redirect_url)
 

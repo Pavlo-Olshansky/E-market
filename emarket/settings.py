@@ -160,6 +160,8 @@ DISQUS_WEBSITE_SHORTNAME = 'buyandplay'
 GMAIL_PASS = config("GMAIL_PASS")
 GMAIL_MAIL = config("GMAIL_MAIL")
 
+# reCapch key settings
+GOOGLE_RECAPTCHA_SECRET_KEY='6LdglCgUAAAAAP_E36HbImYCOEhK00yXl7wvaWsD'
 
 EMAIL_USE_TLS=True
 EMAIL_HOST='smtp.gmail.com'

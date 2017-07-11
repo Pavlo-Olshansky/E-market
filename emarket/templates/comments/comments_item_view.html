@@ -1,10 +1,13 @@
 {% load humanize %}
 
 	<tr>
-		<td> <b>{{ comment.user }}:</b></td>
-		<td> {{ comment.body }} </td>
+		<td><hr><div style="width: 100%;"> <b><big>{{ comment.user }}:</big></b></div></td>
 	</tr>
+
 	<tr>
-		<td></td>
-		<td><h6>on {{ comment.created|naturaltime }}</h6></td>
+		<td><h6><div style="width: 100%;">{{ comment.created|naturaltime }}</div></h6></td>
+	</tr>
+
+	<tr>
+		<td><div style="width: 100%;">{{ comment.body }}</div></td>
 	</tr>

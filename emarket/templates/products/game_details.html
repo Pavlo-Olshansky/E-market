@@ -69,7 +69,7 @@
     
     {# COMMENT View #}
 
-    <table id="comment-table" class="table2 table-comment">
+    <table  id="comment-table" class="table2 table-comment">
         <tbody>
             {% for comment in game.comments.all %}  {# related name - comments #}
                 {% include 'comments/comments_item_view.html' %}
@@ -79,6 +79,8 @@
         </tbody>
     </table>
 
+    <p>
+      <hr>
     <button id='comment_show' class='btn btn-primary'>Add comment</button>
     {# Comment Form #}
     {% include 'comments/comments_item_form.html' %}

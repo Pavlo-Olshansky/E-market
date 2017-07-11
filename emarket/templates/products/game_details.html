@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load humanize %}
 
 {% block title %}Details{% endblock %}
 
@@ -16,10 +17,10 @@
     <hr>
     {% if is_own %}
         <h2 class="page-heading">(Your game) {{ game.title }}</h2>
-        <h6>on {{ game.publication_date }}</h6>
+        <small>{{ game.publication_date|naturalday }}</small>
     {% else %}
         <h2 class="page-heading">{{ game.title }}</h2>
-        <h6>on {{ game.publication_date }}</h6>
+        <small>{{ game.publication_date|naturalday }}</small>
     {% endif %}
     <hr>
 

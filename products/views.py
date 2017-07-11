@@ -23,6 +23,7 @@ from django.contrib import messages
 import stripe
 import json
 import urllib
+from django.contrib.humanize.templatetags.humanize import naturaltime
 
 
 def save_game_form(request, form, template_name):

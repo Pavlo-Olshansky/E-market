@@ -6,7 +6,7 @@
 	  <td><a href="/accounts/profile/{{ game.author_id }}">{{ game.author }}</a></td>
 	  <td>{{ game.get_game_type_display }}</td>
 	  <td>{{ game.publication_date|naturalday }}</td>
-	  <td>{{ game.price }}</td>
+	  <td>${{ game.price }}</td>
 	  <td>
 
 	  {% if user == game.author %}

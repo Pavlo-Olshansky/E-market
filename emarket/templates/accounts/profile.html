@@ -7,7 +7,7 @@
 {% block content %}
 
 
-{% if pk %}
+{% if not is_own %}
   <h1>{{ user }} profile</h1>
 {% else %}
   <h1>My profile</h1>
@@ -45,7 +45,7 @@
 
 
 <div style='float:left; width:30%'>
-  {% if pk %}
+  {% if not is_own %}
     <h3><i>{{ user }} games to sell:</i></h3>
   {% else %}
     <h3><i>My games to sell:</i></h3>
@@ -60,7 +60,7 @@
 
 
 <div style='float:left; width:40%; margin-left:30%'>
-  {% if pk %}
+  {% if not is_own %}
     <h3><i>{{ user }} games to buy:</i></h3>
   {% else %}
     <h3><i>My games to buy:</i></h3>

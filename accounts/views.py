@@ -69,10 +69,15 @@ def view_profile(request, pk=None):
     else:
         user = request.user
         user_sell_games = Game.objects.filter(author_id=request.user.id)
+
+    if request.user.id == user.id:
+        is_own = True
+    else:
+        is_own = False
     
     user_buy_games = Game.objects.filter(~Q(author_id=request.user.id)).filter(is_accepted=True)
 
-    context = {'user': user, 'user_sell_games': user_sell_games, 'user_buy_games': user_buy_games, 'pk': pk}
+    context = {'user': user, 'user_sell_games': user_sell_games, 'user_buy_games': user_buy_games, 'is_own': is_own}
     return render(request, 'accounts/profile.html', context)
 
 

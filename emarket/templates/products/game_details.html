@@ -88,6 +88,18 @@
 $('#comment_show').click(function(){
    $('#comment_form').toggle("slow");
 });
+
+// Under captcha comment button slow show
+var onloadCallback = function() {
+    grecaptcha.render('html_element', {
+      'sitekey' : '6LdglCgUAAAAAAzuPFTrLba5YuDTrO3aV_pTr9IF',
+      'callback' : correctCaptcha
+    });
+  };
+
+  var correctCaptcha = function(response) {
+    $('#submit_comment').show("slow");
+};
 </script>
 
 {% endblock %}

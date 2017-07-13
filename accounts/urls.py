@@ -6,7 +6,10 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
 
     # Register new user
-    url(r'^signup/', views.signup, name='signup'),
+    url(r'^login_signup/', views.login_signup, name='login_signup'),
+    url(r'^login_user/', views.login_user, name='login_user'),
+
+    
 
     # send an activation URL 
     url(r'^account_activation_sent/$', views.account_activation_sent, name='account_activation_sent'),
@@ -17,9 +20,9 @@ urlpatterns = [
 
 
     # Login/Logout URLs
-    url(r'^login/$', auth_views.login, {'template_name': 'registration/login.html'}, name='login'),
+    # url(r'^login/$', auth_views.login, {'template_name': 'registration/login.html'}, name='login'),
 
-    url(r'^logout/$', auth_views.logout, {'template_name': 'registration/logout.html','next_page': '/accounts/login/'}, name='logout'),
+    url(r'^logout/$', auth_views.logout, {'template_name': 'registration/logout.html','next_page': '/'}, name='logout'),
 
     # Reset password
     url(r'^password_reset/$', auth_views.password_reset, name='password_reset'),

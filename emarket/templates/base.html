@@ -73,7 +73,6 @@
           <div id="fh5co-navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
               <li class="active"><a href="/products/">Games</a></li>
-              <li><a href="#">NONE</a></li>
 
               {% if user.is_authenticated %}
                 <li><a href="/accounts/logout/">Logout</a></li>
@@ -84,7 +83,8 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
               {% if not user.is_authenticated %}
-                <li><a class="btn btn-calltoaction btn-primary js_login_signup_up">Login/Sign Up</a></li>
+                <li><a class="btn btn-calltoaction btn-primary js_login_signup_up">Login or Sign Up</a></li>
+                <li><a><center>AND SEE</center></a></li>
               {% endif %}
               <li><a href="/products/" class="btn btn-calltoaction btn-primary">All games</a></li>
             </ul>
@@ -292,12 +292,22 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCefOgb1ZWqYtj7raVSmN4PL2WkTrc-KyA&sensor=false"></script>
     <script src="{% static 'js/google_map.js' %}"></script>
 
-
     <!-- Main JS -->
     <script src="{% static 'js/main.js' %}"></script>
 
     <!-- Registration JS -->
     <script src="{% static 'js/registration/registration.js' %}"></script>
+
+    <!-- Hint appearing JS -->
+    <!-- button 
+            data-toggle="tooltip" 
+            data-placement="top" 
+            title="Sell your own account" -->
+    <script type="text/javascript">
+      $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
+    </script>
     
     {% endblock js_block %}
 

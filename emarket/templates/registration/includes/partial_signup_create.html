@@ -1,9 +1,10 @@
 {% load widget_tweaks %}
+{% load static %}
 <div class="modal-header">
   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
-  <h4 class="modal-title">Login or sign up on Buy and Play!</h4>
+  <h4 class="modal-title">Login or Sign up on Buy and Play!</h4>
 </div>
 
 <ul class="nav nav-tabs">
@@ -13,7 +14,7 @@
 
 <div class="tab-content">
   {# Login tab #}
-  <div class="tab-pane active" id="tab1">
+  <div class="tab-pane" id="tab1">
 
   <form method="post" action="{% url 'accounts:login_user' %}" class="js-user-create-form">
     {% csrf_token %}
@@ -37,15 +38,20 @@
     
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      <button name='login' type="submit" class="btn btn-primary">Login!</button>
+      
+      <div align='center'>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <img src='{% static 'images/loading.gif' %}' style="display: none;" id="loader" width='60'>
+        <button id='submit_login' name='login' type="submit" class="btn btn-primary">Login!</button>
+      </div>
     </div>
+<!--     Dont have acc?<a href="#tab2" data-toggle="tab">CREATEEEE</a> -->
   </form>
   </div>
 
   {# Registration tab #}
   <div class="tab-pane" id="tab2">
-  <form method="post" action="{% url 'accounts:login_signup' %}" class="js-user-create-form">
+  <form method="post" action="{% url 'accounts:signup_user' %}" class="js-user-create-form">
     {% csrf_token %}
     
     <div class="modal-body">
@@ -60,11 +66,35 @@
       {% endfor %}
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      <button name='signup' type="submit" class="btn btn-primary">Sign up!</button>
+
+      <div align='center'>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <img src='{% static 'images/loading.gif' %}' style="display: none;" id="loader" width='60'>
+        <button id='submit_signup' name='signup' type="submit" class="btn btn-primary">Sign up!</button>
+      </div>
+    </div>
     </div>
   </form>
 
   </div>
 </div>
 
+<script>
+// autofocus at username
+$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        $($(e.target).attr("href")).find('.form-control').first().focus();
+   })
+</script>
+
+
+{% if signup_form_active %}
+<script>
+  $('a[href="#tab2"]').tab('show'); 
+</script>
+
+{% else %}
+
+<script>
+  $('a[href="#tab1"]').tab('show'); 
+</script>
+{% endif %}

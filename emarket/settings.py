@@ -141,9 +141,9 @@ STATICFILES_DIRS = (
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-LOGIN_URL = '/accounts/login'
+LOGIN_URL = '/accounts/login_signup'
 LOGOUT_URL = '/accounts/logout'
-LOGIN_REDIRECT_URL = '/products'
+LOGIN_REDIRECT_URL = '/'
 
 
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

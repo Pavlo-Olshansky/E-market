@@ -14,10 +14,6 @@
     </div>
   {% endblock header_on_background %}
 
-{% block extra_js %}
-  <script src="{% static 'js/products/games.js' %}"></script>
-{% endblock %}
-
 {% block content %}
   <h1 class="page-header">Games</h1>
 
@@ -25,7 +21,10 @@
   <p>
     <button type="button"
             class="btn btn-primary js-create-game"
-            data-url="{% url 'products:game_create' %}">
+            data-url="{% url 'products:game_create' %}" 
+            data-toggle="tooltip" 
+            data-placement="top" 
+            title="Sell your own account">
       <span class="glyphicon glyphicon-plus"></span>
 
       New game
@@ -54,3 +53,7 @@
       </div>
     </div>
 {% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/products/games.js' %}"></script>
+{% endblock extra_js %}

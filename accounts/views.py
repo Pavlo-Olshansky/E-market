@@ -19,12 +19,48 @@ from django.template.loader import render_to_string
 from django.contrib.auth.forms import AuthenticationForm
 
 
-def login_signup(request):
+def login_user(request):
     data = dict()
+    confirm_error = False
+    signup_form_active = False
+    data['loginned'] = False
+
+    signup_form = SignUpForm()
+
+    if request.method == 'POST':
+        login_form = AuthenticationForm(request, data=request.POST)
+        username = request.POST.get('username', '').strip()
+        password = request.POST.get('password', '').strip()
+        if login_form.is_valid():
+            data['form_is_valid'] = True
+
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    data['loginned'] = True
+                else:
+                    confirm_error=True
+        else:
+            data['form_is_valid'] = False
+    else:
+        login_form = AuthenticationForm(request)
+
+    context = {'signup_form': signup_form, 'login_form': login_form, 'confirm_error': confirm_error, 'signup_form_active': signup_form_active }
+    data['html_form'] = render_to_string('registration/includes/partial_signup_create.html',
+        context,
+        request=request
+    )
+    return JsonResponse(data)
+
+
+def signup_user(request):
+    data = dict()
+    signup_form_active = True
+    login_form = AuthenticationForm(request)
 
     if request.method == 'POST':
         signup_form = SignUpForm(request.POST)
-        login_form = AuthenticationForm(request, data=request.POST)
         if signup_form.is_valid():
             data['form_is_valid'] = True
             user = signup_form.save(commit=False)
@@ -46,70 +82,13 @@ def login_signup(request):
             data['form_is_valid'] = False
     else:
         signup_form = SignUpForm()
-        login_form = AuthenticationForm(request)
 
-    context = {'signup_form': signup_form, 'login_form': login_form}
+    context = {'signup_form': signup_form, 'login_form': login_form, 'signup_form_active': signup_form_active}
     data['html_form'] = render_to_string('registration/includes/partial_signup_create.html',
         context,
         request=request
     )
     return JsonResponse(data)
-
-def login_user(request):
-    # logout(request)
-    data = dict()
-    confirm_error = False
-    data['loginned'] = False
-    if request.method == 'POST':
-        login_form = AuthenticationForm(request, data=request.POST)
-        signup_form = SignUpForm(request.POST)
-
-        username = request.POST.get('username', '').strip()
-        password = request.POST.get('password', '').strip()
-        if login_form.is_valid():
-            data['form_is_valid'] = True
-
-            user = authenticate(username=username, password=password)
-            if user is not None:
-                if user.is_active:
-                    login(request, user)
-                    data['loginned'] = True
-                else:
-                    confirm_error=True
-        else:
-            data['form_is_valid'] = False
-    else:
-        login_form = AuthenticationForm(request)
-        signup_form = SignUpForm()
-
-    context = {'signup_form': signup_form, 'login_form': login_form, 'confirm_error': confirm_error}
-    data['html_form'] = render_to_string('registration/includes/partial_signup_create.html',
-        context,
-        request=request
-    )
-    return JsonResponse(data)
-
-    # if request.method == 'POST':
-    #     form = SignUpForm(request.POST)
-    #     if form.is_valid():
-    #         user = form.save(commit=False)
-    #         user.is_active = False
-    #         user.save()
-
-    #         current_site = get_current_site(request)
-    #         subject = 'Activate Your E-market Account'
-    #         message = render_to_string('registration/account_activation_email.html', {
-    #             'user': user,
-    #             'domain': current_site.domain,
-    #             'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-    #             'token': account_activation_token.make_token(user),
-    #         })
-    #         user.email_user(subject, message)
-
-    #         return render(request, 'registration/account_activation_sent.html')
-    # else:
-    #     form = SignUpForm()
-    # return render(request, 'registration/signup.html', {'form': form})
 
 
 def account_activation_sent(request):

@@ -3,7 +3,11 @@
 {% for game in games %}
 	<tr>
 	  <td><a href="/products/{{ game.id }}/details/">{{ game.title }}</a></td>
-	  <td><a href="/accounts/profile/{{ game.author_id }}">{{ game.author }}</a></td>
+	  {% if not user.is_authenticated %}
+	  	<td><a class="js_login_signup_up">{{ game.author }}</a></td>
+	  {% else %}
+	  	<td><a href="/accounts/profile/{{ game.author_id }}">{{ game.author }}</a></td>
+	  {% endif %}
 	  <td>{{ game.get_game_type_display }}</td>
 	  <td>{{ game.publication_date|naturalday }}</td>
 	  <td>${{ game.price }}</td>

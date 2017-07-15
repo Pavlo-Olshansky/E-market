@@ -17,18 +17,18 @@
       <button type="button"
               class="btn btn-warning btn-sm js-update-game"
               data-url="{% url 'products:game_update' game.id %}">
-        <span class="glyphicon glyphicon-pencil"></span> Edit
+        <span class="glyphicon glyphicon-pencil">Edit</span>
       </button>
       <button type="button"
               class="btn btn-danger btn-sm js-delete-game"
               data-url="{% url 'products:game_delete' game.id %}">
-        <span class="glyphicon glyphicon-trash"></span> Del
+        <span class="glyphicon glyphicon-trash">Del</span>
       </button>
 
       {% else %}
       <a href="{{ game.id }}/details/">
 	      <button type="submit" class="btn btn-warning btn-sm">
-	      	Details 
+	      	<span class="glyphicon glyphicon-chevron-right">Details</span>
 	      </button>
 	    </a>
       {% endif %}

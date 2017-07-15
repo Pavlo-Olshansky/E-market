@@ -1,0 +1,8 @@
+<hr>
+  <form method="post" enctype="multipart/form-data" id="formUpload">
+    {% csrf_token %}
+    <h4>You can add and upload screenshot</h4>
+    <p>{{ photo_form.file }}</p>
+    <p><button>Upload photo</button></p>
+  </form>
+<hr>

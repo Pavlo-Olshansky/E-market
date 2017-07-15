@@ -24,7 +24,12 @@
     {% endif %}
     <hr>
 
-    <p>Owner: <a href="/accounts/profile/{{ game.author_id }}">{{ game.author }}</a></p>
+    {% if not user.is_authenticated %}
+      <p>Owner: <a class="js_login_signup_up">{{ game.author }}</a></p>
+    {% else %}
+      <p>Owner: <a href="/accounts/profile/{{ game.author_id }}">{{ game.author }}</a></p>
+    {% endif %}
+    
     <p>Type of game: {{ game.get_game_type_display }}</p>
     <p>Price: ${{ game.price }}</p>
     
@@ -41,27 +46,15 @@
     {% endif %}
 
     {# PHOTOS section #}
-
     <!-- FORM TO UPLOAD THE IMAGES -->
     {% if is_own %}
-      <hr>
-      <form method="post" enctype="multipart/form-data" id="formUpload">
-        {% csrf_token %}
-        <h4>You can add and upload screenshot</h4>
-        <p>{{ photo_form.file }}</p>
-        <p><button>Upload photo</button></p>
-      </form>
-      <hr>
+      {% include 'products/includes/uploaded_photoes_form.html' %}
     {% endif %}
 
     <!-- CONTAINER TO DISPLAY THE IMAGES -->
     <div class="row" style="margin-top: 20px">
       {% for photo in photos %}
-        <div class="col-sm-4 col-md-3" style="margin-left: 120px">
-          <a href="{{ photo.file.url }}" class="img image-popup">
-            <img src="{{ photo.file.url }}" width=300 style="border:6px outset white; margin-right:1em">
-          </a>
-        </div>
+        {% include 'products/includes/uploaded_photoes_view.html' %}
       {% endfor %}
     </div>
 

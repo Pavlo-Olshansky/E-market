@@ -22,6 +22,10 @@ class Game(models.Model):
     def accept(self):
         self.is_accepted = True
 
+    def __str__(self):
+        return 'Game of user "{}"'.format(self.author, )
+
+
     class Meta:
         ordering = ['publication_date']
 
@@ -39,7 +43,11 @@ class Comment(models.Model):
         self.save()
 
     def __str__(self):
-        return self.user
+        return 'User "{}" on game "{}"'.format(self.user, self.game.title)
+
+
+    class Meta:
+        ordering = ['created']
 
 
 class LoginPassword(models.Model):
@@ -49,12 +57,20 @@ class LoginPassword(models.Model):
     login = models.CharField(max_length=250)
     password = models.CharField(max_length=250)
 
+    def __str__(self):
+        return 'Game "{}" of user "{}"'.format(self.game.title, self.owner)
+
+
 
 class Photo(models.Model):
     game = models.ForeignKey(Game, related_name='photos_to_game', null=True)
     file = models.ImageField()
     description = models.CharField(max_length=255, blank=True)
     created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return 'Photo of game "{}"'.format(self.game.title, )
+
 
     class Meta:
         verbose_name = 'photo'

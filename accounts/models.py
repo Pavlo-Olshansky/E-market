@@ -10,7 +10,7 @@ class UserProfile(models.Model):
     email_confirmed = models.BooleanField(default=False)
 
     file = models.ImageField(upload_to='profile_image/', blank=True, default='profile_image/no_profile.jpg')
-
+    money = models.IntegerField(default=0)
     # USERNAME_FIELD = 'username'
     # REQUIRED_FIELDS = ['username', 'email']
 

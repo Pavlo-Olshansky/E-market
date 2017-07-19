@@ -20,5 +20,6 @@ urlpatterns = [
 
     url(r'^payment/(?P<game_id>\d+)/(?P<author_id>\d+)/success/$', views.payment_success, name='payment_success'),
 
+    url(r'^money/out/$', views.money_out, name='money_out'),
 
 ]

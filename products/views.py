@@ -177,6 +177,12 @@ def accept_sell(request, game_id, author_id):
         # Token is created using Stripe.js or Checkout!
         # Get the payment token submitted by the form:
         token = request.POST['stripeToken'] 
+
+        customer = stripe.Customer.create(
+          email=current_user.email,
+          source=token,
+        )
+
         source=stripe.Source.create(
           type='bitcoin',
           amount=ammount,
@@ -190,12 +196,13 @@ def accept_sell(request, game_id, author_id):
           amount=ammount,
           currency="usd",
           description="Buy a game",
-          source=token,
+          customer=customer.id,
         )
 
         # Update a game list without this game
         game.accept()
         game.save()
+        user_author.userprofile.money += ammount
 
         # Send message to seller(request a login and pass)
         current_site = get_current_site(request)
@@ -300,3 +307,15 @@ def payment_success(request, game_id, author_id):
             'game': game,
             }
     return render(request, 'products/payment_successfull.html', context)
+
+
+@login_required(login_url='/accounts/login/')
+def money_out(request):
+    stripe.api_key = settings.STRIPE_SECRET_KEY
+
+    payout = stripe.Payout.create(
+      amount=1,
+      currency="usd",
+    )
+
+    return render(request, 'products/payout_successfull.html')

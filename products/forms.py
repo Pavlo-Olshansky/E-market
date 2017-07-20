@@ -4,6 +4,7 @@ from PIL import Image
 from django import forms
 from django.core.files import File
 from .models import Photo
+from paypal.standard.forms import PayPalPaymentsForm
 
 
 class GameForm(forms.ModelForm):
@@ -29,3 +30,8 @@ class PhotoForm(forms.ModelForm):
     class Meta:
         model = Photo
         fields = ('file', )
+
+
+class PayPalPaymentsForm(PayPalPaymentsForm):
+    def get_image(self):
+        return '/static/images/PayPal_button.png'

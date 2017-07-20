@@ -6,7 +6,7 @@ from django.contrib.contenttypes.models import ContentType
 
 from django.http import JsonResponse
 from django.template.loader import render_to_string
-from .forms import GameForm, CommentForm, LoginPasswordForm, PhotoForm
+from .forms import GameForm, CommentForm, LoginPasswordForm, PhotoForm, PayPalPaymentsForm
 
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
@@ -19,11 +19,11 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 
 from django.conf import settings
 from django.contrib import messages
+from django.contrib.humanize.templatetags.humanize import naturaltime
 
 import stripe
 import json
 import urllib
-from django.contrib.humanize.templatetags.humanize import naturaltime
 
 
 def save_game_form(request, form, template_name):
@@ -220,10 +220,24 @@ def accept_sell(request, game_id, author_id):
 
         redirect_url = reverse('products:payment_success', args=(game_id, author_id,))
         return HttpResponseRedirect(redirect_url)
+    
+    host = request.get_host()
 
+    paypal_dict = {
+    "business": 'pavlo.olshansky@gmail.com',
+    "amount": str(game.price)+'.00',
+    "item_name": game.title,
+    "invoice": game.id,
+    "notify_url": "https://{}{}".format(host, reverse('paypal-ipn')),
+    "return_url": "http://{}{}".format(host, reverse('products:payment_success', args=(game_id, author_id,))),
+    "cancel_return": "http://{}{}".format(host, reverse('products:game_details', args=(game.id,))),
+    "custom": "Upgrade all users!",  # Custom command to correlate to some function later (optional)
+    }
+
+    paypal_form = PayPalPaymentsForm(initial=paypal_dict)
         
 
-    context = {'game': game, 'user_author': user_author, 'game': game, 'ammount': ammount, 'stripe_publish_key': stripe_publish_key, 'message': message}
+    context = {'paypal_form': paypal_form, 'game': game, 'user_author': user_author, 'game': game, 'ammount': ammount, 'stripe_publish_key': stripe_publish_key, 'message': message}
     return render(request, 'products/accept_sell.html', context)
 
 

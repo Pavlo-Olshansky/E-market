@@ -9,22 +9,37 @@
 	<p>Otherwise, the money will be back to you</p>
 <p>
 
-<form method="POST">
-  {% csrf_token %}
-  <script
-    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-    data-key={{ stripe_publish_key }}
-    data-amount={{ ammount }}
-    data-name="Buy a {{ game.get_game_type_display }} account"
-    data-description="__description__"
-    data-image="/img/documentation/checkout/marketplace.png"
-    data-label="Pay with Card or Bitcoin"
-    data-locale="auto"
-    data-currency="usd"
-    data-bitcoin="true">
-  </script>
-</form>
+<div align="center">
+  <form method="POST">
+    {% csrf_token %}
+    <script
+      src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+      data-key={{ stripe_publish_key }}
+      data-amount={{ ammount }}
+      data-name="Buy a {{ game.get_game_type_display }} account"
+      data-description="__description__"
+      data-image="/img/documentation/checkout/marketplace.png"
+      data-label="Pay with Card or Bitcoin"
+      data-locale="auto"
+      data-currency="usd"
+      data-bitcoin="true">
+    </script>
+  </form>
+
+
+<br>
+  <div style="width:100%;text-align:center;">
+    <span style="width:45%;display:inline;float:left;"><hr/></span>
+    <span style="width:10%;display:inline;float:left;">OR</span>
+    <span style="width:45%;display:inline;float:left;"><hr/></span>
+  </div>
+
+  <form action="https://www.sandbox.paypal.com/webapps/adaptivepayment/flow/pay" target="_blank" class="standard">
+  {{ paypal_form.render }}
+  </form>
+</div>
 
 <p>Повідомлення, шо посилатиметься продавцю:</p> 
 <p>{{ message }}</p>
 {% endblock content %}
+

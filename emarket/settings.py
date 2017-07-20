@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'home',
     'products',
     'widget_tweaks',
+    'paypal.standard.ipn',
 
 ]
 
@@ -149,10 +150,6 @@ LOGIN_REDIRECT_URL = '/'
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-# Stripe Key Settings
-STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY')
-STRIPE_PUBLISHABLE_KEY = config('STRIPE_PUBLISHABLE_KEY')
-
 # Disquas comments Settings
 DISQUS_API_KEY = config("DISQUS_API_KEY")
 DISQUS_WEBSITE_SHORTNAME = 'buyandplay'
@@ -173,3 +170,12 @@ EMAIL_HOST_PASSWORD = GMAIL_PASS
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 SERVER_EMAIL = EMAIL_HOST_USER
 
+# Payments
+
+# Stripe Key Settings
+STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY')
+STRIPE_PUBLISHABLE_KEY = config('STRIPE_PUBLISHABLE_KEY')
+
+# Paypal Settings
+PAYPAL_TEST = True
+PAYPAL_RECEIVER_EMAIL='pavlo.olshansky@gmail.com'

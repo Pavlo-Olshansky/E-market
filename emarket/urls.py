@@ -35,13 +35,15 @@ urlpatterns = [
     # User profile related URLs
     url(r'^accounts/', include('accounts.urls', namespace='accounts'), name='accounts'),
     
+    # Paypal payments
+    url(r'^paypal/', include('paypal.standard.ipn.urls')),
+
     # Social login
 
     # Seller accounts related URLs
     url(r'^products/', include('products.urls', namespace='products'), name='products'),
 
     # Contact us related URLS
-
 
 
 

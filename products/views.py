@@ -158,6 +158,7 @@ def game_details(request, pk):
         'photos': photos,
         'is_own': is_own,
         'current_user': current_user,
+        'GOOGLE_RECAPTCHA_SECRET_KEY':settings.GOOGLE_RECAPTCHA_SECRET_KEY
     }
     
     return render(request, 'products/game_details.html', context)

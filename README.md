@@ -27,9 +27,13 @@ python manage.py migrate
 python manage.py collectstatic
 python manage.py runserver
 ```
+*Now you can check server at [localhost:8000](http://localhost:8000)*
+
+**Attention : You must run all of these commands in administrator mode**.
 
 ## Important note
 All env variable is using by django-decouple library. System variable in .env file are following:
+```
 ENV_ROLE = development
 SECRET_KEY_emarket = <YOUR_SECRET_KEY>
 DEBUG = True
@@ -44,8 +48,7 @@ EMAIL_USE_TLS=True
 EMAIL_HOST=<YOUR_EMAIL_HOST>
 EMAIL_PORT=587
 ALLOWED_HOSTS=.localhost, .herokuapp.com
+```
 
 
-**Attention : You must run all of these commands in administrator mode**.
 
-*Now you can check server at [localhost:8000](http://localhost:8000)*

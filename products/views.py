@@ -170,6 +170,10 @@ def accept_sell(request, game_id, author_id):
     user_author = get_object_or_404(User, pk=author_id)
     current_user = get_object_or_404(User, pk=request.user.id)
     game = Game.objects.get(pk=game_id)
+
+    game.buyer = current_user
+    game.save()
+
     message = ''
     stripe_publish_key = settings.STRIPE_PUBLISHABLE_KEY
     ammount = game.price*100
@@ -305,23 +309,6 @@ def payment_success(request, uuid):
     user_author = game.author
     current_user = get_object_or_404(User, pk=request.user.id)
 
-    # Update a game list without this game
-    game.accept()
-    game.save()
-    user_author.userprofile.money += game.price
-
-    # Send message to seller(request a login and pass)
-    current_site = get_current_site(request)
-    subject = 'Your account wont to buy!'
-    message = render_to_string('products/login_password/login_pass_request_EMAIL.html', {
-        'user_author': user_author,
-        'current_user': current_user,
-        'game': game,
-        'domain': current_site.domain,
-        'uid': urlsafe_base64_encode(force_bytes(current_user.pk)),
-        'token': account_activation_token.make_token(current_user),
-    })
-    user_author.email_user(subject, message)
 
     context = {
             'user_author': user_author,

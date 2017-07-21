@@ -18,6 +18,7 @@ class Game(models.Model):
     title = models.CharField(max_length=50)
     publication_date = models.DateField(auto_now_add=True)
     author = models.ForeignKey(User)
+    buyer = models.ForeignKey(User, related_name='game_buyer', null=True)
     price = models.IntegerField()
     game_type = models.PositiveSmallIntegerField(choices=GAME_TYPES)
     is_accepted = models.BooleanField(default=False)
@@ -78,3 +79,43 @@ class Photo(models.Model):
     class Meta:
         verbose_name = 'photo'
         verbose_name_plural = 'photos'
+
+
+
+from paypal.standard.ipn.signals import payment_was_successful, valid_ipn_received
+from accounts.tokens import account_activation_token
+from django.utils.encoding import force_bytes, force_text
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.contrib.sites.shortcuts import get_current_site             
+
+
+def Paypal_comfirm(sender, **kwargs):
+    ipn_obj = sender
+    if ipn_obj.payment_status == "Completed":
+
+        game_id = ipn_obj.invoice
+        game = get_object_or_404(Game, pk=game_id)
+
+        # Update a game list without this game
+        game.accept()
+        game.save() 
+        user_author = game.author
+        current_user = game.buyer
+        user_author.userprofile.money += game.price
+
+        # Send message to seller(request a login and pass)
+        current_site = get_current_site(request)
+        subject = 'Your account wont to buy!'
+        message = render_to_string('products/login_password/login_pass_request_EMAIL.html', {
+            'user_author': user_author,
+            'current_user': current_user,
+            'game': game,
+            'domain': current_site.domain,
+            'uid': urlsafe_base64_encode(force_bytes(current_user.pk)),
+            'token': account_activation_token.make_token(current_user),
+        })
+        user_author.email_user(subject, message)
+
+payment_was_successful.connect(Paypal_comfirm)
+ 
+valid_ipn_received.connect(Paypal_comfirm)

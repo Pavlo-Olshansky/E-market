@@ -1,0 +1,498 @@
+[21/Jul/2017 14:56:00] DEBUG [django.db.backends:91] (0.268) 
+            SELECT c.relname, c.relkind
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid); args=None
+[21/Jul/2017 14:56:00] DEBUG [django.db.backends:91] (0.046) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+[21/Jul/2017 14:57:36] DEBUG [django.db.backends:91] (0.196) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."session_key" = '4wf75lwy4kbv8fj8p3i7wcy2n3ctc5of' AND "django_session"."expire_date" > '2017-07-21T11:57:36.210551+00:00'::timestamptz); args=('4wf75lwy4kbv8fj8p3i7wcy2n3ctc5of', datetime.datetime(2017, 7, 21, 11, 57, 36, 210551, tzinfo=<UTC>))
+[21/Jul/2017 14:57:36] DEBUG [django.db.backends:91] (0.123) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1; args=(1,)
+[21/Jul/2017 14:57:36] DEBUG [django.db.backends:91] (0.067) SELECT "django_site"."id", "django_site"."domain", "django_site"."name" FROM "django_site" WHERE "django_site"."id" = 1; args=(1,)
+[21/Jul/2017 14:57:36] INFO [django.server:124] "GET / HTTP/1.1" 200 16569
+[21/Jul/2017 14:57:37] INFO [django.server:124] "GET /static/css/owl.carousel.min.css HTTP/1.1" 200 3630
+[21/Jul/2017 14:57:37] INFO [django.server:124] "GET /static/css/owl.theme.default.min.css HTTP/1.1" 200 2366
+[21/Jul/2017 14:57:37] INFO [django.server:124] "GET /static/css/themify-icons.css HTTP/1.1" 200 17571
+[21/Jul/2017 14:57:37] INFO [django.server:124] "GET /static/css/icomoon-icons.css HTTP/1.1" 200 26177
+[21/Jul/2017 14:57:37] INFO [django.server:124] "GET /static/css/bootstrap.css HTTP/1.1" 200 145475
+[21/Jul/2017 14:57:37] INFO [django.server:124] "GET /static/css/magnific-popup.css HTTP/1.1" 200 8150
+[21/Jul/2017 14:57:37] INFO [django.server:124] "GET /static/css/easy-responsive-tabs.css HTTP/1.1" 200 5402
+[21/Jul/2017 14:57:37] INFO [django.server:124] "GET /static/css/style.css HTTP/1.1" 200 31122
+[21/Jul/2017 14:57:37] INFO [django.server:124] "GET /static/js/jquery.easing.1.3.js HTTP/1.1" 200 8305
+[21/Jul/2017 14:57:37] INFO [django.server:124] "GET /static/js/easyResponsiveTabs.js HTTP/1.1" 200 11947
+[21/Jul/2017 14:57:37] INFO [django.server:124] "GET /static/js/jquery.magnific-popup.min.js HTTP/1.1" 200 20935
+[21/Jul/2017 14:57:37] INFO [django.server:124] "GET /static/js/jquery-1.10.2.min.js HTTP/1.1" 200 93113
+[21/Jul/2017 14:57:38] INFO [django.server:124] "GET /static/js/owl.carousel.min.js HTTP/1.1" 200 40402
+[21/Jul/2017 14:57:38] INFO [django.server:124] "GET /static/js/bootstrap.js HTTP/1.1" 200 69475
+[21/Jul/2017 14:57:38] INFO [django.server:124] "GET /static/js/fastclick.js HTTP/1.1" 200 26806
+[21/Jul/2017 14:57:38] INFO [django.server:124] "GET /static/js/google_map.js HTTP/1.1" 200 2316
+[21/Jul/2017 14:57:38] INFO [django.server:124] "GET /static/js/main.js HTTP/1.1" 200 3981
+[21/Jul/2017 14:57:38] INFO [django.server:124] "GET /static/js/registration/registration.js HTTP/1.1" 200 1185
+[21/Jul/2017 14:57:38] INFO [django.server:124] "GET /static/images/img_2.jpg HTTP/1.1" 200 11161
+[21/Jul/2017 14:57:38] INFO [django.server:124] "GET /static/images/img_1.jpg HTTP/1.1" 200 11620
+[21/Jul/2017 14:57:38] INFO [django.server:124] "GET /static/fonts/themify/themify.woff?-fvbane HTTP/1.1" 200 56108
+[21/Jul/2017 14:57:38] INFO [django.server:124] "GET /static/images/img_3.jpg HTTP/1.1" 200 8370
+[21/Jul/2017 14:57:38] INFO [django.server:124] "GET /static/images/img_4.jpg HTTP/1.1" 200 8058
+[21/Jul/2017 14:57:38] INFO [django.server:124] "GET /static/images/img_5.jpg HTTP/1.1" 200 10127
+[21/Jul/2017 14:57:38] INFO [django.server:124] "GET /static/images/img_6.jpg HTTP/1.1" 200 11284
+[21/Jul/2017 14:57:38] INFO [django.server:124] "GET /static/images/img_7.jpg HTTP/1.1" 200 8609
+[21/Jul/2017 14:57:39] INFO [django.server:124] "GET /static/images/img_8.jpg HTTP/1.1" 200 12918
+[21/Jul/2017 14:57:39] INFO [django.server:124] "GET /static/images/img_9.jpg HTTP/1.1" 200 10746
+[21/Jul/2017 14:57:39] INFO [django.server:124] "GET /static/images/img_10.jpg HTTP/1.1" 200 9896
+[21/Jul/2017 14:57:39] INFO [django.server:124] "GET /static/images/BG/BG_blizzard.png HTTP/1.1" 200 1070415
+[21/Jul/2017 14:57:55] DEBUG [django.template:925] Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "C:\Users\Pavlo\Desktop\Python\My_grand_project_2\my_venv\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "C:\Users\Pavlo\Desktop\Python\My_grand_project_2\my_venv\lib\site-packages\django\core\handlers\base.py", line 172, in _get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "C:\Users\Pavlo\Desktop\Python\My_grand_project_2\my_venv\lib\site-packages\django\urls\resolvers.py", line 392, in resolve
+    raise Resolver404({'tried': tried, 'path': new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<RegexURLResolver <RegexURLPattern list> (admin:admin) ^admin/>], [<RegexURLResolver <module 'home.urls' from 'C:\\Users\\Pavlo\\Desktop\\Python\\My_grand_project_2\\emarket\\home\\urls.py'> (None:home) ^>, <RegexURLPattern home ^$>], [<RegexURLResolver <module 'accounts.urls' from 'C:\\Users\\Pavlo\\Desktop\\Python\\My_grand_project_2\\emarket\\accounts\\urls.py'> (None:accounts) ^accounts/>], [<RegexURLResolver <module 'paypal.standard.ipn.urls' from 'C:\\Users\\Pavlo\\Desktop\\Python\\My_grand_project_2\\my_venv\\lib\\site-packages\\paypal\\standard\\ipn\\urls.py'> (None:None) ^paypal/>], [<RegexURLResolver <module 'products.urls' from 'C:\\Users\\Pavlo\\Desktop\\Python\\My_grand_project_2\\emarket\\products\\urls.py'> (None:products) ^products/>, <RegexURLPattern game_list ^$>], [<RegexURLResolver <module 'products.urls' from 'C:\\Users\\Pavlo\\Desktop\\Python\\My_grand_project_2\\emarket\\products\\urls.py'> (None:products) ^products/>, <RegexURLPattern game_create ^create/$>], [<RegexURLResolver <module 'products.urls' from 'C:\\Users\\Pavlo\\Desktop\\Python\\My_grand_project_2\\emarket\\products\\urls.py'> (None:products) ^products/>, <RegexURLPattern game_update ^(?P<pk>\d+)/update/$>], [<RegexURLResolver <module 'products.urls' from 'C:\\Users\\Pavlo\\Desktop\\Python\\My_grand_project_2\\emarket\\products\\urls.py'> (None:products) ^products/>, <RegexURLPattern game_delete ^(?P<pk>\d+)/delete/$>], [<RegexURLResolver <module 'products.urls' from 'C:\\Users\\Pavlo\\Desktop\\Python\\My_grand_project_2\\emarket\\products\\urls.py'> (None:products) ^products/>, <RegexURLPattern game_details ^(?P<pk>\d+)/details/$>], [<RegexURLResolver <module 'products.urls' from 'C:\\Users\\Pavlo\\Desktop\\Python\\My_grand_project_2\\emarket\\products\\urls.py'> (None:products) ^products/>, <RegexURLPattern accept_sell ^(?P<game_id>\d+)/(?P<author_id>\d+)/accept>], [<RegexURLResolver <module 'products.urls' from 'C:\\Users\\Pavlo\\Desktop\\Python\\My_grand_project_2\\emarket\\products\\urls.py'> (None:products) ^products/>, <RegexURLPattern send_login_password ^send_login_password/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/(?P<game_id>\d+)/(?P<author_id>\d+)/(?P<buyer_id>\d+)>], [<RegexURLResolver <module 'products.urls' from 'C:\\Users\\Pavlo\\Desktop\\Python\\My_grand_project_2\\emarket\\products\\urls.py'> (None:products) ^products/>, <RegexURLPattern login_pass_request_success ^send_login_password/(?P<game_id>\d+)/success/$>], [<RegexURLResolver <module 'products.urls' from 'C:\\Users\\Pavlo\\Desktop\\Python\\My_grand_project_2\\emarket\\products\\urls.py'> (None:products) ^products/>, <RegexURLPattern payment_success ^payment/(?P<uuid>[\w-]+)/success/$>], [<RegexURLResolver <module 'products.urls' from 'C:\\Users\\Pavlo\\Desktop\\Python\\My_grand_project_2\\emarket\\products\\urls.py'> (None:products) ^products/>, <RegexURLPattern money_out ^money/out/$>], [<RegexURLPattern None ^static\/(?P<path>.*)$>], [<RegexURLPattern None ^media\/(?P<path>.*)$>]], 'path': 'products/payment/2/1/ZKWP3XuMgwihVAXDGWiFXi/success/'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Pavlo\Desktop\Python\My_grand_project_2\my_venv\lib\site-packages\django\template\base.py", line 882, in _resolve_lookup
+    current = current[bit]
+TypeError: 'RegexURLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Pavlo\Desktop\Python\My_grand_project_2\my_venv\lib\site-packages\django\template\base.py", line 890, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'RegexURLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Pavlo\Desktop\Python\My_grand_project_2\my_venv\lib\site-packages\django\template\base.py", line 896, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Pavlo\Desktop\Python\My_grand_project_2\my_venv\lib\site-packages\django\template\base.py", line 903, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in '<RegexURLResolver <RegexURLPattern list> (admin:admin) ^admin/>'
+[21/Jul/2017 14:57:55] DEBUG [django.template:925] Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "C:\Users\Pavlo\Desktop\Python\My_grand_project_2\my_venv\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "C:\Users\Pavlo\Desktop\Python\My_grand_project_2\my_venv\lib\site-packages\django\core\handlers\base.py", line 172, in _get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "C:\Users\Pavlo\Desktop\Python\My_grand_project_2\my_venv\lib\site-packages\django\urls\resolvers.py", line 392, in resolve
+    raise Resolver404({'tried': tried, 'path': new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<RegexURLResolver <RegexURLPattern list> (admin:admin) ^admin/>], [<RegexURLResolver <module 'home.urls' from 'C:\\Users\\Pavlo\\Desktop\\Python\\My_grand_project_2\\emarket\\home\\urls.py'> (None:home) ^>, <RegexURLPattern home ^$>], [<RegexURLResolver <module 'accounts.urls' from 'C:\\Users\\Pavlo\\Desktop\\Python\\My_grand_project_2\\emarket\\accounts\\urls.py'> (None:accounts) ^accounts/>], [<RegexURLResolver <module 'paypal.standard.ipn.urls' from 'C:\\Users\\Pavlo\\Desktop\\Python\\My_grand_project_2\\my_venv\\lib\\site-packages\\paypal\\standard\\ipn\\urls.py'> (None:None) ^paypal/>], [<RegexURLResolver <module 'products.urls' from 'C:\\Users\\Pavlo\\Desktop\\Python\\My_grand_project_2\\emarket\\products\\urls.py'> (None:products) ^products/>, <RegexURLPattern game_list ^$>], [<RegexURLResolver <module 'products.urls' from 'C:\\Users\\Pavlo\\Desktop\\Python\\My_grand_project_2\\emarket\\products\\urls.py'> (None:products) ^products/>, <RegexURLPattern game_create ^create/$>], [<RegexURLResolver <module 'products.urls' from 'C:\\Users\\Pavlo\\Desktop\\Python\\My_grand_project_2\\emarket\\products\\urls.py'> (None:products) ^products/>, <RegexURLPattern game_update ^(?P<pk>\d+)/update/$>], [<RegexURLResolver <module 'products.urls' from 'C:\\Users\\Pavlo\\Desktop\\Python\\My_grand_project_2\\emarket\\products\\urls.py'> (None:products) ^products/>, <RegexURLPattern game_delete ^(?P<pk>\d+)/delete/$>], [<RegexURLResolver <module 'products.urls' from 'C:\\Users\\Pavlo\\Desktop\\Python\\My_grand_project_2\\emarket\\products\\urls.py'> (None:products) ^products/>, <RegexURLPattern game_details ^(?P<pk>\d+)/details/$>], [<RegexURLResolver <module 'products.urls' from 'C:\\Users\\Pavlo\\Desktop\\Python\\My_grand_project_2\\emarket\\products\\urls.py'> (None:products) ^products/>, <RegexURLPattern accept_sell ^(?P<game_id>\d+)/(?P<author_id>\d+)/accept>], [<RegexURLResolver <module 'products.urls' from 'C:\\Users\\Pavlo\\Desktop\\Python\\My_grand_project_2\\emarket\\products\\urls.py'> (None:products) ^products/>, <RegexURLPattern send_login_password ^send_login_password/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/(?P<game_id>\d+)/(?P<author_id>\d+)/(?P<buyer_id>\d+)>], [<RegexURLResolver <module 'products.urls' from 'C:\\Users\\Pavlo\\Desktop\\Python\\My_grand_project_2\\emarket\\products\\urls.py'> (None:products) ^products/>, <RegexURLPattern login_pass_request_success ^send_login_password/(?P<game_id>\d+)/success/$>], [<RegexURLResolver <module 'products.urls' from 'C:\\Users\\Pavlo\\Desktop\\Python\\My_grand_project_2\\emarket\\products\\urls.py'> (None:products) ^products/>, <RegexURLPattern payment_success ^payment/(?P<uuid>[\w-]+)/success/$>], [<RegexURLResolver <module 'products.urls' from 'C:\\Users\\Pavlo\\Desktop\\Python\\My_grand_project_2\\emarket\\products\\urls.py'> (None:products) ^products/>, <RegexURLPattern money_out ^money/out/$>], [<RegexURLPattern None ^static\/(?P<path>.*)$>], [<RegexURLPattern None ^media\/(?P<path>.*)$>]], 'path': 'products/payment/2/1/ZKWP3XuMgwihVAXDGWiFXi/success/'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Pavlo\Desktop\Python\My_grand_project_2\my_venv\lib\site-packages\django\template\base.py", line 882, in _resolve_lookup
+    current = current[bit]
+TypeError: 'RegexURLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Pavlo\Desktop\Python\My_grand_project_2\my_venv\lib\site-packages\django\template\base.py", line 890, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'RegexURLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Pavlo\Desktop\Python\My_grand_project_2\my_venv\lib\site-packages\django\template\base.py", line 896, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Pavlo\Desktop\Python\My_grand_project_2\my_venv\lib\site-packages\django\template\base.py", line 903, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in "<RegexURLResolver <module 'accounts.urls' from 'C:\\\\Users\\\\Pavlo\\\\Desktop\\\\Python\\\\My_grand_project_2\\\\emarket\\\\accounts\\\\urls.py'> (None:accounts) ^accounts/>"
+[21/Jul/2017 14:57:55] DEBUG [django.template:925] Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "C:\Users\Pavlo\Desktop\Python\My_grand_project_2\my_venv\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "C:\Users\Pavlo\Desktop\Python\My_grand_project_2\my_venv\lib\site-packages\django\core\handlers\base.py", line 172, in _get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "C:\Users\Pavlo\Desktop\Python\My_grand_project_2\my_venv\lib\site-packages\django\urls\resolvers.py", line 392, in resolve
+    raise Resolver404({'tried': tried, 'path': new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<RegexURLResolver <RegexURLPattern list> (admin:admin) ^admin/>], [<RegexURLResolver <module 'home.urls' from 'C:\\Users\\Pavlo\\Desktop\\Python\\My_grand_project_2\\emarket\\home\\urls.py'> (None:home) ^>, <RegexURLPattern home ^$>], [<RegexURLResolver <module 'accounts.urls' from 'C:\\Users\\Pavlo\\Desktop\\Python\\My_grand_project_2\\emarket\\accounts\\urls.py'> (None:accounts) ^accounts/>], [<RegexURLResolver <module 'paypal.standard.ipn.urls' from 'C:\\Users\\Pavlo\\Desktop\\Python\\My_grand_project_2\\my_venv\\lib\\site-packages\\paypal\\standard\\ipn\\urls.py'> (None:None) ^paypal/>], [<RegexURLResolver <module 'products.urls' from 'C:\\Users\\Pavlo\\Desktop\\Python\\My_grand_project_2\\emarket\\products\\urls.py'> (None:products) ^products/>, <RegexURLPattern game_list ^$>], [<RegexURLResolver <module 'products.urls' from 'C:\\Users\\Pavlo\\Desktop\\Python\\My_grand_project_2\\emarket\\products\\urls.py'> (None:products) ^products/>, <RegexURLPattern game_create ^create/$>], [<RegexURLResolver <module 'products.urls' from 'C:\\Users\\Pavlo\\Desktop\\Python\\My_grand_project_2\\emarket\\products\\urls.py'> (None:products) ^products/>, <RegexURLPattern game_update ^(?P<pk>\d+)/update/$>], [<RegexURLResolver <module 'products.urls' from 'C:\\Users\\Pavlo\\Desktop\\Python\\My_grand_project_2\\emarket\\products\\urls.py'> (None:products) ^products/>, <RegexURLPattern game_delete ^(?P<pk>\d+)/delete/$>], [<RegexURLResolver <module 'products.urls' from 'C:\\Users\\Pavlo\\Desktop\\Python\\My_grand_project_2\\emarket\\products\\urls.py'> (None:products) ^products/>, <RegexURLPattern game_details ^(?P<pk>\d+)/details/$>], [<RegexURLResolver <module 'products.urls' from 'C:\\Users\\Pavlo\\Desktop\\Python\\My_grand_project_2\\emarket\\products\\urls.py'> (None:products) ^products/>, <RegexURLPattern accept_sell ^(?P<game_id>\d+)/(?P<author_id>\d+)/accept>], [<RegexURLResolver <module 'products.urls' from 'C:\\Users\\Pavlo\\Desktop\\Python\\My_grand_project_2\\emarket\\products\\urls.py'> (None:products) ^products/>, <RegexURLPattern send_login_password ^send_login_password/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/(?P<game_id>\d+)/(?P<author_id>\d+)/(?P<buyer_id>\d+)>], [<RegexURLResolver <module 'products.urls' from 'C:\\Users\\Pavlo\\Desktop\\Python\\My_grand_project_2\\emarket\\products\\urls.py'> (None:products) ^products/>, <RegexURLPattern login_pass_request_success ^send_login_password/(?P<game_id>\d+)/success/$>], [<RegexURLResolver <module 'products.urls' from 'C:\\Users\\Pavlo\\Desktop\\Python\\My_grand_project_2\\emarket\\products\\urls.py'> (None:products) ^products/>, <RegexURLPattern payment_success ^payment/(?P<uuid>[\w-]+)/success/$>], [<RegexURLResolver <module 'products.urls' from 'C:\\Users\\Pavlo\\Desktop\\Python\\My_grand_project_2\\emarket\\products\\urls.py'> (None:products) ^products/>, <RegexURLPattern money_out ^money/out/$>], [<RegexURLPattern None ^static\/(?P<path>.*)$>], [<RegexURLPattern None ^media\/(?P<path>.*)$>]], 'path': 'products/payment/2/1/ZKWP3XuMgwihVAXDGWiFXi/success/'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Pavlo\Desktop\Python\My_grand_project_2\my_venv\lib\site-packages\django\template\base.py", line 882, in _resolve_lookup
+    current = current[bit]
+TypeError: 'RegexURLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Pavlo\Desktop\Python\My_grand_project_2\my_venv\lib\site-packages\django\template\base.py", line 890, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'RegexURLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Pavlo\Desktop\Python\My_grand_project_2\my_venv\lib\site-packages\django\template\base.py", line 896, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Pavlo\Desktop\Python\My_grand_project_2\my_venv\lib\site-packages\django\template\base.py", line 903, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in "<RegexURLResolver <module 'paypal.standard.ipn.urls' from 'C:\\\\Users\\\\Pavlo\\\\Desktop\\\\Python\\\\My_grand_project_2\\\\my_venv\\\\lib\\\\site-packages\\\\paypal\\\\standard\\\\ipn\\\\urls.py'> (None:None) ^paypal/>"
+[21/Jul/2017 14:57:55] WARNING [django.request:152] Not Found: /products/payment/2/1/ZKWP3XuMgwihVAXDGWiFXi/success/
+[21/Jul/2017 14:57:55] WARNING [django.server:124] "GET /products/payment/2/1/ZKWP3XuMgwihVAXDGWiFXi/success/ HTTP/1.1" 404 4949
+[21/Jul/2017 14:57:57] DEBUG [django.template:925] Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "C:\Users\Pavlo\Desktop\Python\My_grand_project_2\my_venv\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "C:\Users\Pavlo\Desktop\Python\My_grand_project_2\my_venv\lib\site-packages\django\core\handlers\base.py", line 172, in _get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "C:\Users\Pavlo\Desktop\Python\My_grand_project_2\my_venv\lib\site-packages\django\urls\resolvers.py", line 392, in resolve
+    raise Resolver404({'tried': tried, 'path': new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<RegexURLResolver <RegexURLPattern list> (admin:admin) ^admin/>], [<RegexURLResolver <module 'home.urls' from 'C:\\Users\\Pavlo\\Desktop\\Python\\My_grand_project_2\\emarket\\home\\urls.py'> (None:home) ^>, <RegexURLPattern home ^$>], [<RegexURLResolver <module 'accounts.urls' from 'C:\\Users\\Pavlo\\Desktop\\Python\\My_grand_project_2\\emarket\\accounts\\urls.py'> (None:accounts) ^accounts/>], [<RegexURLResolver <module 'paypal.standard.ipn.urls' from 'C:\\Users\\Pavlo\\Desktop\\Python\\My_grand_project_2\\my_venv\\lib\\site-packages\\paypal\\standard\\ipn\\urls.py'> (None:None) ^paypal/>], [<RegexURLResolver <module 'products.urls' from 'C:\\Users\\Pavlo\\Desktop\\Python\\My_grand_project_2\\emarket\\products\\urls.py'> (None:products) ^products/>], [<RegexURLPattern None ^static\/(?P<path>.*)$>], [<RegexURLPattern None ^media\/(?P<path>.*)$>]], 'path': 'favicon.ico'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Pavlo\Desktop\Python\My_grand_project_2\my_venv\lib\site-packages\django\template\base.py", line 882, in _resolve_lookup
+    current = current[bit]
+TypeError: 'RegexURLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Pavlo\Desktop\Python\My_grand_project_2\my_venv\lib\site-packages\django\template\base.py", line 890, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'RegexURLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Pavlo\Desktop\Python\My_grand_project_2\my_venv\lib\site-packages\django\template\base.py", line 896, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Pavlo\Desktop\Python\My_grand_project_2\my_venv\lib\site-packages\django\template\base.py", line 903, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in '<RegexURLResolver <RegexURLPattern list> (admin:admin) ^admin/>'
+[21/Jul/2017 14:57:57] DEBUG [django.template:925] Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "C:\Users\Pavlo\Desktop\Python\My_grand_project_2\my_venv\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "C:\Users\Pavlo\Desktop\Python\My_grand_project_2\my_venv\lib\site-packages\django\core\handlers\base.py", line 172, in _get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "C:\Users\Pavlo\Desktop\Python\My_grand_project_2\my_venv\lib\site-packages\django\urls\resolvers.py", line 392, in resolve
+    raise Resolver404({'tried': tried, 'path': new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<RegexURLResolver <RegexURLPattern list> (admin:admin) ^admin/>], [<RegexURLResolver <module 'home.urls' from 'C:\\Users\\Pavlo\\Desktop\\Python\\My_grand_project_2\\emarket\\home\\urls.py'> (None:home) ^>, <RegexURLPattern home ^$>], [<RegexURLResolver <module 'accounts.urls' from 'C:\\Users\\Pavlo\\Desktop\\Python\\My_grand_project_2\\emarket\\accounts\\urls.py'> (None:accounts) ^accounts/>], [<RegexURLResolver <module 'paypal.standard.ipn.urls' from 'C:\\Users\\Pavlo\\Desktop\\Python\\My_grand_project_2\\my_venv\\lib\\site-packages\\paypal\\standard\\ipn\\urls.py'> (None:None) ^paypal/>], [<RegexURLResolver <module 'products.urls' from 'C:\\Users\\Pavlo\\Desktop\\Python\\My_grand_project_2\\emarket\\products\\urls.py'> (None:products) ^products/>], [<RegexURLPattern None ^static\/(?P<path>.*)$>], [<RegexURLPattern None ^media\/(?P<path>.*)$>]], 'path': 'favicon.ico'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Pavlo\Desktop\Python\My_grand_project_2\my_venv\lib\site-packages\django\template\base.py", line 882, in _resolve_lookup
+    current = current[bit]
+TypeError: 'RegexURLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Pavlo\Desktop\Python\My_grand_project_2\my_venv\lib\site-packages\django\template\base.py", line 890, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'RegexURLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Pavlo\Desktop\Python\My_grand_project_2\my_venv\lib\site-packages\django\template\base.py", line 896, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Pavlo\Desktop\Python\My_grand_project_2\my_venv\lib\site-packages\django\template\base.py", line 903, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in "<RegexURLResolver <module 'accounts.urls' from 'C:\\\\Users\\\\Pavlo\\\\Desktop\\\\Python\\\\My_grand_project_2\\\\emarket\\\\accounts\\\\urls.py'> (None:accounts) ^accounts/>"
+[21/Jul/2017 14:57:57] DEBUG [django.template:925] Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "C:\Users\Pavlo\Desktop\Python\My_grand_project_2\my_venv\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "C:\Users\Pavlo\Desktop\Python\My_grand_project_2\my_venv\lib\site-packages\django\core\handlers\base.py", line 172, in _get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "C:\Users\Pavlo\Desktop\Python\My_grand_project_2\my_venv\lib\site-packages\django\urls\resolvers.py", line 392, in resolve
+    raise Resolver404({'tried': tried, 'path': new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<RegexURLResolver <RegexURLPattern list> (admin:admin) ^admin/>], [<RegexURLResolver <module 'home.urls' from 'C:\\Users\\Pavlo\\Desktop\\Python\\My_grand_project_2\\emarket\\home\\urls.py'> (None:home) ^>, <RegexURLPattern home ^$>], [<RegexURLResolver <module 'accounts.urls' from 'C:\\Users\\Pavlo\\Desktop\\Python\\My_grand_project_2\\emarket\\accounts\\urls.py'> (None:accounts) ^accounts/>], [<RegexURLResolver <module 'paypal.standard.ipn.urls' from 'C:\\Users\\Pavlo\\Desktop\\Python\\My_grand_project_2\\my_venv\\lib\\site-packages\\paypal\\standard\\ipn\\urls.py'> (None:None) ^paypal/>], [<RegexURLResolver <module 'products.urls' from 'C:\\Users\\Pavlo\\Desktop\\Python\\My_grand_project_2\\emarket\\products\\urls.py'> (None:products) ^products/>], [<RegexURLPattern None ^static\/(?P<path>.*)$>], [<RegexURLPattern None ^media\/(?P<path>.*)$>]], 'path': 'favicon.ico'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Pavlo\Desktop\Python\My_grand_project_2\my_venv\lib\site-packages\django\template\base.py", line 882, in _resolve_lookup
+    current = current[bit]
+TypeError: 'RegexURLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Pavlo\Desktop\Python\My_grand_project_2\my_venv\lib\site-packages\django\template\base.py", line 890, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'RegexURLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Pavlo\Desktop\Python\My_grand_project_2\my_venv\lib\site-packages\django\template\base.py", line 896, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Pavlo\Desktop\Python\My_grand_project_2\my_venv\lib\site-packages\django\template\base.py", line 903, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in "<RegexURLResolver <module 'paypal.standard.ipn.urls' from 'C:\\\\Users\\\\Pavlo\\\\Desktop\\\\Python\\\\My_grand_project_2\\\\my_venv\\\\lib\\\\site-packages\\\\paypal\\\\standard\\\\ipn\\\\urls.py'> (None:None) ^paypal/>"
+[21/Jul/2017 14:57:57] DEBUG [django.template:925] Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "C:\Users\Pavlo\Desktop\Python\My_grand_project_2\my_venv\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "C:\Users\Pavlo\Desktop\Python\My_grand_project_2\my_venv\lib\site-packages\django\core\handlers\base.py", line 172, in _get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "C:\Users\Pavlo\Desktop\Python\My_grand_project_2\my_venv\lib\site-packages\django\urls\resolvers.py", line 392, in resolve
+    raise Resolver404({'tried': tried, 'path': new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<RegexURLResolver <RegexURLPattern list> (admin:admin) ^admin/>], [<RegexURLResolver <module 'home.urls' from 'C:\\Users\\Pavlo\\Desktop\\Python\\My_grand_project_2\\emarket\\home\\urls.py'> (None:home) ^>, <RegexURLPattern home ^$>], [<RegexURLResolver <module 'accounts.urls' from 'C:\\Users\\Pavlo\\Desktop\\Python\\My_grand_project_2\\emarket\\accounts\\urls.py'> (None:accounts) ^accounts/>], [<RegexURLResolver <module 'paypal.standard.ipn.urls' from 'C:\\Users\\Pavlo\\Desktop\\Python\\My_grand_project_2\\my_venv\\lib\\site-packages\\paypal\\standard\\ipn\\urls.py'> (None:None) ^paypal/>], [<RegexURLResolver <module 'products.urls' from 'C:\\Users\\Pavlo\\Desktop\\Python\\My_grand_project_2\\emarket\\products\\urls.py'> (None:products) ^products/>], [<RegexURLPattern None ^static\/(?P<path>.*)$>], [<RegexURLPattern None ^media\/(?P<path>.*)$>]], 'path': 'favicon.ico'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Pavlo\Desktop\Python\My_grand_project_2\my_venv\lib\site-packages\django\template\base.py", line 882, in _resolve_lookup
+    current = current[bit]
+TypeError: 'RegexURLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Pavlo\Desktop\Python\My_grand_project_2\my_venv\lib\site-packages\django\template\base.py", line 890, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'RegexURLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Pavlo\Desktop\Python\My_grand_project_2\my_venv\lib\site-packages\django\template\base.py", line 896, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Pavlo\Desktop\Python\My_grand_project_2\my_venv\lib\site-packages\django\template\base.py", line 903, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in "<RegexURLResolver <module 'products.urls' from 'C:\\\\Users\\\\Pavlo\\\\Desktop\\\\Python\\\\My_grand_project_2\\\\emarket\\\\products\\\\urls.py'> (None:products) ^products/>"
+[21/Jul/2017 14:57:57] WARNING [django.request:152] Not Found: /favicon.ico
+[21/Jul/2017 14:57:57] WARNING [django.server:124] "GET /favicon.ico HTTP/1.1" 404 2709
+[21/Jul/2017 14:58:52] DEBUG [django.db.backends:91] (0.011) 
+            SELECT c.relname, c.relkind
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid); args=None
+[21/Jul/2017 14:58:52] DEBUG [django.db.backends:91] (0.002) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+[21/Jul/2017 15:07:52] DEBUG [django.db.backends:91] (0.009) 
+            SELECT c.relname, c.relkind
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid); args=None
+[21/Jul/2017 15:07:52] DEBUG [django.db.backends:91] (0.001) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+[21/Jul/2017 15:08:01] DEBUG [django.db.backends:91] (0.024) 
+            SELECT c.relname, c.relkind
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid); args=None
+[21/Jul/2017 15:08:01] DEBUG [django.db.backends:91] (0.004) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+[21/Jul/2017 15:08:01] DEBUG [django.db.backends:91] (0.006) 
+            SELECT c.relname, c.relkind
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid); args=None
+[21/Jul/2017 15:08:02] DEBUG [django.db.backends:91] (0.002) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+[21/Jul/2017 15:08:03] DEBUG [django.db.backends:91] (0.004) 
+            SELECT c.relname, c.relkind
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid); args=None
+[21/Jul/2017 15:08:03] DEBUG [django.db.backends:91] (0.001) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+[21/Jul/2017 15:08:03] DEBUG [django.db.backends:91] (0.052) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'accounts' AND "django_content_type"."model" = 'userprofile'); args=('accounts', 'userprofile')
+[21/Jul/2017 15:08:03] DEBUG [django.db.backends:91] (0.086) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (1) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(1,)
+[21/Jul/2017 15:08:03] DEBUG [django.db.backends:91] (0.002) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'accounts'; args=('accounts',)
+[21/Jul/2017 15:08:03] DEBUG [django.db.backends:91] (0.002) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'admin' AND "django_content_type"."model" = 'logentry'); args=('admin', 'logentry')
+[21/Jul/2017 15:08:03] DEBUG [django.db.backends:91] (0.004) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (2) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(2,)
+[21/Jul/2017 15:08:03] DEBUG [django.db.backends:91] (0.002) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'admin'; args=('admin',)
+[21/Jul/2017 15:08:03] DEBUG [django.db.backends:91] (0.002) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'auth' AND "django_content_type"."model" = 'permission'); args=('auth', 'permission')
+[21/Jul/2017 15:08:03] DEBUG [django.db.backends:91] (0.003) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'auth' AND "django_content_type"."model" = 'group'); args=('auth', 'group')
+[21/Jul/2017 15:08:03] DEBUG [django.db.backends:91] (0.002) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'auth' AND "django_content_type"."model" = 'user'); args=('auth', 'user')
+[21/Jul/2017 15:08:03] DEBUG [django.db.backends:91] (0.007) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (3, 4, 5) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(3, 4, 5)
+[21/Jul/2017 15:08:03] DEBUG [django.db.backends:91] (0.002) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'auth'; args=('auth',)
+[21/Jul/2017 15:08:03] DEBUG [django.db.backends:91] (0.002) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'contenttypes' AND "django_content_type"."model" = 'contenttype'); args=('contenttypes', 'contenttype')
+[21/Jul/2017 15:08:03] DEBUG [django.db.backends:91] (0.003) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (6) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(6,)
+[21/Jul/2017 15:08:03] DEBUG [django.db.backends:91] (0.002) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'contenttypes'; args=('contenttypes',)
+[21/Jul/2017 15:08:03] DEBUG [django.db.backends:91] (0.002) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'sessions' AND "django_content_type"."model" = 'session'); args=('sessions', 'session')
+[21/Jul/2017 15:08:03] DEBUG [django.db.backends:91] (0.003) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (7) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(7,)
+[21/Jul/2017 15:08:03] DEBUG [django.db.backends:91] (0.002) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'sessions'; args=('sessions',)
+[21/Jul/2017 15:08:03] DEBUG [django.db.backends:91] (0.003) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'sites' AND "django_content_type"."model" = 'site'); args=('sites', 'site')
+[21/Jul/2017 15:08:03] DEBUG [django.db.backends:91] (0.003) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (8) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(8,)
+[21/Jul/2017 15:08:03] DEBUG [django.db.backends:91] (0.002) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'sites'; args=('sites',)
+[21/Jul/2017 15:08:03] DEBUG [django.db.backends:91] (0.004) SELECT (1) AS "a" FROM "django_site" LIMIT 1; args=()
+[21/Jul/2017 15:08:03] DEBUG [django.db.backends:91] (0.002) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'disqus'; args=('disqus',)
+[21/Jul/2017 15:08:03] DEBUG [django.db.backends:91] (0.003) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'home'; args=('home',)
+[21/Jul/2017 15:08:03] DEBUG [django.db.backends:91] (0.002) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'products' AND "django_content_type"."model" = 'comment'); args=('products', 'comment')
+[21/Jul/2017 15:08:03] DEBUG [django.db.backends:91] (0.002) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'products' AND "django_content_type"."model" = 'photo'); args=('products', 'photo')
+[21/Jul/2017 15:08:03] DEBUG [django.db.backends:91] (0.002) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'products' AND "django_content_type"."model" = 'game'); args=('products', 'game')
+[21/Jul/2017 15:08:03] DEBUG [django.db.backends:91] (0.003) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'products' AND "django_content_type"."model" = 'loginpassword'); args=('products', 'loginpassword')
+[21/Jul/2017 15:08:03] DEBUG [django.db.backends:91] (0.004) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (9, 10, 11, 12) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(9, 10, 11, 12)
+[21/Jul/2017 15:08:03] DEBUG [django.db.backends:91] (0.002) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'products'; args=('products',)
+[21/Jul/2017 15:08:03] DEBUG [django.db.backends:91] (0.002) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'widget_tweaks'; args=('widget_tweaks',)
+[21/Jul/2017 15:08:03] DEBUG [django.db.backends:91] (0.003) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'ipn' AND "django_content_type"."model" = 'paypalipn'); args=('ipn', 'paypalipn')
+[21/Jul/2017 15:08:03] DEBUG [django.db.backends:91] (0.003) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (13) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(13,)
+[21/Jul/2017 15:08:03] DEBUG [django.db.backends:91] (0.002) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'ipn'; args=('ipn',)
+[21/Jul/2017 15:08:24] DEBUG [django.db.backends:91] (0.016) 
+            SELECT c.relname, c.relkind
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid); args=None
+[21/Jul/2017 15:08:24] DEBUG [django.db.backends:91] (0.002) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+[21/Jul/2017 15:08:25] DEBUG [django.db.backends:91] (0.017) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2017-07-21T12:08:25.799705+00:00'::timestamptz AND "django_session"."session_key" = '4wf75lwy4kbv8fj8p3i7wcy2n3ctc5of'); args=(datetime.datetime(2017, 7, 21, 12, 8, 25, 799705, tzinfo=<UTC>), '4wf75lwy4kbv8fj8p3i7wcy2n3ctc5of')
+[21/Jul/2017 15:08:25] DEBUG [django.db.backends:91] (0.009) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1; args=(1,)
+[21/Jul/2017 15:08:26] DEBUG [django.db.backends:91] (0.005) SELECT "django_site"."id", "django_site"."domain", "django_site"."name" FROM "django_site" WHERE "django_site"."id" = 1; args=(1,)
+[21/Jul/2017 15:08:26] INFO [django.server:124] "GET / HTTP/1.1" 200 16569
+[21/Jul/2017 15:08:26] INFO [django.server:124] "GET /static/css/themify-icons.css HTTP/1.1" 200 17571
+[21/Jul/2017 15:08:26] INFO [django.server:124] "GET /static/css/icomoon-icons.css HTTP/1.1" 200 26177
+[21/Jul/2017 15:08:26] INFO [django.server:124] "GET /static/css/owl.carousel.min.css HTTP/1.1" 200 3630
+[21/Jul/2017 15:08:26] INFO [django.server:124] "GET /static/css/magnific-popup.css HTTP/1.1" 200 8150
+[21/Jul/2017 15:08:26] INFO [django.server:124] "GET /static/css/owl.theme.default.min.css HTTP/1.1" 200 2366
+[21/Jul/2017 15:08:26] INFO [django.server:124] "GET /static/css/easy-responsive-tabs.css HTTP/1.1" 200 5402
+[21/Jul/2017 15:08:26] INFO [django.server:124] "GET /static/css/bootstrap.css HTTP/1.1" 200 145475
+[21/Jul/2017 15:08:26] INFO [django.server:124] "GET /static/css/style.css HTTP/1.1" 200 31122
+[21/Jul/2017 15:08:27] INFO [django.server:124] "GET /static/js/bootstrap.js HTTP/1.1" 200 69475
+[21/Jul/2017 15:08:27] INFO [django.server:124] "GET /static/js/jquery.easing.1.3.js HTTP/1.1" 200 8305
+[21/Jul/2017 15:08:27] INFO [django.server:124] "GET /static/js/jquery-1.10.2.min.js HTTP/1.1" 200 93113
+[21/Jul/2017 15:08:27] INFO [django.server:124] "GET /static/js/jquery.magnific-popup.min.js HTTP/1.1" 200 20935
+[21/Jul/2017 15:08:27] INFO [django.server:124] "GET /static/js/easyResponsiveTabs.js HTTP/1.1" 200 11947
+[21/Jul/2017 15:08:27] INFO [django.server:124] "GET /static/js/owl.carousel.min.js HTTP/1.1" 200 40402
+[21/Jul/2017 15:08:27] INFO [django.server:124] "GET /static/js/fastclick.js HTTP/1.1" 200 26806
+[21/Jul/2017 15:08:27] INFO [django.server:124] "GET /static/js/google_map.js HTTP/1.1" 200 2316
+[21/Jul/2017 15:08:27] INFO [django.server:124] "GET /static/js/main.js HTTP/1.1" 200 3981
+[21/Jul/2017 15:08:27] INFO [django.server:124] "GET /static/js/registration/registration.js HTTP/1.1" 200 1185
+[21/Jul/2017 15:08:27] INFO [django.server:124] "GET /static/images/img_1.jpg HTTP/1.1" 200 11620
+[21/Jul/2017 15:08:27] INFO [django.server:124] "GET /static/images/img_2.jpg HTTP/1.1" 200 11161
+[21/Jul/2017 15:08:28] INFO [django.server:124] "GET /static/images/img_3.jpg HTTP/1.1" 200 8370
+[21/Jul/2017 15:08:28] INFO [django.server:124] "GET /static/images/img_4.jpg HTTP/1.1" 200 8058
+[21/Jul/2017 15:08:28] INFO [django.server:124] "GET /static/fonts/themify/themify.woff?-fvbane HTTP/1.1" 200 56108
+[21/Jul/2017 15:08:28] INFO [django.server:124] "GET /static/images/img_6.jpg HTTP/1.1" 200 11284
+[21/Jul/2017 15:08:28] INFO [django.server:124] "GET /static/images/img_7.jpg HTTP/1.1" 200 8609
+[21/Jul/2017 15:08:28] INFO [django.server:124] "GET /static/images/img_5.jpg HTTP/1.1" 200 10127
+[21/Jul/2017 15:08:28] INFO [django.server:124] "GET /static/images/img_8.jpg HTTP/1.1" 200 12918
+[21/Jul/2017 15:08:28] INFO [django.server:124] "GET /static/images/img_9.jpg HTTP/1.1" 200 10746
+[21/Jul/2017 15:08:28] INFO [django.server:124] "GET /static/images/img_10.jpg HTTP/1.1" 200 9896
+[21/Jul/2017 15:08:29] INFO [django.server:124] "GET /static/images/BG/BG_blizzard.png HTTP/1.1" 200 1070415
+[21/Jul/2017 15:08:31] INFO [django.server:124] "GET /static/favicon.ico HTTP/1.1" 200 318
+[21/Jul/2017 15:08:33] DEBUG [django.db.backends:91] (0.017) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2017-07-21T12:08:33.645154+00:00'::timestamptz AND "django_session"."session_key" = '4wf75lwy4kbv8fj8p3i7wcy2n3ctc5of'); args=(datetime.datetime(2017, 7, 21, 12, 8, 33, 645154, tzinfo=<UTC>), '4wf75lwy4kbv8fj8p3i7wcy2n3ctc5of')
+[21/Jul/2017 15:08:33] DEBUG [django.db.backends:91] (0.009) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1; args=(1,)
+[21/Jul/2017 15:08:34] DEBUG [django.db.backends:91] (0.183) SELECT "products_game"."id", "products_game"."uuid", "products_game"."title", "products_game"."publication_date", "products_game"."author_id", "products_game"."buyer_id", "products_game"."price", "products_game"."game_type", "products_game"."is_accepted" FROM "products_game" WHERE "products_game"."is_accepted" = false ORDER BY "products_game"."publication_date" ASC; args=(False,)
+[21/Jul/2017 15:08:34] DEBUG [django.db.backends:91] (0.002) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1; args=(1,)
+[21/Jul/2017 15:08:34] DEBUG [django.db.backends:91] (0.002) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1; args=(1,)
+[21/Jul/2017 15:08:34] INFO [django.server:124] "GET /products/ HTTP/1.1" 200 11985
+[21/Jul/2017 15:08:35] INFO [django.server:124] "GET /static/js/products/games.js HTTP/1.1" 200 1364
+[21/Jul/2017 15:08:35] INFO [django.server:124] "GET /static/fonts/bootstrap/glyphicons-halflings-regular.woff HTTP/1.1" 200 23320
+[21/Jul/2017 15:08:40] DEBUG [django.db.backends:91] (0.011) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2017-07-21T12:08:40.386540+00:00'::timestamptz AND "django_session"."session_key" = '4wf75lwy4kbv8fj8p3i7wcy2n3ctc5of'); args=(datetime.datetime(2017, 7, 21, 12, 8, 40, 386540, tzinfo=<UTC>), '4wf75lwy4kbv8fj8p3i7wcy2n3ctc5of')
+[21/Jul/2017 15:08:40] DEBUG [django.db.backends:91] (0.006) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1; args=(1,)
+[21/Jul/2017 15:08:40] INFO [django.server:124] "GET /products/create/ HTTP/1.1" 200 1591
+[21/Jul/2017 15:08:46] DEBUG [django.db.backends:91] (0.014) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2017-07-21T12:08:46.790906+00:00'::timestamptz AND "django_session"."session_key" = '4wf75lwy4kbv8fj8p3i7wcy2n3ctc5of'); args=(datetime.datetime(2017, 7, 21, 12, 8, 46, 790906, tzinfo=<UTC>), '4wf75lwy4kbv8fj8p3i7wcy2n3ctc5of')
+[21/Jul/2017 15:08:46] DEBUG [django.db.backends:91] (0.006) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1; args=(1,)
+[21/Jul/2017 15:08:47] DEBUG [django.db.backends:91] (0.047) INSERT INTO "products_game" ("uuid", "title", "publication_date", "author_id", "buyer_id", "price", "game_type", "is_accepted") VALUES ('BavBjZBdryQ96Q8dirgiVY', '22', '2017-07-21'::date, 1, NULL, 3212, 1, false) RETURNING "products_game"."id"; args=('BavBjZBdryQ96Q8dirgiVY', '22', datetime.date(2017, 7, 21), 1, None, 3212, 1, False)
+[21/Jul/2017 15:08:47] DEBUG [django.db.backends:91] (0.005) SELECT "products_game"."id", "products_game"."uuid", "products_game"."title", "products_game"."publication_date", "products_game"."author_id", "products_game"."buyer_id", "products_game"."price", "products_game"."game_type", "products_game"."is_accepted" FROM "products_game" WHERE "products_game"."is_accepted" = false ORDER BY "products_game"."publication_date" ASC; args=(False,)
+[21/Jul/2017 15:08:47] DEBUG [django.db.backends:91] (0.002) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1; args=(1,)
+[21/Jul/2017 15:08:47] DEBUG [django.db.backends:91] (0.002) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1; args=(1,)
+[21/Jul/2017 15:08:47] DEBUG [django.db.backends:91] (0.002) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1; args=(1,)
+[21/Jul/2017 15:08:47] INFO [django.server:124] "POST /products/create/ HTTP/1.1" 200 3744
+[21/Jul/2017 15:08:49] DEBUG [django.db.backends:91] (0.018) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2017-07-21T12:08:49.279048+00:00'::timestamptz AND "django_session"."session_key" = '4wf75lwy4kbv8fj8p3i7wcy2n3ctc5of'); args=(datetime.datetime(2017, 7, 21, 12, 8, 49, 279048, tzinfo=<UTC>), '4wf75lwy4kbv8fj8p3i7wcy2n3ctc5of')
+[21/Jul/2017 15:08:49] DEBUG [django.db.backends:91] (0.009) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1; args=(1,)
+[21/Jul/2017 15:08:49] DEBUG [django.db.backends:91] (0.003) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE "django_session"."session_key" = '4wf75lwy4kbv8fj8p3i7wcy2n3ctc5of'; args=('4wf75lwy4kbv8fj8p3i7wcy2n3ctc5of',)
+[21/Jul/2017 15:08:49] DEBUG [django.db.backends:91] (0.003) DELETE FROM "django_session" WHERE "django_session"."session_key" IN ('4wf75lwy4kbv8fj8p3i7wcy2n3ctc5of'); args=('4wf75lwy4kbv8fj8p3i7wcy2n3ctc5of',)
+[21/Jul/2017 15:08:49] INFO [django.server:124] "GET /accounts/logout/ HTTP/1.1" 302 0
+[21/Jul/2017 15:08:49] INFO [django.server:124] "GET /products HTTP/1.1" 301 0
+[21/Jul/2017 15:08:50] DEBUG [django.db.backends:91] (0.016) SELECT "products_game"."id", "products_game"."uuid", "products_game"."title", "products_game"."publication_date", "products_game"."author_id", "products_game"."buyer_id", "products_game"."price", "products_game"."game_type", "products_game"."is_accepted" FROM "products_game" WHERE "products_game"."is_accepted" = false ORDER BY "products_game"."publication_date" ASC; args=(False,)
+[21/Jul/2017 15:08:50] DEBUG [django.db.backends:91] (0.008) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1; args=(1,)
+[21/Jul/2017 15:08:50] DEBUG [django.db.backends:91] (0.004) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1; args=(1,)
+[21/Jul/2017 15:08:50] DEBUG [django.db.backends:91] (0.003) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1; args=(1,)
+[21/Jul/2017 15:08:50] INFO [django.server:124] "GET /products/ HTTP/1.1" 200 11882
+[21/Jul/2017 15:08:53] DEBUG [django.db.backends:91] (0.009) SELECT "products_game"."id", "products_game"."uuid", "products_game"."title", "products_game"."publication_date", "products_game"."author_id", "products_game"."buyer_id", "products_game"."price", "products_game"."game_type", "products_game"."is_accepted" FROM "products_game" WHERE "products_game"."id" = 1; args=(1,)
+[21/Jul/2017 15:08:53] DEBUG [django.db.backends:91] (0.005) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1; args=(1,)
+[21/Jul/2017 15:08:54] DEBUG [django.db.backends:91] (0.058) SELECT "products_photo"."id", "products_photo"."game_id", "products_photo"."file", "products_photo"."description", "products_photo"."created" FROM "products_photo" WHERE "products_photo"."game_id" = 1; args=(1,)
+[21/Jul/2017 15:08:54] DEBUG [django.db.backends:91] (0.080) SELECT COUNT(*) AS "__count" FROM "products_comment" WHERE "products_comment"."game_id" = 1; args=(1,)
+[21/Jul/2017 15:08:54] DEBUG [django.db.backends:91] (0.008) SELECT "products_comment"."id", "products_comment"."game_id", "products_comment"."user", "products_comment"."email", "products_comment"."body", "products_comment"."created" FROM "products_comment" WHERE "products_comment"."game_id" = 1 ORDER BY "products_comment"."created" ASC; args=(1,)
+[21/Jul/2017 15:08:54] INFO [django.server:124] "GET /products/1/details/ HTTP/1.1" 200 12362
+[21/Jul/2017 15:08:57] INFO [django.server:124] "GET /accounts/login_user/ HTTP/1.1" 200 3846
+[21/Jul/2017 15:08:57] INFO [django.server:124] "GET /static/images/loading.gif HTTP/1.1" 200 874336
+[21/Jul/2017 15:09:02] DEBUG [django.db.backends:91] (0.020) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."username" = 'user2'; args=('user2',)
+[21/Jul/2017 15:09:03] DEBUG [django.db.backends:91] (0.002) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."username" = 'user2'; args=('user2',)
+[21/Jul/2017 15:09:03] DEBUG [django.db.backends:91] (0.005) SELECT (1) AS "a" FROM "django_session" WHERE "django_session"."session_key" = 'oy8ivowicu3haqm07njzx05mpwb2wswf' LIMIT 1; args=('oy8ivowicu3haqm07njzx05mpwb2wswf',)
+[21/Jul/2017 15:09:03] DEBUG [django.db.backends:91] (0.029) INSERT INTO "django_session" ("session_key", "session_data", "expire_date") VALUES ('oy8ivowicu3haqm07njzx05mpwb2wswf', 'NTlkZmQ0N2YxYzA3NTFhYjEwMTVlNjE4N2VjZDAxNTRlNmZlMTgxNTp7fQ==', '2017-08-04T12:09:03.562865+00:00'::timestamptz); args=('oy8ivowicu3haqm07njzx05mpwb2wswf', 'NTlkZmQ0N2YxYzA3NTFhYjEwMTVlNjE4N2VjZDAxNTRlNmZlMTgxNTp7fQ==', datetime.datetime(2017, 8, 4, 12, 9, 3, 562865, tzinfo=<UTC>))
+[21/Jul/2017 15:09:03] DEBUG [django.db.backends:91] (0.010) UPDATE "auth_user" SET "last_login" = '2017-07-21T12:09:03.602868+00:00'::timestamptz WHERE "auth_user"."id" = 2; args=(datetime.datetime(2017, 7, 21, 12, 9, 3, 602868, tzinfo=<UTC>), 2)
+[21/Jul/2017 15:09:03] DEBUG [django.db.backends:91] (0.074) SELECT "accounts_userprofile"."id", "accounts_userprofile"."user_id", "accounts_userprofile"."email_confirmed", "accounts_userprofile"."file", "accounts_userprofile"."money" FROM "accounts_userprofile" WHERE "accounts_userprofile"."user_id" = 2; args=(2,)
+[21/Jul/2017 15:09:03] DEBUG [django.db.backends:91] (0.002) UPDATE "accounts_userprofile" SET "user_id" = 2, "email_confirmed" = true, "file" = 'profile_image/no_profile.jpg', "money" = 0 WHERE "accounts_userprofile"."id" = 2; args=(2, True, 'profile_image/no_profile.jpg', 0, 2)
+[21/Jul/2017 15:09:03] DEBUG [django.db.backends:91] (0.002) UPDATE "accounts_userprofile" SET "user_id" = 2, "email_confirmed" = true, "file" = 'profile_image/no_profile.jpg', "money" = 0 WHERE "accounts_userprofile"."id" = 2; args=(2, True, 'profile_image/no_profile.jpg', 0, 2)
+[21/Jul/2017 15:09:03] DEBUG [django.db.backends:91] (0.003) UPDATE "django_session" SET "session_data" = 'YjllNjkwM2I2MjZlMjBlMzdjZDI3N2ZjOTZjMGNjNDRhNTdkZDE1Nzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI0MGI4ODEzMGI2MGEyNzNjYmMyYWExMDk0YjI4YTE2MGE1ZjVlNWY0In0=', "expire_date" = '2017-08-04T12:09:03.969889+00:00'::timestamptz WHERE "django_session"."session_key" = 'oy8ivowicu3haqm07njzx05mpwb2wswf'; args=('YjllNjkwM2I2MjZlMjBlMzdjZDI3N2ZjOTZjMGNjNDRhNTdkZDE1Nzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI0MGI4ODEzMGI2MGEyNzNjYmMyYWExMDk0YjI4YTE2MGE1ZjVlNWY0In0=', datetime.datetime(2017, 8, 4, 12, 9, 3, 969889, tzinfo=<UTC>), 'oy8ivowicu3haqm07njzx05mpwb2wswf')
+[21/Jul/2017 15:09:03] INFO [django.server:124] "POST /accounts/login_user/ HTTP/1.1" 200 3884
+[21/Jul/2017 15:09:04] DEBUG [django.db.backends:91] (0.019) SELECT "products_game"."id", "products_game"."uuid", "products_game"."title", "products_game"."publication_date", "products_game"."author_id", "products_game"."buyer_id", "products_game"."price", "products_game"."game_type", "products_game"."is_accepted" FROM "products_game" WHERE "products_game"."id" = 1; args=(1,)
+[21/Jul/2017 15:09:04] DEBUG [django.db.backends:91] (0.022) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2017-07-21T12:09:04.254905+00:00'::timestamptz AND "django_session"."session_key" = 'oy8ivowicu3haqm07njzx05mpwb2wswf'); args=(datetime.datetime(2017, 7, 21, 12, 9, 4, 254905, tzinfo=<UTC>), 'oy8ivowicu3haqm07njzx05mpwb2wswf')
+[21/Jul/2017 15:09:04] DEBUG [django.db.backends:91] (0.007) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 2; args=(2,)
+[21/Jul/2017 15:09:04] DEBUG [django.db.backends:91] (0.003) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1; args=(1,)
+[21/Jul/2017 15:09:04] DEBUG [django.db.backends:91] (0.005) SELECT "products_photo"."id", "products_photo"."game_id", "products_photo"."file", "products_photo"."description", "products_photo"."created" FROM "products_photo" WHERE "products_photo"."game_id" = 1; args=(1,)
+[21/Jul/2017 15:09:04] DEBUG [django.db.backends:91] (0.005) SELECT COUNT(*) AS "__count" FROM "products_comment" WHERE "products_comment"."game_id" = 1; args=(1,)
+[21/Jul/2017 15:09:04] DEBUG [django.db.backends:91] (0.005) SELECT "products_comment"."id", "products_comment"."game_id", "products_comment"."user", "products_comment"."email", "products_comment"."body", "products_comment"."created" FROM "products_comment" WHERE "products_comment"."game_id" = 1 ORDER BY "products_comment"."created" ASC; args=(1,)
+[21/Jul/2017 15:09:04] INFO [django.server:124] "GET /products/1/details/ HTTP/1.1" 200 11999
+[21/Jul/2017 15:09:06] DEBUG [django.db.backends:91] (0.007) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2017-07-21T12:09:06.751048+00:00'::timestamptz AND "django_session"."session_key" = 'oy8ivowicu3haqm07njzx05mpwb2wswf'); args=(datetime.datetime(2017, 7, 21, 12, 9, 6, 751048, tzinfo=<UTC>), 'oy8ivowicu3haqm07njzx05mpwb2wswf')
+[21/Jul/2017 15:09:06] DEBUG [django.db.backends:91] (0.005) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 2; args=(2,)
+[21/Jul/2017 15:09:06] DEBUG [django.db.backends:91] (0.002) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1; args=(1,)
+[21/Jul/2017 15:09:06] DEBUG [django.db.backends:91] (0.001) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 2; args=(2,)
+[21/Jul/2017 15:09:06] DEBUG [django.db.backends:91] (0.003) SELECT "products_game"."id", "products_game"."uuid", "products_game"."title", "products_game"."publication_date", "products_game"."author_id", "products_game"."buyer_id", "products_game"."price", "products_game"."game_type", "products_game"."is_accepted" FROM "products_game" WHERE "products_game"."id" = 1; args=(1,)
+[21/Jul/2017 15:09:06] DEBUG [django.db.backends:91] (0.002) UPDATE "products_game" SET "uuid" = 'QbuN3YvgwhJ9ENvhrt4Ne4', "title" = '1', "publication_date" = '2017-07-21'::date, "author_id" = 1, "buyer_id" = 2, "price" = 111, "game_type" = 1, "is_accepted" = false WHERE "products_game"."id" = 1; args=('QbuN3YvgwhJ9ENvhrt4Ne4', '1', datetime.date(2017, 7, 21), 1, 2, 111, 1, False, 1)
+[21/Jul/2017 15:09:07] INFO [django.server:124] "GET /products/1/1/accept HTTP/1.1" 200 12326
+[21/Jul/2017 15:09:07] INFO [django.server:124] "GET /static/images/PayPal_button.png HTTP/1.1" 200 2289
+[21/Jul/2017 15:10:36] DEBUG [django.db.backends:91] (0.011) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2017-07-21T12:10:36.446178+00:00'::timestamptz AND "django_session"."session_key" = 'oy8ivowicu3haqm07njzx05mpwb2wswf'); args=(datetime.datetime(2017, 7, 21, 12, 10, 36, 446178, tzinfo=<UTC>), 'oy8ivowicu3haqm07njzx05mpwb2wswf')
+[21/Jul/2017 15:10:36] DEBUG [django.db.backends:91] (0.005) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 2; args=(2,)
+[21/Jul/2017 15:10:36] DEBUG [django.db.backends:91] (0.005) SELECT "products_game"."id", "products_game"."uuid", "products_game"."title", "products_game"."publication_date", "products_game"."author_id", "products_game"."buyer_id", "products_game"."price", "products_game"."game_type", "products_game"."is_accepted" FROM "products_game" WHERE "products_game"."uuid" = 'QbuN3YvgwhJ9ENvhrt4Ne4'; args=('QbuN3YvgwhJ9ENvhrt4Ne4',)
+[21/Jul/2017 15:10:36] DEBUG [django.db.backends:91] (0.003) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1; args=(1,)
+[21/Jul/2017 15:10:36] DEBUG [django.db.backends:91] (0.002) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 2; args=(2,)
+[21/Jul/2017 15:10:36] INFO [django.server:124] "GET /products/payment/QbuN3YvgwhJ9ENvhrt4Ne4/success/ HTTP/1.1" 200 10056
+[21/Jul/2017 15:10:44] DEBUG [django.db.backends:91] (0.017) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2017-07-21T12:10:44.049613+00:00'::timestamptz AND "django_session"."session_key" = 'oy8ivowicu3haqm07njzx05mpwb2wswf'); args=(datetime.datetime(2017, 7, 21, 12, 10, 44, 49613, tzinfo=<UTC>), 'oy8ivowicu3haqm07njzx05mpwb2wswf')
+[21/Jul/2017 15:10:44] DEBUG [django.db.backends:91] (0.009) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 2; args=(2,)
+[21/Jul/2017 15:10:44] DEBUG [django.db.backends:91] (0.010) SELECT "products_game"."id", "products_game"."uuid", "products_game"."title", "products_game"."publication_date", "products_game"."author_id", "products_game"."buyer_id", "products_game"."price", "products_game"."game_type", "products_game"."is_accepted" FROM "products_game" WHERE "products_game"."is_accepted" = false ORDER BY "products_game"."publication_date" ASC; args=(False,)
+[21/Jul/2017 15:10:44] DEBUG [django.db.backends:91] (0.003) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1; args=(1,)
+[21/Jul/2017 15:10:44] DEBUG [django.db.backends:91] (0.003) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1; args=(1,)
+[21/Jul/2017 15:10:44] DEBUG [django.db.backends:91] (0.003) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1; args=(1,)
+[21/Jul/2017 15:10:44] INFO [django.server:124] "GET /products/ HTTP/1.1" 200 11922

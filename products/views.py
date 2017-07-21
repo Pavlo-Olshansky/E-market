@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+from django.http import Http404
 from django.views.generic.base import TemplateView
 from .models import Game, Photo
 from django.contrib.auth.models import User, Permission
@@ -200,25 +201,9 @@ def accept_sell(request, game_id, author_id):
           customer=customer.id,
         )
 
-        # Update a game list without this game
-        game.accept()
-        game.save()
-        user_author.userprofile.money += ammount
+        
 
-        # Send message to seller(request a login and pass)
-        current_site = get_current_site(request)
-        subject = 'Your account wont to buy!'
-        message = render_to_string('products/login_password/login_pass_request_EMAIL.html', {
-            'user_author': user_author,
-            'current_user': current_user,
-            'game': game,
-            'domain': current_site.domain,
-            'uid': urlsafe_base64_encode(force_bytes(current_user.pk)),
-            'token': account_activation_token.make_token(current_user),
-        })
-        user_author.email_user(subject, message)
-
-        redirect_url = reverse('products:payment_success', args=(game_id, author_id,))
+        redirect_url = reverse('products:payment_success', args=(game.uuid,))
         return HttpResponseRedirect(redirect_url)
     
     host = request.get_host()
@@ -229,7 +214,7 @@ def accept_sell(request, game_id, author_id):
     "item_name": game.title,
     "invoice": game.id,
     "notify_url": "https://{}{}".format(host, reverse('paypal-ipn')),
-    "return_url": "http://{}{}".format(host, reverse('products:payment_success', args=(game_id, author_id,))),
+    "return_url": "http://{}{}".format(host, reverse('products:payment_success', args=(game.uuid, ))),
     "cancel_return": "http://{}{}".format(host, reverse('products:game_details', args=(game.id,))),
     "custom": "Upgrade all users!",  # Custom command to correlate to some function later (optional)
     }
@@ -310,12 +295,33 @@ def login_pass_request_success(request, game_id):
     context = {'game': game}
     return render(request, 'products/login_password/login_pass_request_success.html', context)
 
-
+from django.views.decorators.csrf import csrf_exempt
 @login_required(login_url='/accounts/login/')
-def payment_success(request, game_id, author_id):
-    game = Game.objects.get(pk=game_id)
-    user_author = User.objects.get(pk=author_id)
+@csrf_exempt
+def payment_success(request, uuid):
+    game = get_object_or_404(Game, uuid=uuid)
+    if game.is_accepted:
+        raise Http404("This game is already accepted!")
+    user_author = game.author
     current_user = get_object_or_404(User, pk=request.user.id)
+
+    # Update a game list without this game
+    game.accept()
+    game.save()
+    user_author.userprofile.money += game.price
+
+    # Send message to seller(request a login and pass)
+    current_site = get_current_site(request)
+    subject = 'Your account wont to buy!'
+    message = render_to_string('products/login_password/login_pass_request_EMAIL.html', {
+        'user_author': user_author,
+        'current_user': current_user,
+        'game': game,
+        'domain': current_site.domain,
+        'uid': urlsafe_base64_encode(force_bytes(current_user.pk)),
+        'token': account_activation_token.make_token(current_user),
+    })
+    user_author.email_user(subject, message)
 
     context = {
             'user_author': user_author,

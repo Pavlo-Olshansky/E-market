@@ -26,10 +26,12 @@
 
 <hr>
 
+{% if is_own %}
 <div style="float: right;">
   <p>My balance: <a class ="glyphicon glyphicon-usd">{{ user.userprofile.money }}</a></p>
   <p><a href='{% url "products:money_out" %}'><button type="button" class="btn btn-sm">Out money</button></a></p>
 </div>
+{% endif %}
 
 <p><i>Username:</i> {{ user }}</p>
 {% if user.first_name %}

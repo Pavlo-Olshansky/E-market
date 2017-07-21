@@ -52,7 +52,7 @@ ALLOWED_HOSTS=.localhost, .herokuapp.com
 ## Example
 ### Comments on home page
 #### home.html
-```python
+```html
 <section class="feature">
   <div class="container">
     <div class="row">

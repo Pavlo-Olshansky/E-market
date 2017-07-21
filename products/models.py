@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from paypal.standard.ipn.signals import payment_was_successful
+
 from shortuuidfield import ShortUUIDField
 
     
@@ -13,7 +13,7 @@ class Game(models.Model):
         (WOW, 'WOW'),
         (HOTS, 'HOTS'),
     )
-
+    
     uuid = ShortUUIDField(unique=True)
     title = models.CharField(max_length=50)
     publication_date = models.DateField(auto_now_add=True)
@@ -78,16 +78,3 @@ class Photo(models.Model):
     class Meta:
         verbose_name = 'photo'
         verbose_name_plural = 'photos'
-
-def Paypal_comfirm(sender, **kwargs):
-    ipn_obj = sender
-    if ipn_obj.payment_status == "Completed":
-
-        orderid = ipn_obj.invoice
-        theorder = get_object_or_404(Order, pk=orderid)
-        theorder.status = 'complete'
-        theorder.txn_id = ipn_obj.txn_id
-        theorder.date_pay = timezone.now()
-        theorder.save()
-
-payment_was_successful.connect(Paypal_comfirm)

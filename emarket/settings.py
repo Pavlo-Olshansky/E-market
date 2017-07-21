@@ -35,7 +35,6 @@ INSTALLED_APPS = [
     'products',
     'widget_tweaks',
     'paypal.standard.ipn',
-    'paypal',
 
 ]
 

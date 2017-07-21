@@ -8,7 +8,6 @@ First of all, clone the repo:
 
 ```bash
 git clone https://github.com/Pavlo-Olshansky/E-market.git
-cd doctor-appointment
 ```
 
 ## Dependencies
@@ -50,5 +49,34 @@ EMAIL_PORT=587
 ALLOWED_HOSTS=.localhost, .herokuapp.com
 ```
 
+## Example
+### Comments on home page
+#### home.html
+```python
+<section class="feature">
+  <div class="container">
+    <div class="row">
+
+    <script type="text/javascript">
+      var disqus_config = function () { 
+      this.language = "ru";
+      };
+    </script>
+
+    {% load disqus_tags %}
+    {% disqus_dev %}
+
+    <script type="text/javascript">
+      var disqus_developer = 1;
+      var disqus_url = 'http://buyandplay.com/';
+    </script>
+
+    {% load disqus_tags %}
+    {% disqus_show_comments %}
+
+    </div>
+  </div>
+</section>
+```
 
 

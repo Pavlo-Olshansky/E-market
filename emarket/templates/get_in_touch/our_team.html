@@ -4,9 +4,41 @@
 
 {% block extra_css %}
 <style type="text/css">
-	.img-circle {
-    border-radius: 50%;
-    box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+
+
+.img {
+  border-radius: 100%;
+  display: flex;
+  flex: 0 0 250px;
+  height: 250px;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  width: 250px;
+}
+.img img {
+  height: 100%;
+}
+.img__overlay {
+  align-items: center;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: opacity 0.5s;
+  z-index: 1;
+}
+.img__overlay:hover {
+  opacity: 1;
+}
+.img__overlay {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: black;
+  font-size: 24px;
 }
 </style>
 {% endblock extra_css %}
@@ -27,63 +59,48 @@
 {% endblock header_on_background %}
 
 {% block content %}
-
-<section class="grid-gallery">
-  <div class="container">
-        
-	<div class="row">
-	  <div class="col-md-3 col-md-offset-3">
-	    <h2 class="section-heading">Our team</h2>
-	  </div>
+	<div style=" float:left; display:inline">
+		<a class="img" href="{% url 'get_in_touch:Pavlo_Olshansky' %}">
+		  <div class="img__overlay">
+		  	<h2><center>View <i><strong><br>Pavlo Olshansky</strong></i><br>bio &#10132;</center></h2>
+		  </div>
+		  <img src="{% static 'images/Our_team/Pavlo.jpg' %}" alt="Image" width="100%">
+		</a>
+		<h3><i><strong>Pavlo Olshansky</strong></i></h3>
+		<h4><i>Main programmer</i></h4>
 	</div>
 
-	<div class="row gallery-row">
-	          
-	  <div class="col-md-5 col-sm-3">
-	  <strong><i><center>Main functional of website.</center></i></strong>
-	    <a href="{% static 'images/Our_team/PavloO.jpg' %}" class="img image-popup">
-	      <div class="overlay"></div>
-	      <div class="text">
-	        <h2><i><strong>Pavlo Olshansky</strong></i><br>Main programmer. Frontend and backend programmer</h2>
-	      </div>
-	      <img class="img-circle" src="{% static 'images/Our_team/PavloO.jpg' %}" alt="Image" class="img-responsive" width="100%">
-	    </a>
-	  </div>
-
-	  <div class="col-md-5 col-sm-3">
-	  <strong><i><center>Assistant in website view.</center></i></strong>
-	    <a href="{% static 'images/Our_team/Vova.jpg' %}" class="img image-popup">
-	      <div class="overlay"></div>
-	      <div class="text">
-	        <h2><i><strong>Volodymyr Tysovskyi</strong></i><br>Frontend assistant programmer</h2>
-	      </div>
-	      <img class="img-circle" src="{% static 'images/Our_team/Vova.jpg' %}" alt="Image" class="img-responsive" width="100%">
-	    </a>
-	  </div>
-
-	  <div class="col-md-5 col-sm-3">
-	  <strong><i><center>Finance questions.</center></i></strong>
-	    <a href="{% static 'images/Our_team/Yra.jpg' %}" class="img image-popup">
-	      <div class="overlay"></div>
-	      <div class="text">
-	        <h2><i><strong>Yuri Bakalov</strong></i><br>Finance manager</h2>
-	      </div>
-	      <img class="img-circle" src="{% static 'images/Our_team/Yra.jpg' %}" alt="Image" class="img-responsive" width="100%">
-	    </a>
-	  </div>
-
-	  <div class="col-md-5 col-sm-3">
-	  <strong><i><center>Our rules manager.</center></i></strong>
-	    <a href="{% static 'images/Our_team/Ivan.jpg' %}" class="img image-popup">
-	      <div class="overlay"></div>
-	      <div class="text">
-	        <h2><i><strong>Ivan Sytar</strong></i><br>Privacy and policy manager</h2>
-	      </div>
-	      <img class="img-circle" src="{% static 'images/Our_team/Ivan.jpg' %}" alt="Image" class="img-responsive" width="100%">
-	    </a>
-	  </div>
-	 </div>
+	<div>
+		<a class="img" href="{% url 'get_in_touch:Volodymyr_Tysovskyi' %}">
+		  <div class="img__overlay">
+		  	<h2><center>View <i><strong><br>Volodymyr Tysovskyi</strong></i><br>bio &#10132;</center></h2>
+		  </div>
+		  <img src="{% static 'images/Our_team/Vova.jpg' %}" alt="Image" width="100%">
+		</a>
+		<h3><i><strong>Volodymyr Tysovskyi</strong></i></h3>
+		<h4><i>Assistant programmer</i></h4>
 	</div>
-</section>
+
+	<div style=" float:left; display:inline">
+		<a class="img" href="{% url 'get_in_touch:Yuri_Bakalov' %}">
+		  <div class="img__overlay">
+		  	<h2><center>View <i><strong><br>Yuri Bakalov</strong></i><br>bio &#10132;</center></h2>
+		  </div>
+		  <img src="{% static 'images/Our_team/Yra.jpg' %}" alt="Image" width="100%">
+		</a>
+		<h3><i><strong>Yuri Bakalov</strong></i></h3>
+		<h4><i>Finance manager</i></h4>
+	</div>
+
+	<div>
+	<a class="img" href="{% url 'get_in_touch:Ivan_Sytar' %}">
+		  <div class="img__overlay">
+		  	<h2><center>View <i><strong><br>Ivan Sytar</strong></i><br>bio &#10132;</center></h2>
+		  </div>
+		  <img src="{% static 'images/Our_team/Ivan.jpg' %}" alt="Image" width="100%">
+		</a>
+	  <h3><i><strong>Ivan Sytar</strong></i></h3>
+	  <h4><i>Privacy and policy manager</i></h4>
+	</div>
 
 {% endblock content %}

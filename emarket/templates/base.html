@@ -51,7 +51,6 @@
   {% block extra_css %}
   {% endblock extra_css %}
 
-  
   <!-- FOR IE9 below -->
   <!--[if lte IE 9]>
   <script src="js/modernizr-2.6.2.min.js"></script>
@@ -117,28 +116,11 @@
         <div class="col-md-8 col-md-push-1" id="fh5co-content">
 
           {% block content %}
-          <div class="row">
-            <div class="col-md-12"><h2>High Quality Template</h2></div>
-            <div class="col-md-6">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur totam cumque quaerat, quos quia maxime corporis dignissimos tenetur natus consectetur repellat provident ipsa nam accusamus et labore sequi praesentium expedita nobis, dicta cum voluptate. Nam necessitatibus aliquid laboriosam, cum accusantium recusandae eveniet aspernatur blanditiis deserunt maxime adipisci natus praesentium obcaecati.</p>
-            </div>
-            <div class="col-md-6">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore autem deserunt minus molestiae omnis natus porro esse cumque nam facilis sed labore, doloribus earum voluptatem necessitatibus asperiores modi aspernatur veritatis.</p>
-            </div>
-          </div>
-          <div class="fh5co-spacer fh5co-spacer-sm"></div>
-          <p><img src="{% static 'images/big_image.jpg' %}" alt="Image" class="img-responsive"></p>
-          <div class="fh5co-spacer fh5co-spacer-sm"></div>
-          <div class="row">
-            
-            <div class="col-md-6">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur totam cumque quaerat, quos quia maxime corporis dignissimos tenetur natus consectetur repellat provident ipsa nam accusamus et labore sequi praesentium expedita nobis, dicta cum voluptate. Nam necessitatibus aliquid laboriosam, cum accusantium recusandae eveniet aspernatur blanditiis deserunt maxime adipisci natus praesentium obcaecati.</p>
-            </div>
-            <div class="col-md-6">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore autem deserunt minus molestiae omnis natus porro esse cumque nam facilis sed labore, doloribus earum voluptatem necessitatibus asperiores modi aspernatur veritatis.</p>
-            </div>
-          </div>
+            <h1><strong><center>
+              <a href="/"><button class="brt btn-default">Home</button></a>
+            <center></strong></h1>
           {% endblock content %}
+          
         </div>
       </div>
     </div>
@@ -152,46 +134,44 @@
         <div class="col-md-3 col-sm-6">
           <div class="footer-box border-bottom">
             <h3 class="footer-heading">About Us</h3>
-            <p>We are a company that provides secure transfer of account and money. <ul class="footer-list"><li><a>Safely. Quickly. Reliably</a></li></p></ul>
+            <p>We are a company that provides secure transfer of account and money.
+            Our prisiples is simple. We do our job:
+              <ul class="footer-list">
+                <li>
+                  <a>Safely. </a>
+                  <a>Quickly. </a>
+                  <a>Reliably </a>
+                </li>
+              </ul>
+            </p>
           </div>
-          
-            <p><strong>Subscribe to our newsletter.</strong></p>
-            <form action="#" class="form-subscribe">
-              <div class="field">
-                <input type="email" class="form-control" placeholder="email@gmail.com">
-                <button class="btn btn-primary">Subscribe</button>
-              </div>
-            </form>
-            <div class="fh5co-spacer fh5co-spacer-sm"></div>
-          
-        </div>
-        <div class="col-md-3 col-sm-6">
-          
-            <h3 class="footer-heading">Buy and play in socials!</h3>
-            <ul class="footer-list">
-              <li><a href="https://www.facebook.com/groups/475473516135503/?ref=aymt_homepage_panel" target="_new">Facebook</a></li>
-              <li><a href="https://vk.com/club149382078" target="_new">Vkontakte</a></li>
-            </ul>
-          
+          <p><strong>Subscribe to our newsletter.</strong></p>
+          <form action="#" class="form-subscribe">
+            <div class="field">
+              <input type="email" class="form-control" placeholder="email@gmail.com">
+              <button class="btn btn-primary">Subscribe</button>
+            </div>
+          </form>
         </div>
 
+        <div class="col-md-3 col-sm-6">
+          <h3 class="footer-heading">Buy and play in socials!</h3>
+          <ul class="footer-list">
+            <li><a href="https://www.facebook.com/groups/475473516135503/?ref=aymt_homepage_panel" target="_blank">Facebook</a></li>
+            <li><a href="https://vk.com/club149382078" target="_blank">Vkontakte</a></li>
+          </ul>
+        </div>
 
         <div class="visible-sm clearfix"></div>
-
-
-        <div class="col-md-3 col-sm-6">
-          
+          <div class="col-md-3 col-sm-6">
             <h3 class="footer-heading">Policy</h3>
             <ul class="footer-list">
               <li><a href="#"><abbr title="Rules">Our policy</abbr></a></li>
               <li><a href="#">Privacy</abbr></a></li>
             </ul>
-          
         </div>
 
-
         <div class="col-md-3 col-sm-6 clearfix">
-
           <div class="row">
             <div class="col-md-12 col-sm-6">
               <div class="footer-box">
@@ -200,17 +180,15 @@
                   <li><a href="/get_in_touch/our_team/">Our Team</a></li>
                   <li><a href="/get_in_touch/contact_us/">Contact Us</a></li>
                   <li><a href="/get_in_touch/support/">Support</a></li>
-
                 </ul>
               </div>
             </div>
-            
           </div>
-  
         </div>
-        
+
       </div>
     </div>
+
     <div class="container">
       <div class="row">
         <div class="col-md-12">
@@ -222,20 +200,21 @@
         </div>
       </div>
     </div>
+
   </footer>
-
-  <div class="modal fade" id="modal-book">
-  <div class="modal-dialog">
-    <div class="modal-content">
-    </div>
-  </div>
-  {% endblock footer %}
-
 
   <!-- Go To Top -->
   {% block go_to_top %}
     <a href="#" class="fh5co-gotop"><i class="ti-shift-left"></i></a>
   {% endblock go_to_top %}
+
+  <div class="modal fade" id="modal-book">
+    <div class="modal-dialog">
+      <div class="modal-content">
+    </div>
+  </div>
+
+  {% endblock footer %}
     
     {% block js_block %}
     <!-- jQuery -->
@@ -253,7 +232,6 @@
     <!-- FastClick for Mobile/Tablets -->
     <script src="{% static 'js/fastclick.js' %}"></script>
 
-    
     <!-- Google Map -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCefOgb1ZWqYtj7raVSmN4PL2WkTrc-KyA&sensor=false"></script>
     <script src="{% static 'js/google_map.js' %}"></script>
@@ -264,11 +242,6 @@
     <!-- Registration JS -->
     <script src="{% static 'js/registration/registration.js' %}"></script>
 
-    <!-- Hint appearing JS -->
-    <!-- button 
-            data-toggle="tooltip" 
-            data-placement="top" 
-            title="Sell your own account" -->
     <script type="text/javascript">
       $(function () {
       $('[data-toggle="tooltip"]').tooltip()
@@ -279,9 +252,6 @@
 
     {% block extra_js %}
     {% endblock extra_js %}
-
-
-
 
 </body>
 </html>

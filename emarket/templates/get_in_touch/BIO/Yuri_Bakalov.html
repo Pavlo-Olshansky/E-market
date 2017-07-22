@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Yuri Bakalov | Buy and Play{% endblock title %}
+
+{% block extra_css %}
+<style type="text/css">
+	.img-circle {
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+}
+</style>
+{% endblock extra_css %}
+
+
+{% block background_image %}
+  <div id="fh5co-page-title" style="background-image: url({% static 'images/Our_team/our_team_bg.png' %})">
+{% endblock background_image %}
+
+{% block header_on_background %}
+  <div class="overlay"></div>
+    <div class="container">
+      <div class="text">
+        <h1><strong>Yuri Bakalov | Buy and Play team</strong></h1>  
+      </div>
+    </div>
+  </div>
+{% endblock header_on_background %}
+
+{% block content %}
+<a href="{% url 'get_in_touch:our_team' %}">
+<button type="button"
+ 		class="btn btn-default btn-sm">
+<span class="glyphicon glyphicon-circle-arrow-left">Back</span>
+</button>
+</a>
+
+<h1><big><strong><center>Yuri Bakalov</center></strong></big></h1>
+
+<div style="display:inline" >
+
+	<img class="img-circle" src="{% static 'images/Our_team/Yra.jpg' %}" alt="Image" class="img-responsive" width="300px" style=" float:left; display:inline">
+
+	<h3 style="display:inline"><i><strong>Finance manager</strong></i></h3>
+	<h4><i>
+	<p>bla bla bla bla bla</p>
+	<p>bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla</p>
+
+	</i></h4>
+</div>
+
+{% endblock content %}

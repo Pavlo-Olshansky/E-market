@@ -47,14 +47,14 @@ def contact_us(request):
 				)
 				contact_us.save()
                 
-			return render(request, 'footer/contact_us_success.html')
+			return render(request, 'get_in_touch/contact_us_success.html')
 
 
 	else:
 		form = Contact_us_form()
 
 	context ={'form': form}
-	return render(request, 'footer/contact_us.html', context)
+	return render(request, 'get_in_touch/contact_us.html', context)
 
 
 def support(request):
@@ -95,11 +95,11 @@ def support(request):
 				)
 				support.save()
 	            
-			return render(request, 'footer/support_success.html')
+			return render(request, 'get_in_touch/support_success.html')
 
 
 	else:
 		form = SupportForm()
 
 	context ={'form': form}
-	return render(request, 'footer/support.html', context)
+	return render(request, 'get_in_touch/support.html', context)

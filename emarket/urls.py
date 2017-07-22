@@ -44,9 +44,11 @@ urlpatterns = [
     # Seller accounts related URLs
     url(r'^products/', include('products.urls', namespace='products'), name='products'),
 
-    # Contact us related URLS
+    # FOOTER
+    # Get in touch section
     url(r'^get_in_touch/', include('get_in_touch.urls', namespace='get_in_touch'), name='get_in_touch'),
 
+    # Privacy and policy
 
 
 

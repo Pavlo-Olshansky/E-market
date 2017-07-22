@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Our team{% endblock title %}
+
+{% block extra_css %}
+<style type="text/css">
+	.img-circle {
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+}
+</style>
+{% endblock extra_css %}
+
+
+{% block background_image %}
+  <div id="fh5co-page-title" style="background-image: url({% static 'images/Our_team/our_team_bg.png' %})">
+{% endblock background_image %}
+
+{% block header_on_background %}
+  <div class="overlay"></div>
+    <div class="container">
+      <div class="text">
+        <h1><strong><span style="color:skyblue">Buy and Play team</span></strong></h1>  
+      </div>
+    </div>
+  </div>
+{% endblock header_on_background %}
+
+{% block content %}
+
+<section class="grid-gallery">
+  <div class="container">
+        
+	<div class="row">
+	  <div class="col-md-3 col-md-offset-3">
+	    <h2 class="section-heading">Our team</h2>
+	  </div>
+	</div>
+
+	<div class="row gallery-row">
+	          
+	  <div class="col-md-5 col-sm-3">
+	  <strong><i><center>Main functional of website.</center></i></strong>
+	    <a href="{% static 'images/Our_team/PavloO.jpg' %}" class="img image-popup">
+	      <div class="overlay"></div>
+	      <div class="text">
+	        <h2><i><strong>Pavlo Olshansky</strong></i><br>Main programmer. Frontend and backend programmer</h2>
+	      </div>
+	      <img class="img-circle" src="{% static 'images/Our_team/PavloO.jpg' %}" alt="Image" class="img-responsive" width="100%">
+	    </a>
+	  </div>
+
+	  <div class="col-md-5 col-sm-3">
+	  <strong><i><center>Assistant in website view.</center></i></strong>
+	    <a href="{% static 'images/Our_team/Vova.jpg' %}" class="img image-popup">
+	      <div class="overlay"></div>
+	      <div class="text">
+	        <h2><i><strong>Volodymyr Tysovskyi</strong></i><br>Frontend assistant programmer</h2>
+	      </div>
+	      <img class="img-circle" src="{% static 'images/Our_team/Vova.jpg' %}" alt="Image" class="img-responsive" width="100%">
+	    </a>
+	  </div>
+
+	  <div class="col-md-5 col-sm-3">
+	  <strong><i><center>Finance questions.</center></i></strong>
+	    <a href="{% static 'images/Our_team/Yra.jpg' %}" class="img image-popup">
+	      <div class="overlay"></div>
+	      <div class="text">
+	        <h2><i><strong>Yuri Bakalov</strong></i><br>Finance manager</h2>
+	      </div>
+	      <img class="img-circle" src="{% static 'images/Our_team/Yra.jpg' %}" alt="Image" class="img-responsive" width="100%">
+	    </a>
+	  </div>
+
+	  <div class="col-md-5 col-sm-3">
+	  <strong><i><center>Our rules manager.</center></i></strong>
+	    <a href="{% static 'images/Our_team/Ivan.jpg' %}" class="img image-popup">
+	      <div class="overlay"></div>
+	      <div class="text">
+	        <h2><i><strong>Ivan Sytar</strong></i><br>Privacy and policy manager</h2>
+	      </div>
+	      <img class="img-circle" src="{% static 'images/Our_team/Ivan.jpg' %}" alt="Image" class="img-responsive" width="100%">
+	    </a>
+	  </div>
+	 </div>
+	</div>
+</section>
+
+{% endblock content %}

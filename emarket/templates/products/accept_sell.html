@@ -1,6 +1,19 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}Accept{% endblock title %}
+
+{% block extra_css %}
+<style type="text/css">
+    .profile-image:hover .overlay {
+  position:absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  background: transparent url('{% static 'images/loc.png' %}') no-repeat;
+  cursor: pointer;
+}
+  </style>
+{% endblock extra_css %}
 
 {% block content %}
 
@@ -26,6 +39,11 @@
     </script>
   </form>
 
+
+<div class="profile-image">
+  <a href="#"><img src="{% static 'images/logo.png' %}" /></a>
+  <span class="overlay"></span>
+</div>
 
 <br>
   <div style="width:100%;text-align:center;">

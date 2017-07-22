@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Support Center{% endblock title %}
+
+{% block extra_css %}
+  <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+{% endblock extra_css %}
+
+{% block content %}
+<p>
+<form method="post">
+	{% csrf_token %}
+
+	<table>
+	{% if not request.user.is_authenticated %}
+		<tr><td><b>Name:</b><td>
+		<tr><td>
+		<input 
+		type="text" 
+		name="text"
+		placeholder="Your name" 
+		required="required">
+		</td></tr>
+		<tr><td><b>Email:</b><td>
+		<tr><td>
+  	<input 
+  	type="email" 
+  	name="email"
+  	title="Contact's email (format: xxx@xxx.xxx)" 
+  	placeholder="email@example.com" 
+  	pattern="[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)" 
+  	required="required">
+  	</td></tr>
+  {% endif %}
+		<tr>
+			<td><b>Choose your problem:</b></td>
+		</tr>
+		<tr>
+			<td>{{ form.problem }}</td>
+		</tr>
+		{% if form.problem.help_text %}
+		  <tr>
+		    <td><td>
+		    	<small style="color: grey">{{ form.problem.help_text }}</small>
+		    </td></td>
+		  </tr>
+	  {% endif %}
+
+    {% for error in form.problem.errors %}
+    <tr>
+      <td><td>
+      	<p style="color: red">{{ error }}</p>
+      </td></td>
+    </tr>
+    {% endfor %}
+
+    <tr>
+			<td><b>Describe your problem:</b></td>
+		</tr>
+		<tr>
+			<td>{{ form.body }}</td>
+		</tr>
+		{% if form.body.help_text %}
+		  <tr>
+		    <td><td>
+		    	<small style="color: grey">{{ form.body.help_text }}</small>
+		    </td></td>
+		  </tr>
+	  {% endif %}
+
+    {% for error in form.body.errors %}
+    <tr>
+      <td><td>
+      	<p style="color: red">{{ error }}</p>
+      </td></td>
+    </tr>
+    {% endfor %}
+
+    <tr>
+    	<td>
+    	    
+    	    <div id='html_element'></div>
+			<div class="g-recaptcha" data-sitekey="6LdglCgUAAAAAAzuPFTrLba5YuDTrO3aV_pTr9IF"></div>
+
+    		<button id="submit_support" type="submit" class="btn btn-calltoaction btn-primary" style="display:none">Send message</button>
+			</td>
+		</tr>
+
+	</table>
+</form>
+
+{% endblock content %}
+
+{% block extra_js %}
+<script>
+// Under captcha contact_us button slow show
+var onloadCallback = function() {
+    grecaptcha.render('html_element', {
+      'sitekey' : '6LdglCgUAAAAAAzuPFTrLba5YuDTrO3aV_pTr9IF',
+      'callback' : correctCaptcha
+    });
+  };
+
+  var correctCaptcha = function(response) {
+    $('#submit_support').show("slow");
+};
+</script>
+{% endblock extra_js %}

@@ -21,7 +21,6 @@ from django.conf.urls.static import static
 # from mysite.core import views as core_views
 from django.contrib.auth import views as auth_views
 from django.contrib import admin
-from django.views.generic import TemplateView
 
 
 admin.autodiscover()
@@ -46,9 +45,8 @@ urlpatterns = [
     url(r'^products/', include('products.urls', namespace='products'), name='products'),
 
     # Contact us related URLS
+    url(r'^get_in_touch/', include('get_in_touch.urls', namespace='get_in_touch'), name='get_in_touch'),
 
-    # Our team url
-    url(r'^our_team/', TemplateView.as_view(template_name='our_team.html'), name='our_team'),
 
 
 

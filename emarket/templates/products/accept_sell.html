@@ -4,12 +4,20 @@
 
 {% block extra_css %}
 <style type="text/css">
-    .profile-image:hover .overlay {
+    .how-to-stripe:hover .overlay-stripe {
   position:absolute;
   width: 100%;
   height: 100%;
   z-index: 100;
-  background: transparent url('{% static 'images/loc.png' %}') no-repeat;
+  background: transparent url('{% static 'images/how_to_stripe.png' %}') no-repeat;
+  cursor: pointer;
+}
+    .how-to-paypal:hover .overlay-paypal {
+  position:absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  background: transparent url('{% static 'images/how_to_paypal.png' %}') no-repeat;
   cursor: pointer;
 }
   </style>
@@ -23,6 +31,12 @@
 <p>
 
 <div align="center">
+
+<div class="how-to-stripe">
+  <button class="btn btn-info">How to pay? &#10132;</button>
+  <span class="overlay-stripe"></span>
+</div>
+
   <form method="POST">
     {% csrf_token %}
     <script
@@ -30,7 +44,7 @@
       data-key={{ stripe_publish_key }}
       data-amount={{ ammount }}
       data-name="Buy a {{ game.get_game_type_display }} account"
-      data-description="__description__"
+      data-description="Send your money safety."
       data-image="/img/documentation/checkout/marketplace.png"
       data-label="Pay with Card or Bitcoin"
       data-locale="auto"
@@ -39,18 +53,17 @@
     </script>
   </form>
 
-
-<div class="profile-image">
-  <a href="#"><img src="{% static 'images/logo.png' %}" /></a>
-  <span class="overlay"></span>
-</div>
-
 <br>
   <div style="width:100%;text-align:center;">
     <span style="width:45%;display:inline;float:left;"><hr/></span>
     <span style="width:10%;display:inline;float:left;">OR</span>
     <span style="width:45%;display:inline;float:left;"><hr/></span>
   </div>
+
+<div class="how-to-paypal">
+  <button class="btn btn-info">How to pay? &#10132;</button>
+  <span class="overlay-paypal"></span>
+</div>
 
   <form action="https://www.sandbox.paypal.com/webapps/adaptivepayment/flow/pay" class="standard">
   {{ paypal_form.render }}

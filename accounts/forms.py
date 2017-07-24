@@ -34,7 +34,7 @@ class EditUserForm(UserChangeForm):
 	
     class Meta:
         model = User
-        fields = ('email', 'first_name', 'last_name', 'password')
+        fields = ('email', 'first_name', 'last_name')
         # exclude = ()
 
 

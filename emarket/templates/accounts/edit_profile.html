@@ -72,12 +72,44 @@
 {% endblock extra_js %}
 
 {% block content %}
-
+<h2>Change profile information</h2>
   <form method="post">
     {% csrf_token %}
-    {{ user_form.as_p }}
-
+    <table>
+      <tr>
+        <td>
+          {{ user_form.email.label }}: 
+        </td>
+        <td>
+          {{ user_form.email }}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          {{user_form.first_name.label }}: 
+        </td>
+        <td>
+          {{ user_form.first_name}}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          {{ user_form.last_name.label }}: 
+        </td>
+        <td>
+          {{ user_form.last_name }}
+        </td>
+      </tr>
+    </table>
 	<p><button type="submit">Submit</button></p>
+
+<hr>
+<h2>Change profile image</h2>
+<hr>
+
+<div class="col-md-6 col-sm-6">
+    <img src="{{ user.userprofile.file.url }}" alt="{{ user }}" class="img-responsive" width=90 border='1px'>
+</div>
 
   </form>
 
@@ -97,8 +129,10 @@
   	<button type="button" class="btn btn-primary js-crop-and-upload">Upload new photo</button>
   </form>
 
-<a href="/accounts/profile/password/">Change pass</a>
-
+<hr>
+<h2>Change password</h2>
+<hr>
+<p><a href="/accounts/profile/password/">Go to change password form</a>
 
   <!-- MODAL TO CROP THE IMAGE -->
   <div class="modal fade" id="modalCrop">
@@ -129,11 +163,7 @@
     </div>
   </div>
 
-<div class="col-md-6 col-sm-6">
-  <a href="{{ user.userprofile.file.url }}" class="img image-popup">
-    <img src="{{ user.userprofile.file.url }}" alt="{{ user }}" class="img-responsive" width=90>
-  </a>
-</div>
+
 
 {% endblock content %}
 

@@ -1410,3 +1410,56 @@ a > img.fh5co-align-center {
 }
 
 /*# sourceMappingURL=style.css.map */
+
+/* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
+@import url(https://fonts.googleapis.com/css?family=Raleway+Dots);
+@import url(https://fonts.googleapis.com/css?family=Advent+Pro:400,200,700);
+@import url(http://weloveiconfonts.com/api/?family=entypo);
+/* entypo */
+[class*="entypo-"]:before {
+  font-family: 'entypo', sans-serif;
+}
+
+section #services {
+  text-align: center;
+  transform: translatez(0);
+}
+section #services h2 {
+  margin: 0px 10px 10px;
+  color: #fff;
+  font-size: 1.4em;
+  font-family: 'Raleway Dots', sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+section #services li {
+  width: 80px;
+  height: 70px;
+  display: inline-block;
+  margin: 5px;
+  list-style: none;
+}
+section #services li div {
+  width: 40px;
+  height: 40px;
+  color: green;
+  font-size: 1.6em;
+  text-align: center;
+  line-height: 40px;
+  background-color: #fff;
+  transition: all 0.5s ease;
+}
+section #services li div:hover {
+  transform: rotate(360deg);
+  border-radius: 60px;
+}
+section #services li span {
+  width: 40px;
+  height: 10px;
+  display: block;
+  color: #fff;
+  font-family: 'Advent Pro', sans-serif;
+  text-transform: uppercase;
+  font-size: 0.7em;
+}

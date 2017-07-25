@@ -5,6 +5,64 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->  <!--<![endif]-->
+<style>
+      /* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
+      @import url(https://fonts.googleapis.com/css?family=Raleway+Dots);
+@import url(https://fonts.googleapis.com/css?family=Advent+Pro:400,200,700);
+@import url(http://weloveiconfonts.com/api/?family=entypo);
+/* entypo */
+[class*="entypo-"]:before {
+  font-family: 'entypo', sans-serif;
+}
+
+section #services {
+  text-align: center;
+  transform: translatez(0);
+}
+section #services h2 {
+  margin: 0px 10px 10px;
+  color: #fff;
+  font-size: 1.4em;
+  font-family: 'Raleway Dots', sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+section #services li {
+  width: 80px;
+  height: 70px;
+  display: inline-block;
+  margin: 5px;
+  list-style: none;
+}
+section #services li div {
+  width: 40px;
+  height: 40px;
+  color: green;
+  font-size: 1.6em;
+  text-align: center;
+  line-height: 40px;
+  background-color: #fff;
+  transition: all 0.5s ease;
+}
+section #services li div:hover {
+  transform: rotate(360deg);
+  border-radius: 60px;
+}
+section #services li span {
+  width: 40px;
+  height: 10px;
+  display: block;
+  color: #fff;
+  font-family: 'Advent Pro', sans-serif;
+  text-transform: uppercase;
+  font-size: 0.7em;
+}
+
+    </style>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -165,12 +223,32 @@
         </div>
 
         <div class="col-md-3 col-sm-6">
-          <h3 class="footer-heading">Buy and play in socials!</h3>
-          <ul class="footer-list">
-            <li><a href="https://www.facebook.com/groups/475473516135503/?ref=aymt_homepage_panel" target="_blank">Facebook</a></li>
-            <li><a href="https://vk.com/club149382078" target="_blank">Vkontakte</a></li>
-          </ul>
-        </div>
+        <h3 class="footer-heading">Buy and play in socials!</h3>
+        <section>
+        <ul id='services'>
+          <li>
+            <a href="https://www.facebook.com/groups/475473516135503/?ref=aymt_homepage_panel" target="_blank">
+              <div class='entypo-facebook'></div>
+            </a>
+            <span>Facebook</span>
+          </li>
+          <li>
+            <a href="https://vk.com/club149382078" target="_blank">
+              <div class='entypo-vkontakte'></div>
+            </a>
+            <span>Vkontakte</span>
+          </li>
+<!--           <li>
+            <div class='entypo-gplus'></div>
+            <span>Google</span>
+          </li>
+          <li>
+            <div class='entypo-linkedin'></div>
+            <span>LinkedIn</span>
+          </li> -->
+        </ul>
+      </section>
+      </div>
 
         <div class="visible-sm clearfix"></div>
           <div class="col-md-3 col-sm-6">

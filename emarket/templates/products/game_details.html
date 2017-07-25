@@ -40,11 +40,11 @@
     {% if not is_own and not game.is_accepted %}
       {% if not user.is_authenticated %}
         <button type="button" 
-                class="btn btn-calltoaction btn-primary js_login_signup_up">Accept</button>
+                class="btn btn-calltoaction btn-primary js_login_signup_up">Buy now</button>
       {% else %}
       <a href="{% url 'products:accept_sell' game_id=game.id author_id=game.author_id %}">
           <button type="button" 
-          class="btn btn-calltoaction btn-primary">Accept</button>
+          class="btn btn-calltoaction btn-primary">Buy now</button>
       </a>
       {% endif %}
     {% endif %}

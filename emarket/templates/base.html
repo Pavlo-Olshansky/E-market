@@ -71,18 +71,29 @@
           </div>
           <div id="fh5co-navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-              <li class="active"><a href="/products/">Games</a></li>
+              <li><a href="/products/">
+              <strong><span class="glyphicon glyphicon-th-list"></span> Games</strong></a></li>
 
               {% if user.is_authenticated %}
-                <li><a href="/accounts/logout/">Logout</a></li>
-                <li><a href="/accounts/profile/">Profile</a></li>
-                <li><a href="/accounts/profile/edit/">Edit profile</a></li>
+                <li><a href="/accounts/profile/">
+                <span class="glyphicon glyphicon-user"></span> Profile</a></li>
+                <li><a href="/accounts/profile/edit/">
+                <span class="glyphicon glyphicon-edit"></span> Edit profile</a></li>
+                <li>
+                  <a href="/accounts/logout/" 
+                  data-toggle="tooltip" 
+                  data-placement="bottom" 
+                  title="Logout">
+                    <span class="glyphicon glyphicon-off"></span>
+                  </a>
+                </li>
               {% endif %}
 
             </ul>
             <ul class="nav navbar-nav navbar-right">
               {% if not user.is_authenticated %}
-                <li><a class="btn btn-calltoaction btn-primary js_login_signup_up">Login or Sign Up</a></li>
+                <li><a class="btn btn-calltoaction btn-primary js_login_signup_up">Login or Sign Up
+                <span class="glyphicon glyphicon-log-in"></span></a></li>
                 <li><a><center>AND SEE</center></a></li>
               {% endif %}
               <li><a href="/products/" class="btn btn-calltoaction btn-primary">All games</a></li>

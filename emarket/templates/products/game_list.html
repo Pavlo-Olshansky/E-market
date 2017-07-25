@@ -97,19 +97,13 @@
 
 {% block extra_js %}
 <script src="{% static 'js/products/games.js' %}"></script>
-<script type="text/javascript">
-
-// $("#filter_All, #filter_Hearthstone, #filter_WOW, #filter_HOTS").live("click", function () {
-//           $(this).removeClass("btn btn-primaty js-filter-button");
-//           $(this).addClass("btn btn-info js-filter-button");
-//       });
-
+<script >
 
 $('.js-filter-button').on('click', function(event) {
   // event.preventDefault();
   var btn = $(this); //button that was clicked
-  $('.js-filter-button').removeClass("btn btn-info js-filter-button");
-  $('.js-filter-button').addClass("btn btn-primaty js-filter-button");
+  $("#filter_All, #filter_Hearthstone, #filter_WOW, #filter_HOTS").removeClass("btn btn-info js-filter-button");
+  $("#filter_All, #filter_Hearthstone, #filter_WOW, #filter_HOTS").addClass("btn btn-primaty js-filter-button");
 
   btn.removeClass("btn btn-primaty js-filter-button");
   btn.addClass("btn btn-info js-filter-button");

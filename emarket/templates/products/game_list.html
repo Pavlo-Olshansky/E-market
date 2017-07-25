@@ -2,7 +2,7 @@
 {% load static %}
 {% load humanize %}
 
-{% block title %}Buy and Play &ndash; buy a game account{% endblock title %}
+{% block title %}Buy and Play &ndash; Buy a game account{% endblock title %}
 
 {% block header_on_background %}
     <div class="overlay"></div>
@@ -17,7 +17,7 @@
 {% block content %}
   <h1 class="page-header">Games</h1>
 
-  <!-- BUTTON TO TRIGGER THE ACTION -->
+  <!-- BUTTON TO TRIGGER THE CREATE GAME ACTION -->
   <p>
     <button type="button"
             class="btn btn-primary js-create-game"
@@ -30,6 +30,49 @@
       New game
     </button>
   </p>
+
+  <!-- FILTER GAME BUTTONS -->
+  <button type="button"  
+    class="btn btn-info js-filter-button" 
+    data-url="{% url 'products:filter_game' %}" 
+    data="All" 
+    value="All"
+    id='filter_All'>
+     <span class="glyphicon glyphicon-filter"></span>
+
+     All
+  </button>
+
+  <button type="button"  
+    class="btn btn-primaty js-filter-button" 
+    data-url="{% url 'products:filter_game' %}" 
+    data="1" 
+    value="Hearthstone"
+    id='filter_Hearthstone'>
+     <span class="glyphicon glyphicon-filter"></span>
+
+     Hearthstone
+  </button>
+  <button type="button"  
+    class="btn btn-primaty js-filter-button" 
+    data-url="{% url 'products:filter_game' %}" 
+    data="2" 
+    value="WOW"
+    id='filter_WOW'>
+     <span class="glyphicon glyphicon-filter"></span>
+
+     WOW
+  </button>
+  <button type="button"  
+    class="btn btn-primaty js-filter-button" 
+    data-url="{% url 'products:filter_game' %}" 
+    data="3" 
+    value="HOTS"
+    id='filter_HOTS'>
+     <span class="glyphicon glyphicon-filter"></span>
+
+     HOTS
+  </button>
 
   <table style="width: 100%;" class="table" id="game-table">
     <thead>
@@ -54,4 +97,37 @@
 
 {% block extra_js %}
 <script src="{% static 'js/products/games.js' %}"></script>
+<script type="text/javascript">
+
+// $("#filter_All, #filter_Hearthstone, #filter_WOW, #filter_HOTS").live("click", function () {
+//           $(this).removeClass("btn btn-primaty js-filter-button");
+//           $(this).addClass("btn btn-info js-filter-button");
+//       });
+
+
+$('.js-filter-button').on('click', function(event) {
+  // event.preventDefault();
+  var btn = $(this); //button that was clicked
+  $('.js-filter-button').removeClass("btn btn-info js-filter-button");
+  $('.js-filter-button').addClass("btn btn-primaty js-filter-button");
+
+  btn.removeClass("btn btn-primaty js-filter-button");
+  btn.addClass("btn btn-info js-filter-button");
+
+  $.ajax({
+      url : btn.attr("data-url"),
+      type: 'GET',
+      data: { filter_category : btn.attr("data") },
+      dataType: 'json',
+      success: function (data) {
+          $("#game-table tbody").html(data.html_game_list);
+        }
+
+  });
+  return false;
+});
+
+
+</script>
+
 {% endblock extra_js %}

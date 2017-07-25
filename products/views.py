@@ -345,3 +345,17 @@ def money_out(request):
     )
 
     return render(request, 'products/payout_successfull.html')
+
+
+def filter_game(request):
+    data = dict()
+    filter_category = request.GET.get("filter_category")
+    if filter_category=='All':
+        games = Game.objects.filter(is_accepted=False)
+    else:
+        games = Game.objects.filter(is_accepted=False).filter(game_type=filter_category)
+    data['html_game_list'] = render_to_string('products/includes/partial_game_list.html', {
+        'games': games, 'user': request.user
+    })
+
+    return JsonResponse(data)

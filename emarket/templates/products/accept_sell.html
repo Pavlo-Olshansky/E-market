@@ -3,49 +3,49 @@
 {% block title %}Accept{% endblock title %}
 
 {% block extra_css %}
-<style type="text/css">
-    .how-to-stripe:hover .overlay-stripe {
-  position:absolute;
-  width: 100%;
-  height: 100%;
-  z-index: 100;
-  background: transparent url('{% static 'images/how_to_stripe.png' %}') no-repeat;
-  cursor: pointer;
-}
-    .how-to-paypal:hover .overlay-paypal {
-  position:absolute;
-  width: 100%;
-  height: 100%;
-  z-index: 100;
-  background: transparent url('{% static 'images/how_to_paypal.png' %}') no-repeat;
-  cursor: pointer;
-}
+  <style type="text/css">
+      .how-to-stripe:hover .overlay-stripe {
+    position:absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    background: transparent url('{% static 'images/how_to_stripe.png' %}') no-repeat;
+    cursor: pointer;
+  }
+      .how-to-paypal:hover .overlay-paypal {
+    position:absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    background: transparent url('{% static 'images/how_to_paypal.png' %}') no-repeat;
+    cursor: pointer;
+  }
   </style>
 {% endblock extra_css %}
 
 {% block content %}
-
+  <h1>Buy a game "{{ game.title }}" for <strong>${{ ammount }}.00</strong></h1>
 	<p>You must transfer the payment to the site.</p>
 	<p>Then confirm that account is safe in your hands and we transfer your money to seller.</p>
 	<p>Otherwise, the money will be back to you</p>
-<p>
+  <p>
 
-<div align="center">
+  <div align="center">
 
-<div class="how-to-stripe">
-  <button class="btn btn-info">How to pay? &#10132;</button>
-  <span class="overlay-stripe"></span>
-</div>
+  <div class="how-to-stripe">
+    <button class="btn btn-info">How to pay? &#10132;</button>
+    <span class="overlay-stripe"></span>
+  </div>
 
   <form method="POST">
     {% csrf_token %}
     <script
       src="https://checkout.stripe.com/checkout.js" class="stripe-button"
       data-key={{ stripe_publish_key }}
-      data-amount={{ ammount }}
+      data-amount={{ stripe_ammount }}
       data-name="Buy a {{ game.get_game_type_display }} account"
       data-description="Send your money safety."
-      data-image="/img/documentation/checkout/marketplace.png"
+      data-image="{% static 'favicon.ico' %}"
       data-label="Pay with Card or Bitcoin"
       data-locale="auto"
       data-currency="usd"
@@ -53,24 +53,24 @@
     </script>
   </form>
 
-<br>
-  <div style="width:100%;text-align:center;">
-    <span style="width:45%;display:inline;float:left;"><hr/></span>
-    <span style="width:10%;display:inline;float:left;">OR</span>
-    <span style="width:45%;display:inline;float:left;"><hr/></span>
-  </div>
+  <br>
+    <div style="width:100%;text-align:center;">
+      <span style="width:45%;display:inline;float:left;"><hr/></span>
+      <span style="width:10%;display:inline;float:left;">OR</span>
+      <span style="width:45%;display:inline;float:left;"><hr/></span>
+    </div>
 
-<div class="how-to-paypal">
-  <button class="btn btn-info">How to pay? &#10132;</button>
-  <span class="overlay-paypal"></span>
-</div>
+  <div class="how-to-paypal">
+    <button class="btn btn-info">How to pay? &#10132;</button>
+    <span class="overlay-paypal"></span>
+  </div>
 
   <form action="https://www.sandbox.paypal.com/webapps/adaptivepayment/flow/pay" class="standard">
   {{ paypal_form.render }}
   </form>
-</div>
+  </div>
 
-<p>Повідомлення, шо посилатиметься продавцю:</p> 
-<p>{{ message }}</p>
+  <p>Повідомлення, шо посилатиметься продавцю:</p> 
+  <p>{{ message }}</p>
 {% endblock content %}
 

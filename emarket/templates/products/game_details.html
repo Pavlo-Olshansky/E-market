@@ -36,16 +36,32 @@
     
     <p>Type of game: {{ game.get_game_type_display }}</p>
     <p>Price: ${{ game.price }}</p>
-    
+    <p>Top auction bid: <strong>${{ game.auction_bid }}</strong>
+    {% if game.auction_bid == game.price %} (default){% endif %}</p>
+
     {% if not is_own and not game.is_accepted %}
       {% if not user.is_authenticated %}
         <button type="button" 
                 class="btn btn-calltoaction btn-primary js_login_signup_up">Buy now</button>
       {% else %}
-      <a href="{% url 'products:accept_sell' game_id=game.id author_id=game.author_id %}">
-          <button type="button" 
-          class="btn btn-calltoaction btn-primary">Buy now</button>
-      </a>
+
+        <p>Input your bid (current auction bid is {{ game.auction_bid }}):</p>
+        <form action="{% url 'products:accept_sell' game_id=game.id author_id=game.author_id %}" name="ammount_form" method="POST" onsubmit="return validateForm()">
+          {% csrf_token %}
+          <p><input 
+          id="ammount" 
+          name="ammount" 
+          type="number" 
+          min="{{ min_auction_bid }}" 
+          max="10000"
+          required></p>
+
+        <p id="ammount_error"></p>
+
+
+        <button type="submit" 
+        class="btn btn-calltoaction btn-primary">Buy now</button>
+      </form>
       {% endif %}
     {% endif %}
 
@@ -109,6 +125,16 @@ var onloadCallback = function() {
   var correctCaptcha = function(response) {
     $('#submit_comment').show("slow");
 };
+
+
+function myFunction() {
+    var inpObj = document.getElementById("ammount_form");
+    if (inpObj.checkValidity() == false) {
+        document.getElementById("ammount_error").innerHTML = inpObj.validationMessage;
+    } else {
+        document.getElementById("ammount_error").innerHTML = "Input OK";
+    } 
+} 
 </script>
 
 {% endblock %}

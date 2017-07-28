@@ -34,6 +34,7 @@ def save_game_form(request, form, template_name):
 
             game = form.save(commit=False)
             game.author = request.user
+            game.auction_bid = 0
             game.save()
 
             # form.save()
@@ -95,12 +96,17 @@ def game_details(request, pk):
     model = Game
     template_name = 'products/game_details.html'
     current_user = request.user
+    if current_user.is_authenticated:
+        current_user.userprofile.test_auction_bid = 0
+        current_user.save()
+
     game = Game.objects.get(pk=pk)
     photos = Photo.objects.filter(game_id=game.id)
     if request.user.id == game.author_id:
         is_own = True
     else:
         is_own = False
+
 
     if request.method == 'POST':
         comment_form = CommentForm(request.POST, prefix="comment")
@@ -152,8 +158,14 @@ def game_details(request, pk):
         photo_form = PhotoForm(request.POST, request.FILES)
         comment_form = CommentForm(prefix="comment")
 
+    if game.auction_bid:
+        min_auction_bid = game.auction_bid + 1
+    else:
+        min_auction_bid = game.price
+
     context = {
         'game': game,
+        'min_auction_bid': min_auction_bid,
         'comment_form': comment_form,
         'photo_form': photo_form,
         'photos': photos,
@@ -171,60 +183,63 @@ def accept_sell(request, game_id, author_id):
     current_user = get_object_or_404(User, pk=request.user.id)
     game = Game.objects.get(pk=game_id)
 
-    game.buyer = current_user
-    game.save()
-
     message = ''
     stripe_publish_key = settings.STRIPE_PUBLISHABLE_KEY
-    ammount = game.price*100
-    if request.method == 'POST':
 
-        stripe.api_key = settings.STRIPE_SECRET_KEY
-        # Token is created using Stripe.js or Checkout!
-        # Get the payment token submitted by the form:
-        token = request.POST['stripeToken'] 
+    current_user.userprofile.test_auction_bid = request.POST.get('ammount', current_user.userprofile.test_auction_bid)
+    current_user.save()
+    ammount = current_user.userprofile.test_auction_bid
+    stripe_ammount = int(ammount)*100
 
-        customer = stripe.Customer.create(
-          email=current_user.email,
-          source=token,
-        )
 
-        source=stripe.Source.create(
-          type='bitcoin',
-          amount=ammount,
-          currency='usd',
-          owner={
-            "email": current_user.email
-          }
-        )
-        # Charge the user's card:
-        charge = stripe.Charge.create(
-          amount=ammount,
-          currency="usd",
-          description="Buy a game",
-          customer=customer.id,
-        )
+    if request.method == 'POST' and request.POST.get('stripeToken', False):
 
-        redirect_url = reverse('products:payment_success', args=(game.uuid,))
-        return HttpResponseRedirect(redirect_url)
+            stripe.api_key = settings.STRIPE_SECRET_KEY
+            # Token is created using Stripe.js or Checkout!
+            # Get the payment token submitted by the form:
+            token = request.POST.get('stripeToken')
+
+            customer = stripe.Customer.create(
+              email=current_user.email,
+              source=token,
+            )
+
+            source=stripe.Source.create(
+              type='bitcoin',
+              amount=stripe_ammount,
+              currency='usd',
+              owner={
+                "email": current_user.email
+              }
+            )
+
+            # Charge the user's card:
+            charge = stripe.Charge.create(
+              amount=stripe_ammount,
+              currency="usd",
+              description="Buy a game",
+              customer=customer.id,
+            )
+
+            redirect_url = reverse('products:payment_success', args=(game.uuid,))
+            return HttpResponseRedirect(redirect_url)
     
     host = request.get_host()
 
     paypal_dict = {
     "business": 'pavlo.olshansky@gmail.com',
-    "amount": str(game.price)+'.00',
+    "amount": str(ammount)+'.00',
     "item_name": game.title,
     "invoice": game.id,
     "notify_url": "https://{}{}".format(host, reverse('paypal-ipn')),
-    "return_url": "http://{}{}".format(host, reverse('products:payment_success', args=(game.uuid, ))),
+    "return_url": "http://{}{}".format(host, reverse('products:payment_success', args=(game.uuid,))),
     "cancel_return": "http://{}{}".format(host, reverse('products:game_details', args=(game.id,))),
-    "custom": "Upgrade all users!",  # Custom command to correlate to some function later (optional)
+    "custom": "None",  # Custom command to correlate to some function later (optional)
     }
 
     paypal_form = PayPalPaymentsForm(initial=paypal_dict)
-        
 
-    context = {'paypal_form': paypal_form, 'game': game, 'user_author': user_author, 'game': game, 'ammount': ammount, 'stripe_publish_key': stripe_publish_key, 'message': message}
+    context = {'paypal_form': paypal_form, 'game': game, 'user_author': user_author, 'game': game, 'ammount': ammount, 'stripe_ammount': stripe_ammount, 'stripe_publish_key': stripe_publish_key, 'message': message}
     return render(request, 'products/accept_sell.html', context)
 
 
@@ -309,10 +324,18 @@ def payment_success(request, uuid):
 
 
     # Update a game list without this game
-    game.accept()
+    game.auction_bid = current_user.userprofile.test_auction_bid
+    current_user.userprofile.test_auction_bid = 0
+    current_user.save()
+    if game.buyer_id:
+        pass
+        # send message to previous buyer
+
+    game.buyer_id = current_user.id
+    # game.accept()
     game.save() 
     user_author = game.author
-    current_user = game.buyer
+    current_user = request.user
     user_author.userprofile.money += game.price
 
     # Send message to seller(request a login and pass)

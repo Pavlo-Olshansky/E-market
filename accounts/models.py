@@ -11,6 +11,7 @@ class UserProfile(models.Model):
 
     file = models.ImageField(upload_to='profile_image/', blank=True, default='profile_image/no_profile.jpg')
     money = models.IntegerField(default=0)
+    test_auction_bid = models.IntegerField(default=0)
     # USERNAME_FIELD = 'username'
     # REQUIRED_FIELDS = ['username', 'email']
 

@@ -10,7 +10,7 @@
 	  {% endif %}
 	  <td>{{ game.get_game_type_display }}</td>
 	  <td>{{ game.publication_date|naturalday }}</td>
-	  <td>${{ game.price }}</td>
+	  <td>${% if game.action_bid %}{{ game.auction_bid }}{% else %}{{ game.price }}{% endif %}</td>
 	  <td>
 
 	  {% if user == game.author %}

@@ -332,7 +332,7 @@ def payment_success(request, uuid):
         # send message to previous buyer
 
     game.buyer_id = current_user.id
-    # game.accept()
+    game.accept()
     game.save() 
     user_author = game.author
     current_user = request.user

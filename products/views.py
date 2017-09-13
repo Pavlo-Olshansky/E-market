@@ -188,7 +188,7 @@ def accept_sell(request, game_id, author_id):
 
     # current_user.userprofile.test_auction_bid = request.POST.get('ammount', current_user.userprofile.test_auction_bid)
     current_user.save()
-    # ammount = current_user.userprofile.test_auction_bid
+    ammount = game.price
     stripe_ammount = int(ammount)*100
 
 

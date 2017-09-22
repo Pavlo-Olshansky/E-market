@@ -1,6 +1,15 @@
 # E-market
 
-> Website for buying and selling game account deployed on free host [here](https://buyandplay.herokuapp.com/).
+> Website for buying and selling game account deployed [here](https://buyandplay.herokuapp.com).
+
+* Developed fixtures
+  * Login / Registration with email confirm
+  * User profile page (with image uploading)
+  * CRUD operations via JS
+  * Comment model
+  * Disqus comments integration
+  * Paypal payments integration
+  * Stripe payments integration (Card / Bitcoin payments)
 
 ## Getting Started
 
